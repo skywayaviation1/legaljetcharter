@@ -1,0 +1,19 @@
+{
+  "name": "legal-jet-charter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Part 135 Verification — search the FAA's authoritative list of certificated air carriers, with an independent watchlist for operators of concern.",
+  "homepage": "https://legaljetcharter.com",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "aviation",
+    "part-135",
+    "charter",
+    "faa",
+    "verification"
+  ],
+  "license": "UNLICENSED"
+}
