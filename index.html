@@ -483,6 +483,7 @@
   }
 
   /* ---------- LOGIN PAGE ---------- */
+  .login-page[hidden] { display: none !important; }
   .login-page {
     position: fixed; inset: 0; z-index: 110;
     background: var(--paper);
@@ -1169,11 +1170,13 @@
   function showLoginPage() {
     loginErr.hidden = true;
     loginUser.value = ''; loginPass.value = '';
+    loginPage.style.display = 'flex';
     loginPage.hidden = false;
     document.body.style.overflow = 'hidden';
     setTimeout(() => loginUser.focus(), 80);
   }
   function hideLoginPage() {
+    loginPage.style.display = 'none';
     loginPage.hidden = true;
     document.body.style.overflow = '';
   }
