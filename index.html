@@ -426,7 +426,281 @@
   .disclaimer b { color: var(--ink); }
 
 
-  /* ---------- AUTH / ADMIN ---------- */
+  /* ---------- ADMIN APP ---------- */
+  .admin-app { min-height: 100vh; background: var(--paper); }
+  .admin-strip {
+    background: var(--ink); color: var(--paper);
+    border-bottom: 3px solid var(--accent);
+    padding: 16px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 20px; flex-wrap: wrap;
+  }
+  .admin-strip .brand-text b { color: var(--paper); }
+  .admin-strip .brand-text span { color: var(--accent); letter-spacing: 0.22em; }
+  .admin-strip-meta {
+    display: flex; align-items: center; gap: 22px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--paper);
+  }
+  .admin-strip-meta .admin-user { color: var(--accent); }
+  .admin-strip-meta .view-public { color: rgba(255,255,255,0.6); text-decoration: none; }
+  .admin-strip-meta .view-public:hover { color: var(--accent); }
+  .admin-strip-meta button {
+    font: inherit; background: transparent; color: var(--accent);
+    border: 1px solid var(--accent); padding: 6px 14px; cursor: pointer;
+    letter-spacing: 0.18em;
+  }
+  .admin-strip-meta button:hover { background: var(--accent); color: var(--ink); }
+
+  .admin-tabs {
+    background: var(--paper-2);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 32px;
+    display: flex; gap: 4px;
+    position: sticky; top: 0; z-index: 5;
+  }
+  .adm-tab {
+    font: inherit; font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px; letter-spacing: 0.22em; text-transform: uppercase;
+    padding: 18px 22px; background: transparent; border: none; cursor: pointer;
+    color: var(--ink-mute);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color .15s, border-color .15s;
+  }
+  .adm-tab:hover { color: var(--ink); }
+  .adm-tab.active { color: var(--ink); border-bottom-color: var(--accent); font-weight: 700; }
+
+  .admin-content {
+    max-width: 1180px; margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+  .adm-section h1 {
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-weight: 500; font-size: clamp(40px, 5vw, 60px);
+    line-height: 1; letter-spacing: -0.01em;
+    margin: 0 0 16px;
+  }
+  .adm-section h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-mute); font-weight: 500;
+    margin: 36px 0 16px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--rule);
+  }
+  .adm-section h3 {
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-style: italic; font-weight: 500; font-size: 22px;
+    margin: 0 0 16px; color: var(--ink);
+  }
+  .adm-lede {
+    font-size: 16px; color: var(--ink-soft);
+    max-width: 60ch; line-height: 1.6;
+    margin: 0 0 32px;
+  }
+
+  /* Stat cards */
+  .stat-cards {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    margin-bottom: 8px;
+  }
+  .stat-card {
+    background: var(--paper-2); border: 1px solid var(--rule);
+    padding: 24px 28px;
+    position: relative;
+  }
+  .stat-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 3px; bottom: 0;
+    background: var(--accent);
+  }
+  .sc-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .sc-metric {
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-weight: 500; font-size: 52px; line-height: 1;
+    color: var(--ink); margin: 8px 0 4px;
+  }
+  .sc-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.05em;
+    color: var(--ink-soft);
+  }
+
+  /* Action cards */
+  .action-cards {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  .action-card {
+    font: inherit; text-align: left;
+    background: var(--paper-2); border: 1px solid var(--rule);
+    padding: 22px 24px; cursor: pointer;
+    transition: border-color .15s, background .15s;
+    color: var(--ink);
+  }
+  .action-card:hover { border-color: var(--ink); background: var(--paper); }
+  .action-card.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .action-card.primary:hover { background: var(--accent); border-color: var(--accent); }
+  .ac-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 14px;
+  }
+  .ac-arr { color: var(--accent); font-size: 16px; }
+  .action-card.primary .ac-arr { color: var(--paper); }
+  .ac-desc {
+    margin-top: 8px;
+    font-size: 13.5px; line-height: 1.5; opacity: 0.85;
+  }
+
+  /* Data status */
+  .data-status {
+    background: var(--paper-2); border: 1px solid var(--rule-strong);
+    margin-bottom: 24px;
+  }
+  .ds-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 22px; border-bottom: 1px solid var(--rule-soft);
+  }
+  .ds-row:last-child { border-bottom: none; }
+  .ds-k {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .ds-v {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; font-weight: 500; color: var(--ink);
+  }
+
+  .adm-drop {
+    display: block; border: 1.5px dashed var(--rule-strong);
+    padding: 44px 32px; text-align: center; cursor: pointer;
+    transition: background .15s, border-color .15s;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft); background: var(--paper-2);
+    margin-bottom: 24px;
+  }
+  .adm-drop:hover, .adm-drop.over { background: var(--paper); border-color: var(--accent); color: var(--accent); }
+  .adm-drop input { display: none; }
+
+  .adm-actions {
+    display: flex; justify-content: flex-end; gap: 10px;
+    flex-wrap: wrap;
+  }
+  .adm-actions.top { justify-content: space-between; margin-bottom: 24px; }
+  .adm-actions button {
+    font: inherit; font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700;
+    padding: 12px 22px; background: transparent;
+    border: 1px solid var(--ink); color: var(--ink); cursor: pointer;
+  }
+  .adm-actions button.primary { background: var(--ink); color: var(--paper-2); }
+  .adm-actions button:hover { background: var(--accent); border-color: var(--accent); color: var(--paper-2); }
+
+  /* Admin watchlist */
+  .adm-watchlist {
+    background: var(--paper-2); border: 1px solid var(--rule);
+    margin-bottom: 18px;
+  }
+  .adm-watchlist:empty::before {
+    content: 'No entries on the watchlist yet. Click + Add entry above to add one.';
+    display: block; padding: 48px 28px; text-align: center;
+    color: var(--ink-mute); font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .aw-item {
+    display: grid; grid-template-columns: 4px 1fr auto;
+    gap: 18px; padding: 18px 22px;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: flex-start;
+  }
+  .aw-item:last-child { border-bottom: 0; }
+  .aw-stripe { background: var(--alert); align-self: stretch; }
+  .aw-stripe.warning { background: #A88945; }
+  .aw-stripe.caution { background: #7A6431; }
+  .aw-stripe.critical { background: var(--alert); }
+  .aw-body { min-width: 0; }
+  .aw-name {
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-weight: 500; font-size: 19px; color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .aw-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-mute); margin-bottom: 6px;
+  }
+  .aw-summary { font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; }
+  .aw-actions { display: flex; gap: 6px; flex-shrink: 0; }
+  .aw-actions button {
+    font: inherit; font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 6px 12px; background: transparent;
+    border: 1px solid var(--rule-strong); color: var(--ink); cursor: pointer;
+  }
+  .aw-actions button:hover { background: var(--ink); color: var(--paper-2); }
+  .aw-actions button.del { color: var(--alert); border-color: var(--alert); }
+  .aw-actions button.del:hover { background: var(--alert); color: var(--paper-2); }
+
+  /* Admin form (shared between dashboard sections) */
+  .adm-form {
+    background: var(--paper-2); border: 1px solid var(--rule-strong);
+    padding: 24px 28px;
+  }
+  .adm-form .mf-row { margin-bottom: 16px; position: relative; }
+  .adm-form .mf-row.two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .adm-form .mf-row label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-mute); margin-bottom: 6px;
+  }
+  .adm-form .mf-row input[type="text"],
+  .adm-form .mf-row input[type="password"],
+  .adm-form .mf-row input[type="date"],
+  .adm-form .mf-row textarea {
+    width: 100%; font: inherit; font-family: 'Geist', sans-serif;
+    font-size: 14px; padding: 11px 13px;
+    background: var(--paper); border: 1px solid var(--rule-strong); color: var(--ink);
+    border-radius: 0;
+  }
+  .adm-form .mf-row textarea { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.5; }
+  .adm-form .mf-row input:focus,
+  .adm-form .mf-row textarea:focus { outline: 1.5px solid var(--accent); outline-offset: -1.5px; }
+  .adm-form .mf-suggest {
+    position: absolute; top: 100%; left: 0; right: 0; z-index: 5;
+    background: var(--paper); border: 1px solid var(--rule-strong); border-top: none;
+    max-height: 200px; overflow-y: auto;
+  }
+  .adm-form .mf-suggest:empty { display: none; }
+  .adm-form .mf-suggest div { padding: 8px 12px; cursor: pointer; font-family: 'Cormorant Garamond', serif; font-size: 14px; border-bottom: 1px solid var(--rule-soft); }
+  .adm-form .mf-suggest div:hover { background: var(--paper-3); }
+
+  .adm-note {
+    font-size: 13.5px; line-height: 1.6; color: var(--ink-soft);
+    background: var(--paper-3); border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    max-width: 70ch;
+  }
+
+  @media (max-width: 800px) {
+    .admin-strip { padding: 12px 18px; }
+    .admin-tabs { padding: 0 12px; overflow-x: auto; }
+    .adm-tab { padding: 14px 14px; font-size: 10.5px; }
+    .admin-content { padding: 28px 18px 60px; }
+    .stat-cards, .action-cards { grid-template-columns: 1fr; }
+    .adm-form .mf-row.two { grid-template-columns: 1fr; }
+    .adm-actions { justify-content: stretch; }
+    .adm-actions button { flex: 1; }
+  }
+
+
   .admin-indicator {
     display: inline-flex; align-items: center; gap: 10px;
     font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
@@ -827,6 +1101,7 @@
 </head>
 <body>
 
+<div id="public-app">
 <header class="strip">
   <div class="strip-inner">
     <div class="brand">
@@ -842,9 +1117,6 @@
     </div>
     <div class="strip-meta">
       <span><span class="dot"></span><span id="data-status">Data published <b id="data-date">—</b></span></span>
-      <span class="admin-indicator" id="admin-indicator" hidden><span id="admin-username">Admin</span><button id="lock-btn">Sign out</button></span>
-      <button id="open-manage" hidden>Manage</button>
-      <button id="open-update" hidden>Update data</button>
     </div>
   </div>
 </header>
@@ -915,8 +1187,179 @@
     <h3>Status</h3>
     <p id="footer-status">Registry loaded from publication of <b id="footer-date">—</b>.</p>
     <p>Source file: <span style="color:var(--ink)">Part_135_Operators_and_Aircraft_List</span></p>
+    <p style="margin-top:14px"><a href="/admin" style="color:var(--ink-mute);text-decoration:none;letter-spacing:0.18em">Admin →</a></p>
   </div>
 </footer>
+</div><!-- /public-app -->
+
+<section id="admin-app" class="admin-app" hidden>
+  <header class="admin-strip">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 120 134" width="26" height="29" aria-hidden="true">
+        <path fill="#0F2A47" d="M 0,10 C 0,4.5 4.5,0 10,0 L 110,0 C 115.5,0 120,4.5 120,10 L 120,68 C 120,98 96,124 60,134 C 24,124 0,98 0,68 Z"/>
+        <path d="M 24,74 L 50,100 L 96,40" stroke="#C9A961" stroke-width="6.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <g transform="translate(96, 40) rotate(40)"><path fill="#C9A961" d="M 0,-15 L 1.5,-11 L 2,-2 L 13,4 L 13,6 L 2,3 L 2,9 L 7,13 L 7,14 L 2,12 L 1.5,15 L -1.5,15 L -2,12 L -7,14 L -7,13 L -2,9 L -2,3 L -13,6 L -13,4 L -2,-2 L -1.5,-11 Z"/></g>
+      </svg>
+      <div class="brand-text">
+        <b>LEGAL JET CHARTER</b>
+        <span>Admin Dashboard</span>
+      </div>
+    </div>
+    <div class="admin-strip-meta">
+      <a href="/" class="view-public">↗ View public site</a>
+      <span class="admin-user">● <span id="dash-username">admin</span></span>
+      <button id="dash-signout">Sign out</button>
+    </div>
+  </header>
+
+  <nav class="admin-tabs">
+    <button class="adm-tab active" data-section="overview">Overview</button>
+    <button class="adm-tab" data-section="data">FAA Data</button>
+    <button class="adm-tab" data-section="watchlist">Watchlist</button>
+    <button class="adm-tab" data-section="account">Account</button>
+  </nav>
+
+  <main class="admin-content">
+
+    <section class="adm-section" data-section="overview">
+      <h1>Welcome back.</h1>
+      <p class="adm-lede">Manage the FAA Part 135 registry, the operator watchlist, and your admin credentials from here.</p>
+
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="sc-label">FAA Registry</div>
+          <div class="sc-metric" id="dash-stat-ops">—</div>
+          <div class="sc-sub"><span id="dash-stat-acft">—</span> aircraft · published <span id="dash-stat-date">—</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="sc-label">Watchlist</div>
+          <div class="sc-metric" id="dash-stat-watch">—</div>
+          <div class="sc-sub">flagged operators on file</div>
+        </div>
+      </div>
+
+      <h2>Quick actions</h2>
+      <div class="action-cards">
+        <button class="action-card" data-goto="data">
+          <div class="ac-title">Update FAA Data <span class="ac-arr">→</span></div>
+          <div class="ac-desc">Drop in the latest monthly Part 135 publication.</div>
+        </button>
+        <button class="action-card" data-goto="watchlist">
+          <div class="ac-title">Manage Watchlist <span class="ac-arr">→</span></div>
+          <div class="ac-desc">Add or edit operators with known concerns.</div>
+        </button>
+        <button class="action-card primary" id="dash-export-overview">
+          <div class="ac-title">Export Updated App <span class="ac-arr">↓</span></div>
+          <div class="ac-desc">Download index.html with current data, watchlist, and credentials baked in.</div>
+        </button>
+        <button class="action-card" data-goto="account">
+          <div class="ac-title">Account <span class="ac-arr">→</span></div>
+          <div class="ac-desc">Change your username or passcode.</div>
+        </button>
+      </div>
+    </section>
+
+    <section class="adm-section" data-section="data" hidden>
+      <h1>FAA Data.</h1>
+      <p class="adm-lede">The FAA publishes the Part 135 Operators and Aircraft List approximately every 30 days. Drop in the latest <span class="mono">.xlsx</span> to refresh the registry.</p>
+
+      <div class="data-status">
+        <div class="ds-row"><span class="ds-k">Operators</span><span class="ds-v" id="dash-data-ops">—</span></div>
+        <div class="ds-row"><span class="ds-k">Aircraft</span><span class="ds-v" id="dash-data-acft">—</span></div>
+        <div class="ds-row"><span class="ds-k">Published</span><span class="ds-v" id="dash-data-date">—</span></div>
+        <div class="ds-row"><span class="ds-k">Source</span><span class="ds-v" id="dash-data-src">Built-in</span></div>
+      </div>
+
+      <h2>Upload new file</h2>
+      <label class="adm-drop" id="adm-drop">
+        <input type="file" id="adm-file" accept=".xlsx,.xls" />
+        <span id="adm-drop-text">Click to choose .xlsx — or drop the file here</span>
+      </label>
+
+      <div class="adm-actions">
+        <button id="dash-reset-data">Reset to built-in registry</button>
+        <button class="primary" id="dash-export-data">Export updated app ↓</button>
+      </div>
+    </section>
+
+    <section class="adm-section" data-section="watchlist" hidden>
+      <h1>Watchlist.</h1>
+      <p class="adm-lede">Editorially flag operators with known financial, safety, or regulatory concerns. Entries are surfaced to the public alongside Part 135 search results.</p>
+
+      <div class="adm-actions top">
+        <button class="primary" id="dash-add-entry">+ Add entry</button>
+        <button id="dash-export-watch">Export updated app ↓</button>
+      </div>
+
+      <div id="dash-watchlist" class="adm-watchlist"></div>
+
+      <div class="adm-form" id="dash-watchlist-form" hidden>
+        <h3 id="dash-form-title">New entry</h3>
+        <div class="mf-row">
+          <label>Operator name<input id="dwf-name" type="text" autocomplete="off" placeholder="Start typing — pick from FAA list" /></label>
+          <div class="mf-suggest" id="dwf-suggest"></div>
+        </div>
+        <div class="mf-row two">
+          <label>Severity
+            <div class="mf-radio">
+              <label><input type="radio" name="dwf-sev" value="caution" /> <span>Caution</span></label>
+              <label><input type="radio" name="dwf-sev" value="warning" checked /> <span>Warning</span></label>
+              <label><input type="radio" name="dwf-sev" value="critical" /> <span>Critical</span></label>
+            </div>
+          </label>
+          <label>Categories
+            <div class="mf-checks">
+              <label><input type="checkbox" value="financial" /> <span>Financial</span></label>
+              <label><input type="checkbox" value="safety" /> <span>Safety / Accidents</span></label>
+              <label><input type="checkbox" value="regulatory" /> <span>Regulatory / FAA</span></label>
+              <label><input type="checkbox" value="other" /> <span>Other</span></label>
+            </div>
+          </label>
+        </div>
+        <div class="mf-row">
+          <label>Summary (one-line headline)<input id="dwf-summary" type="text" maxlength="200" placeholder="e.g. Certificate suspended Feb 2026 pending review" /></label>
+        </div>
+        <div class="mf-row">
+          <label>Details<textarea id="dwf-details" rows="4" placeholder="Context, dates, scope of concern. Be factual."></textarea></label>
+        </div>
+        <div class="mf-row">
+          <label>Sources (one per line · format: <code>Label | URL</code>)<textarea id="dwf-sources" rows="3" placeholder="FAA Enforcement Action 2026-XYZ | https://...&#10;NTSB Report ABC123 | https://..."></textarea></label>
+        </div>
+        <div class="mf-row two">
+          <label>Date of incident / action (optional)<input id="dwf-incident" type="date" /></label>
+          <label>&nbsp;</label>
+        </div>
+        <div class="adm-actions">
+          <button id="dwf-cancel">Cancel</button>
+          <button class="primary" id="dwf-save">Save entry</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="adm-section" data-section="account" hidden>
+      <h1>Account.</h1>
+      <p class="adm-lede">Signed in as <b id="account-username-display">admin</b>. Update your credentials below — they are hashed and baked into the exported app.</p>
+
+      <h2>Change credentials</h2>
+      <form id="account-form" class="adm-form" autocomplete="off">
+        <div class="mf-row"><label>Username<input id="account-user" type="text" autocomplete="off" spellcheck="false" /></label></div>
+        <div class="mf-row"><label>New passcode (min 8 characters)<input id="account-pass1" type="password" autocomplete="new-password" /></label></div>
+        <div class="mf-row"><label>Confirm passcode<input id="account-pass2" type="password" autocomplete="new-password" /></label></div>
+        <div id="account-err" class="auth-err" hidden></div>
+        <div class="adm-actions">
+          <button type="submit" class="primary">Save credentials</button>
+        </div>
+      </form>
+
+      <h2>Recovery</h2>
+      <p class="adm-note">There is no email recovery — credentials are hashed into the file. If you forget them, open <span class="mono">index.html</span> in a text editor, find <span class="mono">auth-config</span> and replace its contents with <span class="mono">{"user":"admin","hash":null}</span>. Save, commit, push. The next deploy will let you re-set credentials from this page.</p>
+
+      <h2>Session</h2>
+      <button id="dash-signout-account">Sign out of this session</button>
+    </section>
+
+  </main>
+</section><!-- /admin-app -->
 
 <div class="modal-back" id="modal" aria-modal="true" role="dialog">
   <div class="modal">
@@ -1118,18 +1561,46 @@
   }
 
   function applyAuthState() {
-    const manageBtn = document.getElementById('open-manage');
-    const updateBtn = document.getElementById('open-update');
-    const indicator = document.getElementById('admin-indicator');
-    const userLabel = document.getElementById('admin-username');
-    const hasPass   = !!authConfig.hash;
-
-    manageBtn.hidden = !isUnlocked;
-    updateBtn.hidden = !isUnlocked;
-    indicator.hidden = !(hasPass && isUnlocked);
-    if (userLabel) userLabel.textContent = authConfig.user || 'Admin';
+    const hasPass = !!authConfig.hash;
+    const userLabel = document.getElementById('admin-username') || document.getElementById('dash-username');
+    // Public header no longer has admin buttons — routing handles dashboard visibility.
+    if (userLabel) userLabel.textContent = authConfig.user || 'admin';
+    const dashUser = document.getElementById('dash-username');
+    if (dashUser) dashUser.textContent = authConfig.user || 'admin';
+    const acctUser = document.getElementById('account-username-display');
+    if (acctUser) acctUser.textContent = authConfig.user || 'admin';
   }
   applyAuthState();
+
+  // ---- URL ROUTING (public vs admin) ----
+  const publicApp = document.getElementById('public-app');
+  const adminApp  = document.getElementById('admin-app');
+
+  function isAdminUrl() {
+    return location.pathname === '/admin' || location.pathname === '/admin/' || location.hash === '#admin';
+  }
+
+  function applyRoute() {
+    const adminRoute = isAdminUrl();
+    if (adminRoute) {
+      publicApp.style.display = 'none';
+      if (isUnlocked) {
+        adminApp.hidden = false;
+        adminApp.style.display = '';
+        hideLoginPage();
+        renderDashboard();
+      } else {
+        adminApp.hidden = true;
+        adminApp.style.display = 'none';
+        showLoginPage();
+      }
+    } else {
+      publicApp.style.display = '';
+      adminApp.hidden = true;
+      adminApp.style.display = 'none';
+      hideLoginPage();
+    }
+  }
 
   // Login page
   const loginPage = document.getElementById('login-page');
@@ -1169,10 +1640,13 @@
     if (u.toLowerCase() === expectedUser && h === authConfig.hash) {
       isUnlocked = true;
       sessionStorage.setItem(AUTH_SESSION_KEY, '1');
-      hideLoginPage();
       applyAuthState();
+      // Navigate to /admin properly if we came in via hash, then show dashboard
+      if (location.hash === '#admin') {
+        history.replaceState(null, '', '/admin');
+      }
+      applyRoute();
       showToast('Signed in as ' + (authConfig.user || 'admin'), 'success');
-      if (location.hash === '#admin') history.replaceState(null, '', location.pathname + location.search);
     } else {
       loginErr.textContent = 'Invalid username or passcode';
       loginErr.hidden = false;
@@ -1184,16 +1658,20 @@
 
   loginBack.addEventListener('click', (e) => {
     e.preventDefault();
-    hideLoginPage();
-    if (location.hash === '#admin') history.replaceState(null, '', location.pathname + location.search);
+    history.replaceState(null, '', '/');
+    applyRoute();
   });
 
-  document.getElementById('lock-btn').addEventListener('click', () => {
+  // Sign-out button (in admin strip — both copies)
+  function signOut() {
     isUnlocked = false;
     sessionStorage.removeItem(AUTH_SESSION_KEY);
     applyAuthState();
+    applyRoute();  // returns to login screen since we're still on /admin
     showToast('Signed out', 'success');
-  });
+  }
+  document.getElementById('dash-signout').addEventListener('click', signOut);
+  document.getElementById('dash-signout-account').addEventListener('click', signOut);
 
   // Setup modal
   const setupModal = document.getElementById('setup-modal');
@@ -1232,20 +1710,11 @@
   document.getElementById('setup-save').addEventListener('click', saveCredentials);
   setupPass2.addEventListener('keydown', e => { if (e.key === 'Enter') saveCredentials(); });
 
-  // #admin URL routing — go straight to login (no first-time setup path)
-  if (location.hash === '#admin') {
-    if (isUnlocked) {
-      history.replaceState(null, '', location.pathname + location.search);
-    } else {
-      setTimeout(showLoginPage, 60);
-    }
-  }
+  // Apply route on initial load + back/forward nav
+  applyRoute();
+  window.addEventListener('popstate', applyRoute);
 
-  // Change credentials button (in manage modal)
-  document.getElementById('manage-change-pass').addEventListener('click', () => {
-    document.getElementById('manage-modal').classList.remove('open');
-    openSetup('change');
-  });
+  // (Old manage-modal change-pass button is unused — admin now changes creds in /admin Account section)
 
   // ---- HELPERS ----
   function escapeHtml(s) {
@@ -1827,7 +2296,7 @@
   mfCancelBtn.addEventListener('click', closeForm);
   manageAddBtn.addEventListener('click', () => openForm(-1));
   manageCloseBtn.addEventListener('click', () => manageModal.classList.remove('open'));
-  openManageBtn.addEventListener('click', () => {
+  if (openManageBtn) openManageBtn.addEventListener('click', () => {
     renderManageList();
     closeForm();
     manageModal.classList.add('open');
@@ -1847,7 +2316,7 @@
     download('part135-watchlist.json', JSON.stringify(WATCHLIST, null, 2), 'application/json');
     showToast('Watchlist JSON downloaded', 'success');
   });
-  exportHtmlBtn.addEventListener('click', () => {
+  function exportApp() {
     try {
       let html = '<!doctype html>\n' + document.documentElement.outerHTML;
       const json = JSON.stringify(WATCHLIST).replace(/<\//g, '<\\/');
@@ -1868,7 +2337,8 @@
       console.error(err);
       showToast('Export failed: ' + err.message, 'error');
     }
-  });
+  }
+  exportHtmlBtn.addEventListener('click', exportApp);
   const modal      = document.getElementById('modal');
   const openUpdate = document.getElementById('open-update');
   const modalClose = document.getElementById('modal-close');
@@ -1885,7 +2355,7 @@
     setTimeout(() => toast.classList.remove('show'), 3200);
   }
 
-  openUpdate.addEventListener('click', () => modal.classList.add('open'));
+  if (openUpdate) openUpdate.addEventListener('click', () => modal.classList.add('open'));
   modalClose.addEventListener('click', () => modal.classList.remove('open'));
   modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
 
@@ -1960,6 +2430,267 @@
     };
     reader.readAsArrayBuffer(file);
   }
+
+  // ============================================================
+  // ADMIN DASHBOARD — interactions for /admin
+  // ============================================================
+
+  // -- Tab switching --
+  const admTabs = document.querySelectorAll('.adm-tab');
+  const admSections = document.querySelectorAll('.adm-section');
+  function switchSection(name) {
+    admTabs.forEach(t => t.classList.toggle('active', t.dataset.section === name));
+    admSections.forEach(s => s.hidden = (s.dataset.section !== name));
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+  admTabs.forEach(t => t.addEventListener('click', () => switchSection(t.dataset.section)));
+
+  // -- Quick action cards on Overview --
+  document.querySelectorAll('.action-card[data-goto]').forEach(c => {
+    c.addEventListener('click', () => switchSection(c.dataset.goto));
+  });
+
+  // -- renderDashboard: refresh stats & watchlist list whenever route enters /admin --
+  function renderDashboard() {
+    if (!adminApp || adminApp.hidden) return;
+    const ops  = DATA.operators.length;
+    const acft = DATA.aircraft.length;
+    const dateStr = DATA.published ? formatDate(DATA.published) : '—';
+    const opsEl   = document.getElementById('dash-stat-ops');
+    const acftEl  = document.getElementById('dash-stat-acft');
+    const dateEl  = document.getElementById('dash-stat-date');
+    const watchEl = document.getElementById('dash-stat-watch');
+    if (opsEl)   opsEl.textContent   = ops.toLocaleString();
+    if (acftEl)  acftEl.textContent  = acft.toLocaleString();
+    if (dateEl)  dateEl.textContent  = dateStr;
+    if (watchEl) watchEl.textContent = WATCHLIST.length.toString();
+    const ddOps  = document.getElementById('dash-data-ops');
+    const ddAcft = document.getElementById('dash-data-acft');
+    const ddDate = document.getElementById('dash-data-date');
+    const ddSrc  = document.getElementById('dash-data-src');
+    if (ddOps)  ddOps.textContent  = ops.toLocaleString();
+    if (ddAcft) ddAcft.textContent = acft.toLocaleString();
+    if (ddDate) ddDate.textContent = dateStr;
+    if (ddSrc)  ddSrc.textContent  = DATA.source || 'Built-in';
+    const acctUser = document.getElementById('account-user');
+    if (acctUser && !acctUser.matches(':focus')) acctUser.value = authConfig.user || 'admin';
+    renderDashWatchlist();
+  }
+
+  // -- Watchlist list in dashboard --
+  function renderDashWatchlist() {
+    const list = document.getElementById('dash-watchlist');
+    if (!list) return;
+    if (!WATCHLIST.length) { list.innerHTML = ''; return; }
+    list.innerHTML = WATCHLIST.map((e, i) => `
+      <div class="aw-item">
+        <div class="aw-stripe ${escapeHtml(e.severity || 'warning')}"></div>
+        <div class="aw-body">
+          <div class="aw-name">${escapeHtml(e.operatorName)}</div>
+          <div class="aw-sub">${escapeHtml((e.severity || 'warning').toUpperCase())} · ${escapeHtml((e.categories || []).join(', ') || 'No categories')}</div>
+          ${e.summary ? `<div class="aw-summary">${escapeHtml(e.summary)}</div>` : ''}
+        </div>
+        <div class="aw-actions">
+          <button data-i="${i}" class="aw-edit">Edit</button>
+          <button data-i="${i}" class="del aw-del">Delete</button>
+        </div>
+      </div>
+    `).join('');
+    list.querySelectorAll('.aw-edit').forEach(b => b.addEventListener('click', () => openDashForm(+b.dataset.i)));
+    list.querySelectorAll('.aw-del').forEach(b => b.addEventListener('click', () => {
+      const i = +b.dataset.i;
+      if (confirm(`Delete watchlist entry for "${WATCHLIST[i].operatorName}"?`)) {
+        WATCHLIST.splice(i, 1);
+        saveWatchlistLocal();
+        renderDashWatchlist();
+        renderDashboard();
+        if (typeof mode !== 'undefined' && mode === 'watch') renderWatchlistView();
+        showToast('Entry deleted', 'success');
+      }
+    }));
+  }
+
+  // -- Dashboard watchlist add/edit form --
+  const dashWatchForm = document.getElementById('dash-watchlist-form');
+  const dashFormTitle = document.getElementById('dash-form-title');
+  const dwfName    = document.getElementById('dwf-name');
+  const dwfSuggest = document.getElementById('dwf-suggest');
+  const dwfSummary = document.getElementById('dwf-summary');
+  const dwfDetails = document.getElementById('dwf-details');
+  const dwfSources = document.getElementById('dwf-sources');
+  const dwfIncident = document.getElementById('dwf-incident');
+  let dashEditingIndex = -1;
+
+  function openDashForm(index) {
+    dashEditingIndex = (typeof index === 'number') ? index : -1;
+    dashWatchForm.hidden = false;
+    const e = dashEditingIndex >= 0 ? WATCHLIST[dashEditingIndex] : null;
+    dashFormTitle.textContent = dashEditingIndex >= 0 ? 'Edit entry' : 'New entry';
+    dwfName.value     = e?.operatorName || '';
+    dwfSummary.value  = e?.summary || '';
+    dwfDetails.value  = e?.details || '';
+    dwfIncident.value = e?.dateOfIncident || '';
+    dwfSources.value  = (e?.sources || []).map(s => `${s.label || ''} | ${s.url || ''}`).join('\n');
+    document.querySelectorAll('input[name="dwf-sev"]').forEach(r => r.checked = (r.value === (e?.severity || 'warning')));
+    dashWatchForm.querySelectorAll('.mf-checks input').forEach(c => c.checked = (e?.categories || []).includes(c.value));
+    dwfSuggest.innerHTML = '';
+    setTimeout(() => {
+      dwfName.focus();
+      if (dashWatchForm.scrollIntoView) dashWatchForm.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 10);
+  }
+  function closeDashForm() {
+    dashWatchForm.hidden = true;
+    dashEditingIndex = -1;
+  }
+  document.getElementById('dash-add-entry').addEventListener('click', () => openDashForm(-1));
+  document.getElementById('dwf-cancel').addEventListener('click', closeDashForm);
+
+  dwfName.addEventListener('input', () => {
+    const v = dwfName.value.trim().toLowerCase();
+    if (!v) { dwfSuggest.innerHTML = ''; return; }
+    const matches = [];
+    for (let i = 0; i < DATA.operators.length; i++) {
+      if (DATA.operators[i].toLowerCase().includes(v)) {
+        matches.push(DATA.operators[i]);
+        if (matches.length >= 6) break;
+      }
+    }
+    if (!matches.length) { dwfSuggest.innerHTML = ''; return; }
+    dwfSuggest.innerHTML = matches.map(n => `<div data-n="${escapeHtml(n)}">${escapeHtml(n)}</div>`).join('');
+    dwfSuggest.querySelectorAll('div[data-n]').forEach(d => d.addEventListener('click', () => {
+      dwfName.value = d.dataset.n;
+      dwfSuggest.innerHTML = '';
+    }));
+  });
+  dwfName.addEventListener('blur', () => setTimeout(() => dwfSuggest.innerHTML = '', 200));
+
+  document.getElementById('dwf-save').addEventListener('click', () => {
+    const name = dwfName.value.trim();
+    if (!name) { showToast('Operator name is required', 'error'); return; }
+    const sev = document.querySelector('input[name="dwf-sev"]:checked')?.value || 'warning';
+    const cats = [...dashWatchForm.querySelectorAll('.mf-checks input:checked')].map(c => c.value);
+    const summary = dwfSummary.value.trim();
+    const details = dwfDetails.value.trim();
+    const sources = dwfSources.value.split('\n').map(line => {
+      const parts = line.split('|').map(s => s.trim());
+      if (!parts[0] && !parts[1]) return null;
+      return { label: parts[0] || parts[1], url: parts[1] || '' };
+    }).filter(Boolean);
+    const incident = dwfIncident.value || '';
+    const entry = {
+      operatorName: name,
+      severity: sev,
+      categories: cats,
+      summary, details, sources,
+      dateOfIncident: incident,
+      dateAdded: dashEditingIndex >= 0 ? (WATCHLIST[dashEditingIndex].dateAdded || new Date().toISOString().slice(0,10)) : new Date().toISOString().slice(0,10),
+    };
+    if (dashEditingIndex >= 0) WATCHLIST[dashEditingIndex] = entry;
+    else WATCHLIST.push(entry);
+    saveWatchlistLocal();
+    renderDashWatchlist();
+    renderDashboard();
+    closeDashForm();
+    if (typeof mode !== 'undefined' && mode === 'watch') renderWatchlistView();
+    showToast(dashEditingIndex >= 0 ? 'Entry updated — export & deploy to publish' : 'Entry added — export & deploy to publish', 'success');
+  });
+
+  // -- FAA Data upload (dashboard) --
+  const admDrop = document.getElementById('adm-drop');
+  const admFile = document.getElementById('adm-file');
+  const admDropText = document.getElementById('adm-drop-text');
+  ['dragenter','dragover'].forEach(evt =>
+    admDrop.addEventListener(evt, e => { e.preventDefault(); admDrop.classList.add('over'); })
+  );
+  ['dragleave','drop'].forEach(evt =>
+    admDrop.addEventListener(evt, e => { e.preventDefault(); admDrop.classList.remove('over'); })
+  );
+  admDrop.addEventListener('drop', e => { if (e.dataTransfer.files[0]) handleAdminFile(e.dataTransfer.files[0]); });
+  admFile.addEventListener('change', e => { if (e.target.files[0]) handleAdminFile(e.target.files[0]); });
+
+  function handleAdminFile(file) {
+    admDropText.textContent = 'Parsing ' + file.name + '…';
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      try {
+        const wb = XLSX.read(new Uint8Array(ev.target.result), { type:'array' });
+        const sheetName = wb.SheetNames.find(n => /135/.test(n)) || wb.SheetNames[0];
+        const rows = XLSX.utils.sheet_to_json(wb.Sheets[sheetName], { defval: '' });
+        if (!rows.length) throw new Error('Empty sheet');
+        const keys = Object.keys(rows[0]);
+        const find = (...cands) => keys.find(k => cands.some(c => k.toLowerCase().replace(/[^a-z0-9]/g,'') === c.replace(/[^a-z0-9]/g,'').toLowerCase()));
+        const kName = find('Name','OperatorName','Operator');
+        const kReg  = find('Registration No.','RegistrationNo','Tail','Nnumber');
+        const kMMS  = find('Aircraft M/M/S','AircraftMMS','MakeModelSeries','MMS');
+        const kSer  = find('Serial No.','SerialNo','Serial');
+        const kCFR  = find('CFR');
+        const kCHDO = find('CHDO');
+        const kDSGN = find('DSGN','Designator');
+        if (!kName || !kReg) throw new Error('Required columns not found (Name, Registration No.)');
+        const ops = [...new Set(rows.map(r => String(r[kName]).trim()).filter(Boolean))].sort();
+        const opMap = new Map(ops.map((n,i)=>[n,i]));
+        const aircraft = rows.map(r => [
+          opMap.get(String(r[kName]).trim()) ?? -1,
+          String(r[kReg]).trim(),
+          kMMS ? String(r[kMMS]).trim() : '',
+          kSer ? String(r[kSer]).trim() : '',
+          kCFR ? String(r[kCFR]).trim() : '',
+          kCHDO ? String(r[kCHDO]).trim() : '',
+          kDSGN ? String(r[kDSGN]).trim() : '',
+        ]).filter(a => a[0] >= 0 && a[1]);
+        const d = new Date(file.lastModified);
+        const iso = d.toISOString().slice(0,10);
+        DATA = { published: iso, source: file.name, operators: ops, aircraft };
+        buildIndexes(); updateMeta();
+        renderEmpty(); q.value=''; suggBox.innerHTML='';
+        renderDashboard();
+        admDropText.textContent = 'Click to choose .xlsx — or drop the file here';
+        showToast(`Loaded ${aircraft.length.toLocaleString()} aircraft · ${ops.length.toLocaleString()} operators. Export to bake in.`, 'success');
+      } catch (err) {
+        console.error(err);
+        admDropText.textContent = 'Click to choose .xlsx — or drop the file here';
+        showToast('Could not parse file: ' + err.message, 'error');
+      }
+    };
+    reader.readAsArrayBuffer(file);
+  }
+
+  document.getElementById('dash-reset-data').addEventListener('click', () => {
+    if (!confirm('Reset to the built-in registry? Any uploaded FAA data will be discarded unless you exported it.')) return;
+    DATA = BUILTIN;
+    buildIndexes(); updateMeta();
+    renderEmpty(); q.value=''; suggBox.innerHTML='';
+    renderDashboard();
+    showToast('Reset to built-in registry', 'success');
+  });
+
+  document.getElementById('dash-export-overview').addEventListener('click', exportApp);
+  document.getElementById('dash-export-data').addEventListener('click', exportApp);
+  document.getElementById('dash-export-watch').addEventListener('click', exportApp);
+
+  document.getElementById('account-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const errEl = document.getElementById('account-err');
+    errEl.hidden = true;
+    const u  = document.getElementById('account-user').value.trim();
+    const p1 = document.getElementById('account-pass1').value;
+    const p2 = document.getElementById('account-pass2').value;
+    if (!u) { errEl.textContent = 'Username is required'; errEl.hidden = false; return; }
+    if (!p1 && !p2) {
+      authConfig = { user: u, hash: authConfig.hash };
+    } else {
+      if (p1.length < 8) { errEl.textContent = 'Passcode must be at least 8 characters'; errEl.hidden = false; return; }
+      if (p1 !== p2) { errEl.textContent = 'Passcodes do not match'; errEl.hidden = false; return; }
+      authConfig = { user: u, hash: await sha256(p1) };
+    }
+    isUnlocked = true;
+    sessionStorage.setItem(AUTH_SESSION_KEY, '1');
+    applyAuthState();
+    document.getElementById('account-pass1').value = '';
+    document.getElementById('account-pass2').value = '';
+    showToast('Credentials updated. Export & deploy to publish.', 'success');
+  });
 
   // global click handler to clear suggestions when clicking outside
   document.addEventListener('click', (e) => {
