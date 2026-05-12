@@ -9,8 +9,8 @@ anyone conducting due diligence before booking a flight.
 - **Watchlist** for surfacing operators with known financial, safety, or
   regulatory concerns — independent of the FAA registry, editorially maintained
 - **Monthly data refresh** by dropping in the FAA's latest published .xlsx
-- **No backend** — pure static HTML; the registry and watchlist are baked into
-  the file
+- **Admin login** at `/#admin` — public visitors see only the search interface
+- **No backend** — pure static HTML, deployed to Vercel from GitHub
 
 The registry is sourced from the FAA's published _Part 135 Operators and Aircraft
 List_, updated approximately every 30 days.
@@ -21,39 +21,45 @@ List_, updated approximately every 30 days.
 
 ```
 legal-jet-charter/
-├── index.html       # The entire app — HTML, CSS, JS, embedded registry, embedded watchlist
-├── vercel.json      # Vercel deployment configuration (clean URLs, security headers)
+├── index.html       # The entire app — HTML, CSS, JS, embedded registry, watchlist, auth config
+├── vercel.json      # Vercel deployment config (clean URLs, security headers)
 ├── package.json     # Project metadata
 ├── .gitignore       # Keeps source xlsx files and editor noise out of the repo
 └── README.md        # This file
 ```
 
-There is no build step. `index.html` is everything.
+No build step. `index.html` is everything.
 
 ---
 
-## Local development
+## Two-stage setup
 
-Just open `index.html` in a browser. For a slightly more realistic local URL,
-run a static server from the project directory:
+The repo as you clone it is **unsecured** — the setup banner shows, anyone can
+edit. Before you publish, you need to set admin credentials locally and commit
+the secured version. This happens once.
 
-```bash
-python3 -m http.server 8000
-# then visit http://localhost:8000
-```
+### Stage 1 — Set admin credentials locally
 
----
+1. Clone the repo and open `index.html` in a browser (double-click the file).
+2. A dark banner appears at the top: **⚠ Admin access is unprotected.**
+3. Click **Set up access →** on the right side of the banner.
+4. A modal opens with three fields:
+   - **Username** — defaults to `admin`, change if you want
+   - **New passcode** — minimum 8 characters
+   - **Confirm passcode**
+5. Click **Save credentials**.
+6. The banner disappears; you're now signed in locally.
+7. Click **Manage** in the header → at the bottom, click **Export updated app ↓**.
+   A file `index.html` downloads with your credentials hashed and baked in.
+8. Replace `index.html` in your local repo with the downloaded file.
 
-## Deploying to Vercel via GitHub
-
-### One-time setup
+### Stage 2 — Push to GitHub, connect Vercel
 
 1. **Create a new GitHub repository** at <https://github.com/new>.
    - Name it `legal-jet-charter` (or whatever you like)
-   - Keep it private or public as you prefer
-   - Do _not_ initialize with a README (this repo already has one)
+   - Don't initialize with a README — the repo already has one
 
-2. **Push these files to the repo**:
+2. **Push the files**:
 
    ```bash
    cd legal-jet-charter
@@ -65,26 +71,27 @@ python3 -m http.server 8000
    git push -u origin main
    ```
 
-3. **Connect the repo to Vercel**:
-   - Sign in at <https://vercel.com> (use the same email as your GitHub if convenient — sign-in with GitHub is one click)
+3. **Connect to Vercel**:
+   - Sign in at <https://vercel.com> (sign-in with GitHub is one click)
    - Click **Add New… → Project**
-   - Find your `legal-jet-charter` repo and click **Import**
-   - Framework Preset: **Other** (Vercel will auto-detect this is a static site)
+   - Find `legal-jet-charter` and click **Import**
+   - Framework Preset: **Other**
    - Click **Deploy**
 
-   In about 30 seconds you'll have a live URL like `legal-jet-charter-abc123.vercel.app`.
+   About 30 seconds later you have a live URL like `legal-jet-charter-abc123.vercel.app`.
 
 4. **(Optional) Add a custom domain**:
-   - In Vercel, open your project → **Settings → Domains**
-   - Add `legaljetcharter.com` (or whichever domain you own)
-   - Vercel shows the DNS records to set at your registrar
+   - Vercel project → **Settings → Domains**
+   - Add `legaljetcharter.com`
+   - Vercel shows DNS records to set at your registrar
    - HTTPS is provisioned automatically
 
-### Going forward
+5. **Test the live site**:
+   - Visit your URL → you should see the public search interface, no Manage/Update buttons
+   - Visit your URL with `#admin` appended → branded sign-in page
+   - Enter the credentials you set in Stage 1 → admin features unlock
 
-Every `git push` to the `main` branch auto-deploys to production. Push to any
-other branch and Vercel gives you a preview URL — handy for testing changes
-before going live.
+Every `git push` to `main` from this point on auto-deploys.
 
 ---
 
@@ -92,10 +99,11 @@ before going live.
 
 When the FAA publishes a new Part 135 list (~30-day cycle):
 
-1. Visit your live site and click **Update data** in the header
-2. Drop in the new `.xlsx` file (parsed entirely in your browser — nothing uploaded anywhere)
-3. Click **Manage → Export updated app ↓**. A file called `index.html` downloads.
-4. Replace the `index.html` in your local repo with the downloaded file:
+1. Visit your live site, append `#admin`, sign in
+2. Click **Update data** in the header
+3. Drop in the new `.xlsx` (parsed entirely in your browser — nothing uploaded anywhere)
+4. Click **Manage → Export updated app ↓** — `index.html` downloads with the new registry, your watchlist, and your credentials all baked in
+5. Replace the file in your local repo, commit, push:
 
    ```bash
    mv ~/Downloads/index.html ./index.html
@@ -104,7 +112,7 @@ When the FAA publishes a new Part 135 list (~30-day cycle):
    git push
    ```
 
-5. Vercel auto-deploys within ~30 seconds. Done.
+6. Vercel auto-deploys within ~30 seconds.
 
 ---
 
@@ -115,33 +123,54 @@ crashes/incidents, FAA enforcement actions). Inclusion is editorial — it does
 **not** mean the operator is illegal or that the FAA has acted; it simply flags
 information worth a broker's attention.
 
-To add or edit watchlist entries:
+To add or edit entries:
 
-1. Click **Manage** in the header
-2. Click **+ Add entry**, fill in:
-   - **Operator name** (with autocomplete against the FAA list to match exact legal names)
+1. Sign in at `/#admin`
+2. Click **Manage** in the header
+3. **+ Add entry**, fill in:
+   - **Operator name** (autocompletes against the FAA list — pick the exact legal name)
    - **Severity**: Caution / Warning / Critical
    - **Categories**: Financial / Safety / Regulatory / Other
    - **Summary** (one-line headline)
    - **Details** (longer factual context)
    - **Sources** (one per line, format `Label | URL`)
    - **Date of incident** (optional)
-3. Save
-4. When done, click **Export updated app ↓** and commit the new `index.html` to
-   the repo. The pushed version is what visitors see.
+4. Save
+5. When done, **Export updated app ↓** → commit → push
 
 Until you commit and push, your edits live only in your local browser
-(`localStorage`). You can keep iterating across browser sessions before
-publishing.
+(localStorage). You can iterate across browser sessions before publishing.
+
+---
+
+## Changing your admin credentials
+
+1. Sign in at `/#admin`
+2. Click **Manage** → at the bottom click **Change credentials**
+3. Enter new username/passcode → Save
+4. **Export updated app ↓** → commit → push
+
+---
+
+## Forgot your passcode
+
+There's no email recovery — credentials are hashed and baked into the file. Two options:
+
+1. **Easy:** If you have a browser where you're still signed in, open
+   **Manage → Change credentials**, set new ones, export, commit, push.
+
+2. **Manual:** Open `index.html` in a text editor. Find the line
+   `<script id="auth-config" type="application/json">{"user":"...","hash":"..."}</script>`
+   and replace its contents with `{"user":"admin","hash":null}`. Save, open the
+   file, and the setup banner returns so you can set new credentials.
 
 ---
 
 ## Data sources and disclaimer
 
 The Part 135 registry is sourced from the FAA-published _Part 135 Operators and
-Aircraft List_ (the same list used internally by FAA Flight Standards). It is
-the authoritative record of operators and aircraft authorized to fly under
-14 CFR Part 135 (and where applicable, Part 121).
+Aircraft List_, the authoritative record of operators and aircraft authorized
+to fly under 14 CFR Part 135 (and where applicable, Part 121).
 
 This tool is provided to assist verification only. For any safety- or
 contract-critical decision, confirm directly with the operator's certificate
@@ -154,17 +183,16 @@ Watchlist is not a guarantee of any operator's current status.
 
 ---
 
-## Access control
+## Access control summary
 
-The repository and Vercel project are protected by your respective account
-credentials. Anyone who can visit the site can see the **Manage** and
-**Update data** controls — but edits made in a visitor's browser only live in
-their own browser. The published version only changes when a commit lands on
-the `main` branch of this repository, which requires your GitHub login.
+Three layers protect the site:
 
-If you want admin controls hidden from the public, the simplest path is a
-URL-hash gate (e.g. show admin UI only when the URL ends in `#manage`) — open
-an issue or ask Claude to add it.
+1. **Vercel deployment** — only commits to your GitHub repo's `main` branch deploy
+   to production, and only you can push to that repo
+2. **Admin login** — public visitors at your URL see only the search; the `/#admin`
+   route requires your username and passcode to access management tools
+3. **Hosting account** — your Vercel and GitHub accounts are protected by your
+   credentials (enable 2FA on both for full protection)
 
 ---
 
