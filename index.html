@@ -201,6 +201,35 @@
   }
   .sg.op .sg-primary { font-family: 'Cormorant Garamond', 'Times New Roman', serif; font-weight: 500; font-size: 17px; letter-spacing: -0.01em; }
   .sg-meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-mute); letter-spacing: 0.06em; text-transform: uppercase; }
+  .sg-dba {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent-deep);
+  }
+  .sg-via {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent-deep); margin-left: 8px; font-style: normal;
+  }
+  .op-dba {
+    margin-top: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-mute);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .dba-pill {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--accent);
+    color: var(--ink);
+    border-radius: 2px;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    font-weight: 700;
+  }
   .sg mark { background: rgba(177,74,20,0.22); color: inherit; padding: 0 2px; border-radius: 2px; }
 
   /* ---------- RESULTS ---------- */
@@ -1541,6 +1570,47 @@
   }
   loadWatchlist();
 
+  // ---- DBA (DOING BUSINESS AS) ----
+  // Maps FAA legal name → array of public brand names that operator markets under.
+  // Add to this list as new DBAs are confirmed.
+  const DBAS = {
+    "NetJets Aviation, Inc.":              ["NetJets"],
+    "Executive Jet Management, Inc.":      ["EJM"],
+    "WHEELS UP PARTNERS LLC":              ["Wheels Up"],
+    "WHEELS UP PRIVATE JETS LLC":          ["Wheels Up"],
+    "Flexjet, LLC":                        ["Flexjet"],
+    "FLIGHT OPTIONS LLC":                  ["Flight Options"],
+    "Clay Lacy Aviation, Inc.":            ["Clay Lacy"],
+    "Priester Aviation, LLC":              ["Priester"],
+    "Jet Linx Aviation, LLC":              ["Jet Linx"],
+    "TALON AIR, LLC":                      ["Talon Air"],
+    "Pentastar Aviation Charter, Inc.":    ["Pentastar"],
+    "Sun Air Jets, LLC":                   ["Sun Air Jets"],
+    "Tatonduk Outfitters, Ltd.":           ["Everts Air", "Everts Air Cargo", "Everts Air Fuel"],
+    "KALITTA CHARTERS LLC":                ["Kalitta Charters"],
+    "AMERICAN JET INTERNATIONAL CORPORATION": ["AJI"],
+    "Skyway Aviation Services, Inc.":      ["Skyway Aviation"],
+    "Talon Air Service, Inc":              ["Talon Air"],
+  };
+
+  // Reverse index: lowercase DBA → { idx, legal, dba }
+  let dbaToLegal = new Map();
+  function rebuildDbaIndex() {
+    dbaToLegal = new Map();
+    const legalLowerToIdx = new Map();
+    for (let i = 0; i < DATA.operators.length; i++) {
+      legalLowerToIdx.set(DATA.operators[i].toLowerCase(), i);
+    }
+    for (const [legal, dbas] of Object.entries(DBAS)) {
+      const idx = legalLowerToIdx.get(legal.toLowerCase());
+      if (idx === undefined) continue; // legal name not in current FAA data
+      for (const dba of dbas) {
+        dbaToLegal.set(dba.toLowerCase(), { idx, legal, dba });
+      }
+    }
+  }
+  rebuildDbaIndex();
+
   // ---- AUTH / ADMIN STATE ----
   const AUTH_SESSION_KEY = 'p135-admin-session-v1';
   let authConfig = { user: 'admin', hash: null };
@@ -1944,6 +2014,7 @@
             <div class="tag">Registration / N-number</div>
             <div class="tail">${escapeHtml(tail)}</div>
             <div class="operator">Operator · <a data-op="${a[0]}">${escapeHtml(op)}</a></div>
+            ${(DBAS[op] || []).length ? `<div class="op-dba">Also known as · ${(DBAS[op] || []).map(d => `<span class="dba-pill">${escapeHtml(d)}</span>`).join(' ')}</div>` : ''}
           </div>
           <div class="grid">
             <div class="cell"><div class="k">Make / Model / Series</div><div class="v">${escapeHtml(a[2])}${mmsHint?`<small>${escapeHtml(mmsHint)}</small>`:''}</div></div>
@@ -1975,26 +2046,46 @@
   // ---- OPERATOR MODE ----
   function handleOperator(v) {
     const Q = v.toLowerCase();
-    const matches = [];
+    const matches = new Map(); // opIdx -> { idx, name, viaDba }
+
+    // Match legal names
     for (let i = 0; i < DATA.operators.length; i++) {
       const n = DATA.operators[i];
       if (n.toLowerCase().includes(Q)) {
-        matches.push([i, n]);
-        if (matches.length >= 30) break;
+        matches.set(i, { idx: i, name: n, viaDba: null });
+        if (matches.size >= 30) break;
       }
     }
-    currentSuggestions = matches;
+    // Also match against DBAs
+    for (const [dbaLower, info] of dbaToLegal) {
+      if (dbaLower.includes(Q)) {
+        if (!matches.has(info.idx)) {
+          matches.set(info.idx, { idx: info.idx, name: info.legal, viaDba: info.dba });
+        }
+      }
+    }
+    const matchesArr = [...matches.values()];
+    currentSuggestions = matchesArr.map(m => [m.idx, m.name]);
     focusedSug = -1;
 
-    if (matches.length === 0) { suggBox.innerHTML=''; showOperatorNotFound(v); return; }
-    const exact = matches.find(([, n]) => n.toLowerCase() === Q);
-    if (exact && matches.length === 1) { suggBox.innerHTML=''; showOperator(exact[0]); return; }
+    if (matchesArr.length === 0) { suggBox.innerHTML=''; showOperatorNotFound(v); return; }
+    const exact = matchesArr.find(m => m.name.toLowerCase() === Q
+                                  || (DBAS[m.name] || []).some(d => d.toLowerCase() === Q));
+    if (exact && matchesArr.length === 1) { suggBox.innerHTML=''; showOperator(exact.idx); return; }
 
-    suggBox.innerHTML = matches.map(([i, n]) => {
-      const count = (opAircraft.get(i) || []).length;
-      return `<div class="sg op" data-op="${i}">
-        <div class="sg-primary">${hl(n, v)}</div>
+    suggBox.innerHTML = matchesArr.map(m => {
+      const count = (opAircraft.get(m.idx) || []).length;
+      const dbas = DBAS[m.name] || [];
+      const dbaLine = dbas.length
+        ? `<div class="sg-dba">DBA · ${dbas.map(d => escapeHtml(d)).join(' · ')}</div>`
+        : '';
+      const viaTag = m.viaDba
+        ? `<span class="sg-via">matched via "${escapeHtml(m.viaDba)}"</span>`
+        : '';
+      return `<div class="sg op" data-op="${m.idx}">
+        <div class="sg-primary">${hl(m.name, v)} ${viaTag}</div>
         <div class="sg-meta">${count} aircraft</div>
+        ${dbaLine}
       </div>`;
     }).join('');
     suggBox.querySelectorAll('.sg').forEach(el => {
@@ -2039,6 +2130,7 @@
           <div class="big">
             <div class="tag">Certificated Operator</div>
             <div class="name">${escapeHtml(name)}</div>
+            ${(DBAS[name] || []).length ? `<div class="op-dba">Also known as · ${(DBAS[name] || []).map(d => `<span class="dba-pill">${escapeHtml(d)}</span>`).join(' ')}</div>` : ''}
           </div>
           <div class="count-box">
             <div class="num">${idxs.length}</div>
