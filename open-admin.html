@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="refresh" content="0; url=index.html#admin" />
+<title>Opening admin dashboard…</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 134'%3E%3Cpath fill='%230F2A47' d='M 0,10 C 0,4.5 4.5,0 10,0 L 110,0 C 115.5,0 120,4.5 120,10 L 120,68 C 120,98 96,124 60,134 C 24,124 0,98 0,68 Z'/%3E%3Cpath d='M 24,74 L 50,100 L 96,40' stroke='%23C9A961' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cg transform='translate(96, 40) rotate(40)'%3E%3Cpath fill='%23C9A961' d='M 0,-15 L 1.5,-11 L 2,-2 L 13,4 L 13,6 L 2,3 L 2,9 L 7,13 L 7,14 L 2,12 L 1.5,15 L -1.5,15 L -2,12 L -7,14 L -7,13 L -2,9 L -2,3 L -13,6 L -13,4 L -2,-2 L -1.5,-11 Z'/%3E%3C/g%3E%3C/svg%3E" />
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #F2EDDF;
+    color: #0F2A47;
+    padding: 40px 20px;
+  }
+  svg.shield { width: 80px; height: 90px; }
+  h1 {
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-weight: 500;
+    font-size: 28px;
+    margin: 0;
+  }
+  p {
+    margin: 0;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #5A6B7D;
+    font-family: 'JetBrains Mono', 'Menlo', monospace;
+  }
+  a {
+    color: #0F2A47;
+    border: 1px solid #0F2A47;
+    padding: 14px 28px;
+    text-decoration: none;
+    font-family: 'JetBrains Mono', 'Menlo', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: 12px;
+    transition: all .15s;
+  }
+  a:hover { background: #0F2A47; color: #F2EDDF; }
+  .err {
+    max-width: 500px;
+    text-align: center;
+    background: #fff;
+    border-left: 3px solid #B5483F;
+    padding: 16px 20px;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top: 20px;
+    color: #2A2D34;
+    text-transform: none;
+    letter-spacing: normal;
+    font-family: inherit;
+    display: none;
+  }
+</style>
+</head>
+<body>
+  <svg class="shield" viewBox="0 0 120 134" aria-hidden="true">
+    <path fill="#0F2A47" d="M 0,10 C 0,4.5 4.5,0 10,0 L 110,0 C 115.5,0 120,4.5 120,10 L 120,68 C 120,98 96,124 60,134 C 24,124 0,98 0,68 Z"/>
+    <path d="M 24,74 L 50,100 L 96,40" stroke="#C9A961" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <g transform="translate(96, 40) rotate(40)">
+      <path fill="#C9A961" d="M 0,-15 L 1.5,-11 L 2,-2 L 13,4 L 13,6 L 2,3 L 2,9 L 7,13 L 7,14 L 2,12 L 1.5,15 L -1.5,15 L -2,12 L -7,14 L -7,13 L -2,9 L -2,3 L -13,6 L -13,4 L -2,-2 L -1.5,-11 Z"/>
+    </g>
+  </svg>
+  <h1>Opening admin dashboard…</h1>
+  <p>Redirecting to <span style="color:#C9A961">index.html#admin</span></p>
+  <a href="index.html#admin" id="manual">Click here if you're not redirected</a>
+  <div class="err" id="err">
+    <b>Can't find index.html.</b><br>
+    This launcher must live in the same folder as your <code>index.html</code> file. Save them side by side and double-click this file again.
+  </div>
+<script>
+  // If the redirect doesn't fire within 2s, show a helpful error
+  setTimeout(() => {
+    fetch('index.html', { method: 'HEAD' }).catch(() => {
+      document.getElementById('err').style.display = 'block';
+    });
+  }, 2000);
+</script>
+</body>
+</html>
