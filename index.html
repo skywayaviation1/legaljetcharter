@@ -1151,7 +1151,7 @@
       <div class="field-label" id="field-label">Enter aircraft registration (N-number)</div>
       <div class="field" id="field">
         <span class="field-icon" aria-hidden="true"></span>
-        <input id="q" type="text" autocomplete="off" spellcheck="false" placeholder="N208CE" autofocus />
+        <input id="q" type="text" autocomplete="off" spellcheck="false" placeholder="N525CR" autofocus />
         <button class="field-clear" id="clear" hidden>Clear</button>
       </div>
     </div>
@@ -1818,12 +1818,12 @@
     if (mode === 'tail') {
       field.classList.remove('operator-mode');
       fieldLabel.textContent = 'Enter aircraft registration (N-number)';
-      q.placeholder = 'N208CE';
+      q.placeholder = 'N525CR';
       fieldWrap.style.display = '';
     } else if (mode === 'operator') {
       field.classList.add('operator-mode');
       fieldLabel.textContent = 'Enter operator or company name';
-      q.placeholder = 'NetJets, Wheels Up, Tatonduk…';
+      q.placeholder = 'Skyway Aviation, Eagle Air Aviation, JET1…';
       fieldWrap.style.display = '';
     } else if (mode === 'watch') {
       fieldWrap.style.display = 'none';
