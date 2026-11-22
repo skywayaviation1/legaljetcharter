@@ -1,8 +1,0 @@
-{
-  "name": "legal-jet-charter-faa-sync",
-  "private": true,
-  "type": "module",
-  "dependencies": {
-    "puppeteer-core": "24.15.0"
-  }
-}

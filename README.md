@@ -9,7 +9,7 @@ Operated for SkyVia Ops / Skyway Aviation (Jake Cambria).
 Two FAA sources are merged. A row that exists in only one of them is kept and labeled. It is not dropped to force the lists to agree.
 
 1. **Part 135 operators and aircraft workbook.** The spreadsheet linked from [FAA-certificated Aircraft Operators (Legal Part 135 holders)](https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders). The FAA says this file is updated weekly. The sync reads the page, finds the current `.xlsx` / `.xls` / `.csv` link, and uses the file’s `Last-Modified` date as the file date shown on the site.
-2. **Air Operator 14 CFR search.** [faa.gov/av-info/air-operator-far-search](https://www.faa.gov/av-info/air-operator-far-search). That page embeds a Tableau workbook on `explore.dot.gov` (`AVInfo_AirOperators`). There is no public CSV or API. The workbook’s **Download** sheet is the FAA’s full-table view (Air Operators, Aircraft, and DBA). The sync opens that dashboard once in Chrome, reads the “Data Updated” label, sets the part filter to **135**, and exports those three sheets. The page says the search is updated weekly.
+2. **Air Operator 14 CFR search.** [faa.gov/av-info/air-operator-far-search](https://www.faa.gov/av-info/air-operator-far-search). The page embeds a Tableau workbook. Its Download sheet is published as a CSV at `explore.dot.gov` (`AVInfo_AirOperators/Download.csv`). The sync downloads that sheet once per letter A–Z with the Part filter set to 135, about one request a second. Each file has to come back as Part 135 only, with names starting with that letter, and a row count that is a multiple of the staffing measures. A short or mixed file fails the job. The CSV publishes the certificate number, designator, address, city, state, officers, phone, and staffing counts. It does not include a DBA column, and the DBA worksheet is not a separate public file, so DBA is left blank. Names that start with a digit are not returned by the letter filter; those holders stay on the Part 135 list and are labeled as list-only.
 
 The on-page line is:
 
@@ -34,7 +34,7 @@ Differing values (legal name, FSDO, or a CFR part with no overlap) are stored on
 GitHub Action: `.github/workflows/sync-faa.yml`.
 
 - **How often:** every day at 12:15 UTC, plus any manual run from the Actions tab (`workflow_dispatch`).
-- **What a run does:** fetches the holders page and the workbook headers. If the link, `Last-Modified`, length, and `ETag` match the last publish, the workbook is not downloaded again. It then opens the Air Operator dashboard. If the “Data Updated” label matches the saved extract and that extract is less than 7 days old, it does not export the tables again. Otherwise it downloads and reparses the source that changed.
+- **What a run does:** fetches the holders page and the workbook headers. If the link, `Last-Modified`, length, and `ETag` match the last publish, the workbook is not downloaded again. It always re-downloads the 26 Air Operator letter files, hashes the parsed operators, and rewrites operator rows only when that hash changed.
 - **When it commits:** after a successful check it updates `data/meta.json` (`lastChecked`, and the new dataset when a hash changed) and pushes to `main`. A run whose operator rows did not change still commits the check time, so the page can say when the FAA was last looked at. Operator rows are rewritten only when a source hash changed. A push to `main` does not start another Actions run; Vercel redeploys from the push.
 - **When it refuses to publish:** missing file link, unreadable workbook, missing required columns, zero rows, an Air Operator export that is not a Part 135-sized list, or a drop of more than 25% versus the previous publish (operators or aircraft). The job fails and the previous files stay as they are.
 
@@ -58,17 +58,14 @@ Earlier production deploys of `main` were also created by `vercel[bot]`. A push 
 
 ```bash
 python3 -m pip install -r scripts/requirements.txt
-npm install --prefix scripts
 python3 scripts/test_sync.py
-python3 scripts/sync_faa.py          # needs Chrome; set CHROME_PATH if it is not on PATH
+python3 scripts/sync_faa.py
 python3 -m http.server 8000
 ```
 
-A second `python3 scripts/sync_faa.py` immediately afterwards is the no-change run: it should leave `data/operators.json` byte-for-byte as it was and only move `lastChecked` when the FAA labels still match.
+A second `python3 scripts/sync_faa.py` immediately afterwards is the no-change run: it should leave `data/operators.json` byte-for-byte as it was and only move `lastChecked`.
 
-Chrome is required for the Air Operator workbook because `explore.dot.gov` rejects plain HTTP clients. The script sends one browser session and a handful of Tableau export commands, with a short pause between them. It retries once after 20 seconds. It does not page through letters and it does not crawl other parts.
-
-The Linux GitHub-hosted runner network is refused by that host (Akamai “Access Denied” before the workbook loads). The workflow runs on `macos-latest` instead, which is a different network. A hard denial still fails the job and does not publish.
+`explore.dot.gov` answers the CSV with a normal browser user agent. A hard denial fails the job and does not publish. The script does not open a browser and does not crawl other certificate parts.
 
 ## Files
 
@@ -79,5 +76,4 @@ The Linux GitHub-hosted runner network is refused by that host (Akamai “Access
 - `data/sources/air-operator.json` — normalized Part 135 Air Operator extract
 - `data/watchlist.json` — editorial notes, not touched by the sync
 - `scripts/sync_faa.py` — check, parse, merge, refuse bad publishes
-- `scripts/fetch_air_operator.mjs` — Chrome session for the Air Operator dashboard
 - `scripts/test_sync.py` — parsing, matching, and sanity tests

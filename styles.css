@@ -129,8 +129,9 @@ summary { cursor: pointer; font-weight: 700; font-size: 18px; }
 .site-foot { padding: 10px 0 40px; color: var(--muted); font-size: 15px; }
 @media (max-width: 800px) {
   .hero, .stats { grid-template-columns: 1fr; }
-  .top-inner { min-height: 64px; }
-  nav { gap: 12px; }
+  .top-inner { min-height: 64px; flex-wrap: wrap; padding: 10px 0; }
+  nav { gap: 14px; width: 100%; }
+  nav a { white-space: nowrap; font-size: 15px; }
   .search-row { flex-direction: column; }
   .search-row button { min-height: 48px; }
   input[type="search"] { font-size: 18px; }

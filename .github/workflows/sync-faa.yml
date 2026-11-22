@@ -2,8 +2,8 @@ name: Sync FAA operator data
 
 on:
   schedule:
-    # Daily at 12:15 UTC. The FAA says both sources are updated weekly;
-    # a daily check is what notices a new file without anyone watching the page.
+    # Daily at 12:15 UTC. Both FAA sources are described as weekly.
+    # A daily check is what notices a new file without anyone watching the page.
     - cron: "15 12 * * *"
   workflow_dispatch:
   pull_request:
@@ -16,35 +16,27 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  sync:
-    # explore.dot.gov (Akamai) refuses the Linux GitHub runner IPs.
-    # macOS runners are on a different network and can open the Air Operator workbook.
-    runs-on: macos-latest
-    timeout-minutes: 30
+  test:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - run: python3 -m pip install -r scripts/requirements.txt
+      - run: python3 scripts/test_sync.py
 
-      - uses: actions/setup-node@v4
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          node-version: "22"
-
-      - name: Install Chrome
-        run: brew install --cask google-chrome
-
-      - name: Install sync dependencies
-        run: |
-          python3 -m pip install -r scripts/requirements.txt
-          npm install --prefix scripts
-
+          python-version: "3.12"
+      - run: python3 -m pip install -r scripts/requirements.txt
       - name: Sync FAA sources
-        env:
-          CHROME_PATH: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
         run: python3 scripts/sync_faa.py
-
       - name: Upload sync summary
         if: always()
         uses: actions/upload-artifact@v4
@@ -52,7 +44,6 @@ jobs:
           name: faa-sync-summary
           path: .sync-summary.json
           if-no-files-found: ignore
-
       - name: Upload dataset from a pull request run
         if: success() && github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
@@ -63,7 +54,6 @@ jobs:
             data/meta.json
             data/sources/part135.json
             data/sources/air-operator.json
-
       - name: Commit when the check finished
         if: github.event_name != 'pull_request'
         run: |

@@ -121,6 +121,23 @@ class AirInterpretTests(unittest.TestCase):
         self.assertEqual(ops[0]["aircraft"][0]["model"], "C-208")
 
 
+class AirCsvTests(unittest.TestCase):
+    def test_pivots_staffing_rows_and_rejects_a_short_file(self):
+        header = "14 CFR Part,Addr1,Addr2,Addr3,Air_Operator_Name,CEO Name,Cert_Issue_Date,Certificate_Number,Chief Pilot,City,Country,Director of Maintenance,Director of Operations,DSGN_CODE,Extension,Foreign_Phone,Measure Names,Phone,St,Zip/Postal Code,Measure Values"
+        measures = ["PIC Captains", "Inspectors", "Designated Inspectors", "NonCertificated Mechanics", "Certificated Mechanics", "Repairmen", "Total Number of Employees"]
+        lines = [header]
+        for measure in measures:
+            lines.append(f"135,1 MAIN,,,Acme Air LLC,CEO,8/18/2014,EXAA123A,,BOISE,US,,,EXAA,,,{measure},,ID,83702,3")
+        ops = sync.parse_air_operator_csv("\n".join(lines) + "\n", "A")
+        self.assertEqual(len(ops), 1)
+        self.assertEqual(ops[0]["designator"], "EXAA")
+        self.assertEqual(ops[0]["issueDate"], "2014-08-18")
+        self.assertEqual(ops[0]["state"], "ID")
+        self.assertEqual(ops[0]["staff"]["totalEmployees"], "3")
+        with self.assertRaises(sync.SyncError):
+            sync.parse_air_operator_csv("\n".join(lines[:3]) + "\n", "A")
+
+
 class MergeTests(unittest.TestCase):
     def test_designator_match_name_conflict_and_single_source_rows(self):
         part = [

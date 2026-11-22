@@ -183,6 +183,17 @@ function renderDetail(op) {
   addField(table, "Address", op.address);
   addField(table, "FSDO / district office", op.fsdo);
   addField(table, "Status", op.status);
+  addField(table, "Chief executive", op.ceo);
+  addField(table, "Chief pilot", op.chiefPilot);
+  addField(table, "Director of maintenance", op.directorOfMaintenance);
+  addField(table, "Director of operations", op.directorOfOperations);
+  addField(table, "Phone", op.phone);
+  addField(table, "Country", op.country);
+  const staff = valueOf(op.staff);
+  if (staff && typeof staff === "object") {
+    const bits = Object.entries(staff).filter(([, val]) => val !== "" && val != null);
+    if (bits.length) addField(table, "Staffing counts", { value: bits.map(([key, val]) => `${key} ${val}`).join(", "), source: sourceOf(op.staff) });
+  }
   addField(table, "Authority on the Part 135 list", op.cfrOnList);
   addField(table, "Part on Air Operator search", op.cfrOnSearch);
   if (op.extra && Object.keys(op.extra).length) {

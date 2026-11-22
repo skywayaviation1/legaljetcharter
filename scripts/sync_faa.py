@@ -19,13 +19,15 @@ and does not replace the published files.
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
+import io
 import json
 import os
 import re
-import subprocess
 import sys
 import tempfile
+import time
 import urllib.error
 import urllib.request
 from collections import defaultdict
@@ -46,6 +48,17 @@ HOLDERS_PAGE = (
     "faa-certificated-aircraft-operators-legal-part-135-holders"
 )
 AIR_PAGE = "https://www.faa.gov/av-info/air-operator-far-search"
+AIR_DOWNLOAD = "https://explore.dot.gov/t/FAA/views/AVInfo_AirOperators/Download.csv"
+AIR_LETTERS = tuple("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+STAFF_FIELDS = {
+    "PIC Captains": "picCaptains",
+    "Inspectors": "inspectors",
+    "Designated Inspectors": "designatedInspectors",
+    "NonCertificated Mechanics": "nonCertificatedMechanics",
+    "Certificated Mechanics": "certificatedMechanics",
+    "Repairmen": "repairmen",
+    "Total Number of Employees": "totalEmployees",
+}
 UA = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
@@ -723,6 +736,7 @@ def combine(part, air, match, add_conflict) -> dict:
         "conflicts": conflicts,
         "listNameVariants": part.get("nameVariants") or [],
     }
+    copy_air_details(record, air)
     if air and part.get("chdos") and air.get("fsdo") and air["fsdo"] not in part["chdos"]:
         record["conflicts"].append({
             "field": "fsdo",
@@ -746,6 +760,14 @@ def combine(part, air, match, add_conflict) -> dict:
     return record
 
 
+def copy_air_details(record, air):
+    if not air:
+        return
+    for field in ("ceo", "chiefPilot", "directorOfMaintenance", "directorOfOperations", "phone", "country"):
+        record[field] = sourced(air.get(field) or "", "air-operator")
+    record["staff"] = sourced(air.get("staff") or {}, "air-operator")
+
+
 def attach_air_onto(record, air, method):
     record["presence"] = "both"
     record["match"] = method
@@ -761,6 +783,7 @@ def attach_air_onto(record, air, method):
     record["cfrOnSearch"] = sourced(air.get("cfrs") or [], "air-operator")
     record["searchAircraft"] = air.get("aircraft") or []
     record["extra"] = air.get("extra") or {}
+    copy_air_details(record, air)
     if norm_name(record["legalName"]["value"]) != norm_name(air.get("name") or ""):
         record["conflicts"].append({
             "field": "legalName",
@@ -777,7 +800,7 @@ def air_only(op) -> dict:
     identity = f"dsgn:{designator}" if designator else "name:" + norm_name(op.get("name"))
     if op.get("_duplicate"):
         identity += ":duplicate"
-    return {
+    record = {
         "id": identity,
         "presence": "air-operator",
         "match": "air-operator-only",
@@ -800,6 +823,8 @@ def air_only(op) -> dict:
         "extra": op.get("extra") or {},
         "conflicts": [],
     }
+    copy_air_details(record, op)
+    return record
 
 
 def load_json(path: Path, default):
@@ -906,62 +931,148 @@ def load_part_source(meta: dict, force: bool) -> tuple[dict, bool]:
     return parsed, True
 
 
-def run_node_fetch(out_path: Path, reuse_label: str) -> dict:
-    script = ROOT / "scripts" / "fetch_air_operator.mjs"
-    cmd = ["node", str(script), "--out", str(out_path)]
-    if reuse_label:
-        cmd.extend(["--reuse-if-label", reuse_label])
-    env = os.environ.copy()
-    print("Checking Air Operator search…", file=sys.stderr)
-    completed = subprocess.run(cmd, cwd=ROOT, env=env, text=True, capture_output=True)
-    if completed.stdout:
-        print(completed.stdout, file=sys.stderr, end="")
-    if completed.returncode != 0:
-        sys.stderr.write(completed.stderr or "")
-        raise SyncError("Air Operator search could not be read. Nothing was published.")
-    if not out_path.exists():
-        raise SyncError("Air Operator fetcher did not write a file.")
-    return json.loads(out_path.read_text())
-
-
-def load_air_source(meta: dict, force: bool) -> tuple[dict, bool]:
-    cached = load_json(AIR_PATH, None) if AIR_PATH.exists() else None
-    reuse = ""
-    extracted_at = (cached or {}).get("extractedAt") or ""
-    fresh = False
-    if extracted_at:
+def iso_date(value: str) -> str:
+    text = clean_text(value)
+    if not text:
+        return ""
+    for fmt in ("%m/%d/%Y", "%Y-%m-%d"):
         try:
-            then = datetime.fromisoformat(extracted_at.replace("Z", "+00:00"))
-            age_days = (datetime.now(timezone.utc) - then).total_seconds() / 86400
-            fresh = age_days < 7
+            return datetime.strptime(text, fmt).date().isoformat()
         except ValueError:
-            fresh = False
-    label = (cached or {}).get("updatedLabel") or ""
-    if cached and fresh and label and not force:
-        reuse = label
-    with tempfile.TemporaryDirectory() as temp:
-        probe = Path(temp) / "air.json"
-        payload = run_node_fetch(probe, reuse)
-    if payload.get("unchanged"):
-        if not cached:
-            raise SyncError("Air Operator label matched but there is no saved extract.")
-        if payload.get("updatedLabel") != cached.get("updatedLabel"):
-            raise SyncError("Air Operator unchanged-label response did not match the saved label.")
-        return cached, False
-    operators = interpret_air_payload(payload)
-    saved = {
+            continue
+    return text
+
+
+def parse_air_operator_csv(text: str, slice_name: str) -> list[dict]:
+    """Pivot the Download-sheet CSV (one row per staffing measure) into operators."""
+    sample = text.lstrip("\ufeff")[:400]
+    if "Access Denied" in sample or "<html" in sample.lower():
+        raise SyncError(f"Air Operator download for {slice_name} was blocked. Nothing was published.")
+    reader = csv.DictReader(io.StringIO(text.lstrip("\ufeff")))
+    rows = []
+    for raw in reader:
+        row = {(key or "").strip(): clean_text(value) for key, value in raw.items()}
+        if any(row.values()):
+            rows.append(row)
+    if not rows or "Air_Operator_Name" not in rows[0] or "DSGN_CODE" not in rows[0]:
+        raise SyncError(f"Air Operator download for {slice_name} did not have the expected columns.")
+    if len(rows) % len(STAFF_FIELDS) != 0:
+        raise SyncError(
+            f"Air Operator download for {slice_name} has {len(rows)} rows, "
+            f"not a multiple of {len(STAFF_FIELDS)}. Refusing a truncated file."
+        )
+    grouped = {}
+    order = []
+    for row in rows:
+        part = row.get("14 CFR Part", "")
+        tokens = part_tokens(part)
+        if part and "135" not in tokens:
+            raise SyncError(f"Air Operator slice {slice_name} included part {part}, which is not Part 135.")
+        designator = norm_designator(row.get("DSGN_CODE"))
+        name = row.get("Air_Operator_Name", "")
+        key = ("dsgn", designator) if designator else ("name", norm_name(name))
+        current = grouped.get(key)
+        if current is None:
+            address = ", ".join(bit for bit in (row.get("Addr1"), row.get("Addr2"), row.get("Addr3")) if bit)
+            current = {
+                "name": name,
+                "designator": designator,
+                "certificateNumber": row.get("Certificate_Number", ""),
+                "issueDate": iso_date(row.get("Cert_Issue_Date", "")),
+                "address": address,
+                "city": row.get("City", ""),
+                "state": norm_state(row.get("St", "")),
+                "postalCode": row.get("Zip/Postal Code", ""),
+                "country": row.get("Country", ""),
+                "phone": row.get("Phone", ""),
+                "ceo": row.get("CEO Name", ""),
+                "chiefPilot": row.get("Chief Pilot", ""),
+                "directorOfMaintenance": row.get("Director of Maintenance", ""),
+                "directorOfOperations": row.get("Director of Operations", ""),
+                "fsdo": "",
+                "status": "",
+                "cfrs": sorted(tokens) if tokens else ["135"],
+                "dbas": [],
+                "aircraft": [],
+                "staff": {},
+                "extra": {},
+            }
+            grouped[key] = current
+            order.append(key)
+        measure = row.get("Measure Names", "")
+        field = STAFF_FIELDS.get(measure)
+        if field and row.get("Measure Values"):
+            current["staff"][field] = row["Measure Values"]
+    operators = [grouped[key] for key in order]
+    if slice_name in AIR_LETTERS and not operators:
+        raise SyncError(f"Air Operator slice {slice_name} was empty.")
+    firsts = {(op["name"][:1].upper() if op["name"] else "") for op in operators}
+    if slice_name in AIR_LETTERS and firsts != {slice_name}:
+        raise SyncError(
+            f"Air Operator slice {slice_name} returned names starting with {sorted(firsts)}. "
+            "The alphabet filter was not applied."
+        )
+    return operators
+
+
+def download_air_operators() -> list[dict]:
+    print("Downloading Air Operator Part 135 slices…", file=sys.stderr)
+    operators = []
+    for index, letter in enumerate(AIR_LETTERS):
+        if index:
+            time.sleep(0.8)
+        url = f"{AIR_DOWNLOAD}?Operator%20FAR%20Parameter=135&Alphabet%20Parameter={letter}"
+        body, _headers = request(url)
+        operators.extend(parse_air_operator_csv(body.decode("utf-8", "replace"), letter))
+    return operators
+
+
+def load_air_slices(texts_by_slice: dict[str, str]) -> list[dict]:
+    operators = []
+    for letter in AIR_LETTERS:
+        if letter not in texts_by_slice:
+            raise SyncError(f"Air Operator slice {letter} is missing.")
+        operators.extend(parse_air_operator_csv(texts_by_slice[letter], letter))
+    return operators
+
+
+def air_bundle(operators: list[dict]) -> dict:
+    return {
         "sourcePage": AIR_PAGE,
-        "tableauUrl": payload.get("tableauUrl"),
-        "updatedLabel": payload.get("updatedLabel"),
-        "partFilter": payload.get("partFilter") or "135",
-        "extractedAt": payload.get("extractedAt") or now_iso(),
-        "method": payload.get("method"),
+        "downloadUrl": AIR_DOWNLOAD,
+        "updatedLabel": "",
+        "partFilter": "135",
+        "extractedAt": now_iso(),
+        "method": "download-csv-by-letter",
         "operatorCount": len(operators),
         "contentHash": sha256_json(operators),
         "operators": operators,
+        "notes": (
+            "Each letter is the FAA Download sheet filtered to Part 135. "
+            "That sheet publishes certificate, designator, address, city, state, officers, and staffing counts. "
+            "It does not include a DBA column. The DBA worksheet is not a separate public file."
+        ),
     }
-    changed = not cached or cached.get("contentHash") != saved["contentHash"]
-    return saved, changed
+
+
+def load_air_source(meta: dict, force: bool, csv_dir: str = "") -> tuple[dict, bool]:
+    cached = load_json(AIR_PATH, None) if AIR_PATH.exists() else None
+    if csv_dir:
+        folder = Path(csv_dir)
+        texts = {letter: (folder / f"{letter}.csv").read_text() for letter in AIR_LETTERS}
+        operators = load_air_slices(texts)
+    else:
+        operators = download_air_operators()
+    saved = air_bundle(operators)
+    # A directory replay should not look "changed" solely because extractedAt moved.
+    if csv_dir and cached and cached.get("contentHash") == saved["contentHash"]:
+        cached["extractedAt"] = saved["extractedAt"]
+        return cached, False
+    changed = not cached or cached.get("contentHash") != saved["contentHash"] or force
+    if not changed:
+        cached["extractedAt"] = saved["extractedAt"]
+        return cached, False
+    return saved, True
 
 
 def public_operator(record: dict) -> dict:
@@ -1059,6 +1170,7 @@ def publish(part: dict, air: dict, merged: dict, previous_meta: dict, checked_at
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description="Sync FAA Part 135 sources")
     parser.add_argument("--force", action="store_true", help="Re-download and re-parse even if fingerprints match")
+    parser.add_argument("--air-csv-dir", default="", help="Read Air Operator letter CSVs from this directory instead of downloading")
     args = parser.parse_args(argv)
     previous = load_json(META_PATH, {})
     checked_at = now_iso()
@@ -1069,7 +1181,7 @@ def main(argv=None) -> int:
             f"({part['operatorCount']} operators, {part['aircraftCount']} aircraft, file date {part['fileDate']}).",
             file=sys.stderr,
         )
-        air, air_changed = load_air_source(previous, args.force)
+        air, air_changed = load_air_source(previous, args.force, args.air_csv_dir)
         print(
             f"Air Operator search {'changed' if air_changed else 'unchanged'} "
             f"({air['operatorCount']} Part 135 operators, label {air.get('updatedLabel')}).",
