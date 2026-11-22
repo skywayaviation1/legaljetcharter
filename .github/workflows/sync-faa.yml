@@ -17,7 +17,10 @@ concurrency:
 
 jobs:
   sync:
-    runs-on: ubuntu-latest
+    # explore.dot.gov (Akamai) refuses the Linux GitHub runner IPs.
+    # macOS runners are on a different network and can open the Air Operator workbook.
+    runs-on: macos-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -30,10 +33,7 @@ jobs:
           node-version: "22"
 
       - name: Install Chrome
-        run: |
-          wget -q -O /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo apt-get update
-          sudo apt-get install -y /tmp/chrome.deb
+        run: brew install --cask google-chrome
 
       - name: Install sync dependencies
         run: |
@@ -42,7 +42,7 @@ jobs:
 
       - name: Sync FAA sources
         env:
-          CHROME_PATH: /usr/bin/google-chrome
+          CHROME_PATH: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
         run: python3 scripts/sync_faa.py
 
       - name: Upload sync summary

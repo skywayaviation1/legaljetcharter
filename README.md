@@ -48,11 +48,11 @@ There is no branch protection ruleset on `main` that this account can see. If on
 
 ### Vercel
 
-Every push to `main` through 12 May 2026 produced a successful **Production** deployment from `vercel[bot]`. The live site `https://legaljetcharter.vercel.app` is serving this repository.
+Pushes are already connected. The Vercel GitHub app deployed this branch as a preview on team `skywayaviation1s-projects`, project `legaljetcharter`:
 
-The Vercel account this workspace can see is the team `skywayaviation1s-projects`, and **Legal Jet Charter is not a project on that team**, which matches the note that the project lives elsewhere. This workspace cannot open that other project’s settings. After this change is on `main`, confirm once — in whichever Vercel account owns `legaljetcharter.vercel.app` — that the GitHub repo `skywayaviation1/legaljetcharter` is still connected and that Production tracks `main`. If that connection is intact, the daily commit redeploys by itself. If the project was moved and the Git link was dropped, reconnect the repo; no further code change is required.
+https://legaljetcharter-git-cursor-faa-03a3bb-skywayaviation1s-projects.vercel.app
 
-`GITHUB_TOKEN` pushes still fire Vercel’s Git webhook. They do not need a personal access token for that.
+Earlier production deploys of `main` were also created by `vercel[bot]`. A push to `main` from the daily job redeploys production the same way. No Vercel token is required in GitHub. `GITHUB_TOKEN` pushes still notify Vercel.
 
 ## Local
 
@@ -67,6 +67,8 @@ python3 -m http.server 8000
 A second `python3 scripts/sync_faa.py` immediately afterwards is the no-change run: it should leave `data/operators.json` byte-for-byte as it was and only move `lastChecked` when the FAA labels still match.
 
 Chrome is required for the Air Operator workbook because `explore.dot.gov` rejects plain HTTP clients. The script sends one browser session and a handful of Tableau export commands, with a short pause between them. It retries once after 20 seconds. It does not page through letters and it does not crawl other parts.
+
+The Linux GitHub-hosted runner network is refused by that host (Akamai “Access Denied” before the workbook loads). The workflow runs on `macos-latest` instead, which is a different network. A hard denial still fails the job and does not publish.
 
 ## Files
 
