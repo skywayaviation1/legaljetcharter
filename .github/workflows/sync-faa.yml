@@ -27,7 +27,12 @@ jobs:
       - run: python3 scripts/test_sync.py
 
   sync:
-    runs-on: ubuntu-latest
+    # Pull requests only run the tests above. explore.dot.gov answers 403 to
+    # GitHub-hosted addresses, so this job is the daily/manual check. Set the
+    # FAA_RUNNER repository variable to a self-hosted runner label if the
+    # default runner is refused.
+    if: github.event_name != 'pull_request'
+    runs-on: ${{ vars.FAA_RUNNER || 'ubuntu-latest' }}
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
@@ -44,16 +49,6 @@ jobs:
           name: faa-sync-summary
           path: .sync-summary.json
           if-no-files-found: ignore
-      - name: Upload dataset from a pull request run
-        if: success() && github.event_name == 'pull_request'
-        uses: actions/upload-artifact@v4
-        with:
-          name: faa-dataset
-          path: |
-            data/operators.json
-            data/meta.json
-            data/sources/part135.json
-            data/sources/air-operator.json
       - name: Commit when the check finished
         if: github.event_name != 'pull_request'
         run: |

@@ -222,7 +222,14 @@ def request(url: str, method: str = "GET", timeout: int = 90) -> tuple[bytes, di
             headers = {k.lower(): v for k, v in resp.headers.items()}
             final = resp.geturl()
     except urllib.error.HTTPError as exc:
-        raise SyncError(f"FAA request failed {method} {url}: HTTP {exc.code}") from exc
+        hint = ""
+        if exc.code == 403 and "explore.dot.gov" in url:
+            hint = (
+                " explore.dot.gov is refusing this network (Akamai). "
+                "GitHub-hosted runners are refused. Run the workflow on a self-hosted runner that can open that host, "
+                "and set the repository variable FAA_RUNNER to that runner's label."
+            )
+        raise SyncError(f"FAA request failed {method} {url}: HTTP {exc.code}.{hint}") from exc
     except urllib.error.URLError as exc:
         raise SyncError(f"FAA request failed {method} {url}: {exc.reason}") from exc
     return body, {**headers, "final-url": final}

@@ -67,6 +67,8 @@ A second `python3 scripts/sync_faa.py` immediately afterwards is the no-change r
 
 `explore.dot.gov` answers the CSV with a normal browser user agent. A hard denial fails the job and does not publish. The script does not open a browser and does not crawl other certificate parts.
 
+GitHub-hosted runners are refused by that host (HTTP 403 from Akamai) even though `faa.gov` is reachable from them. The pull request runs the tests only. The daily job still tries the download and fails closed when it is refused, so it does not publish a partial list. To make the daily download succeed, add a self-hosted runner that can open `explore.dot.gov` and set the repository variable `FAA_RUNNER` to that runner's label. The workflow uses that label when the variable is set.
+
 ## Files
 
 - `index.html`, `styles.css`, `app.js` — the site
