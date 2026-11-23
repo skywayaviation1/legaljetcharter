@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-11-22T23:35:33Z",
+  "lastChecked": "2026-11-23T01:58:41Z",
   "holdersPage": "https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders",
   "airOperatorPage": "https://www.faa.gov/av-info/air-operator-far-search",
   "operatorCount": 1823,
@@ -49,5 +49,128 @@
     },
     "ambiguousCount": 0
   },
-  "datasetHash": "aa5d61684e36c49f713c4cbf58ce4158ec7a00e7f15024baa303f6313777842b"
+  "datasetHash": "4a98ef61b6876b65cfc31711b020f296ab0bd570bdc03b1e6263cc946a2cb5e1",
+  "safety": {
+    "ntsb": {
+      "sourceUrl": "https://data.ntsb.gov/avdata/",
+      "downloadUrl": "https://data.ntsb.gov/avdata/FileDirectory/DownloadFile?fileID=avall.zip",
+      "fileDate": "2026-11-01",
+      "fileSize": "97140358",
+      "contentHash": "c1a447835b41104737f8c3fcf6b2bbaa4b6a00f506fe7668b528d3b3a2f78bbc",
+      "aircraftRows": 932,
+      "eventCount": 923,
+      "matchedEvents": 605,
+      "certificateMatches": 347,
+      "nameMatches": 258,
+      "unmatched": 314,
+      "ambiguous": 4
+    },
+    "enforcement": {
+      "sourceUrl": "https://www.faa.gov/about/office_org/headquarters_offices/agc/practice_areas/enforcement/reports",
+      "contentHash": "10775d13e83e1506d6acb904329627304a5380923c07081225db52874eb0f0ec",
+      "coverageStart": "2024-01-01",
+      "coverageEnd": "2026-06-30",
+      "rowCount": 195,
+      "files": [
+        {
+          "label": "1/1/2026-3/31/2026",
+          "url": "https://www.faa.gov/about/office_org/headquarters_offices/agc/practice_areas/enforcement/reports/Quarterly_Enforcement_Report_Q1_2026-Final.xlsx",
+          "parsed": true,
+          "rows": 20,
+          "bytes": 12146
+        },
+        {
+          "label": "4/1/2026-6/30/2026",
+          "url": "https://www.faa.gov/about/office_org/headquarters_offices/agc/practice_areas/enforcement/reports/Quarterly_Enforcement_Report_Q2_2026-Final.xlsx",
+          "parsed": true,
+          "rows": 28,
+          "bytes": 12552
+        },
+        {
+          "label": "1/1/2025-3/31/2025",
+          "url": "https://www.faa.gov/media/104406",
+          "parsed": true,
+          "rows": 22,
+          "bytes": 16257
+        },
+        {
+          "label": "4/1/2025-6/30/2025",
+          "url": "https://www.faa.gov/media/104411",
+          "parsed": true,
+          "rows": 23,
+          "bytes": 13951
+        },
+        {
+          "label": "7/1/2025-9/30/2025",
+          "url": "https://www.faa.gov/about/office_org/headquarters_offices/agc/practice_areas/enforcement/reports/Quarterly_Enforcement_Report_Q3_2025-FINAL.xlsx",
+          "parsed": true,
+          "rows": 18,
+          "bytes": 14094
+        },
+        {
+          "label": "10/1/2025-12/31/2025",
+          "url": "https://www.faa.gov/about/office_org/headquarters_offices/agc/practice_areas/enforcement/reports/Quarterly_Enforcement_Report_Q4_2025-FINAL.xlsx",
+          "parsed": true,
+          "rows": 11,
+          "bytes": 12403
+        },
+        {
+          "label": "1/1/2024-3/31/2024",
+          "url": "https://www.faa.gov/media/91061",
+          "parsed": true,
+          "rows": 13,
+          "bytes": 13851
+        },
+        {
+          "label": "4/1/2024-6/30/2024",
+          "url": "https://www.faa.gov/media/91091",
+          "parsed": true,
+          "rows": 23,
+          "bytes": 14871
+        },
+        {
+          "label": "7/1/2024-9/30/2024",
+          "url": "https://www.faa.gov/media/91096",
+          "parsed": true,
+          "rows": 18,
+          "bytes": 15006
+        },
+        {
+          "label": "10/1/2024-12/31/2024",
+          "url": "https://www.faa.gov/media/91076",
+          "parsed": true,
+          "rows": 19,
+          "bytes": 14550
+        },
+        {
+          "label": "1/1/2023-3/31/2023",
+          "url": "https://www.faa.gov/media/66656",
+          "parsed": false,
+          "reason": "application/pdf"
+        },
+        {
+          "label": "4/1/2023-6/30/2023",
+          "url": "https://www.faa.gov/media/71436",
+          "parsed": false,
+          "reason": "application/pdf"
+        },
+        {
+          "label": "7/1/2023-9/30/2023",
+          "url": "https://www.faa.gov/media/75616",
+          "parsed": false,
+          "reason": "application/pdf"
+        },
+        {
+          "label": "10/1/2023-12/31/2023",
+          "url": "https://www.faa.gov/media/75621",
+          "parsed": false,
+          "reason": "application/pdf"
+        }
+      ],
+      "matchedRows": 124,
+      "nameMatches": 124,
+      "unmatched": 69,
+      "ambiguous": 2
+    }
+  }
 }

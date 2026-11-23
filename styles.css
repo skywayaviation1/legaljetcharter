@@ -126,6 +126,10 @@ input:focus, select:focus, button:focus { outline: 3px solid rgba(138, 100, 36, 
 details { border-top: 1px solid var(--line); padding: 10px 0; }
 summary { cursor: pointer; font-weight: 700; font-size: 18px; }
 .faq p, .faq li { max-width: 75ch; }
+.safety { margin-top: 14px; }
+.safety h5 { margin: 12px 0 4px; font-size: 16px; }
+.safety li { margin: 0 0 8px; }
+.safety-note { color: var(--muted); font-size: 15px; }
 .site-foot { padding: 10px 0 40px; color: var(--muted); font-size: 15px; }
 @media (max-width: 800px) {
   .hero, .stats { grid-template-columns: 1fr; }

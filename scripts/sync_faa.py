@@ -1097,9 +1097,9 @@ def public_operator(record: dict) -> dict:
     return published
 
 
-def build_meta(part: dict, air: dict, merged: dict, checked_at: str) -> dict:
+def build_meta(part: dict, air: dict, merged: dict, checked_at: str, safety: dict | None = None) -> dict:
     recon = merged["reconciliation"]
-    return {
+    meta = {
         "lastChecked": checked_at,
         "holdersPage": HOLDERS_PAGE,
         "airOperatorPage": AIR_PAGE,
@@ -1136,13 +1136,16 @@ def build_meta(part: dict, air: dict, merged: dict, checked_at: str) -> dict:
             "ambiguousCount": len(recon["ambiguous"]),
         },
     }
+    if safety:
+        meta["safety"] = safety
+    return meta
 
 
-def publish(part: dict, air: dict, merged: dict, previous_meta: dict, checked_at: str, enforce_floors: bool = True) -> dict:
+def publish(part: dict, air: dict, merged: dict, previous_meta: dict, checked_at: str, enforce_floors: bool = True, safety: dict | None = None) -> dict:
     sanity_check(part, air["operators"], merged, previous_meta, enforce_floors=enforce_floors)
     public = [public_operator(rec) for rec in merged["operators"]]
     new_hash = sha256_json(public)
-    meta = build_meta(part, air, merged, checked_at)
+    meta = build_meta(part, air, merged, checked_at, safety=safety)
     meta["datasetHash"] = new_hash
     data_changed = previous_meta.get("datasetHash") != new_hash
     # Source extracts are what the next no-change run reuses. Rewrite them
@@ -1195,7 +1198,41 @@ def main(argv=None) -> int:
             file=sys.stderr,
         )
         merged = merge_records(part["operators"], air["operators"])
-        publish(part, air, merged, previous, checked_at)
+        from safety import apply_safety, fetch_enforcement, fetch_ntsb
+
+        previous_rows = ((previous.get("safety") or {}).get("ntsb") or {}).get("aircraftRows")
+        ntsb_info, ntsb_records = fetch_ntsb(previous_rows)
+        enforcement_info, enforcement_records = fetch_enforcement()
+        stats = apply_safety(merged["operators"], ntsb_records, enforcement_records)
+        safety_meta = {
+            "ntsb": {
+                "sourceUrl": ntsb_info["sourceUrl"],
+                "downloadUrl": ntsb_info["downloadUrl"],
+                "fileDate": ntsb_info["fileDate"],
+                "fileSize": ntsb_info["fileSize"],
+                "contentHash": ntsb_info["contentHash"],
+                "aircraftRows": ntsb_info["aircraftRows"],
+                "eventCount": ntsb_info["eventCount"],
+                "matchedEvents": stats["ntsb"]["certificateMatches"] + stats["ntsb"]["nameMatches"],
+                "certificateMatches": stats["ntsb"]["certificateMatches"],
+                "nameMatches": stats["ntsb"]["nameMatches"],
+                "unmatched": stats["ntsb"]["unmatched"],
+                "ambiguous": stats["ntsb"]["ambiguous"],
+            },
+            "enforcement": {
+                "sourceUrl": enforcement_info["sourceUrl"],
+                "contentHash": enforcement_info["contentHash"],
+                "coverageStart": enforcement_info["coverageStart"],
+                "coverageEnd": enforcement_info["coverageEnd"],
+                "rowCount": enforcement_info["rowCount"],
+                "files": enforcement_info["files"],
+                "matchedRows": stats["enforcement"]["certificateMatches"] + stats["enforcement"]["nameMatches"],
+                "nameMatches": stats["enforcement"]["nameMatches"],
+                "unmatched": stats["enforcement"]["unmatched"],
+                "ambiguous": stats["enforcement"]["ambiguous"],
+            },
+        }
+        publish(part, air, merged, previous, checked_at, safety=safety_meta)
     except SyncError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
