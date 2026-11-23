@@ -1,0 +1,10 @@
+{
+  "operators": [
+    {
+      "designator": "GLRA",
+      "certificateNumber": "GLRA358E",
+      "note": "Added on this site. The FAA Part 135 list and Air Operator search do not print this DBA.",
+      "dbas": ["Upper Jets"]
+    }
+  ]
+}

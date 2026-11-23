@@ -1,0 +1,10 @@
+{
+  "exclude": [
+    {
+      "evId": "20200226X41215",
+      "ntsbNumber": "ERA20CA113",
+      "designator": "GLRA",
+      "reason": "NTSB coded oper_code GLRA and certificate GLRA358E, but the named operator is NORTHWEST AIRCRAFT RENTAL INC, a different company that used the DBA Upper Jets. Do not attach this Farmingdale Learjet 55 accident to Aurora Aviation, Inc."
+    }
+  ]
+}

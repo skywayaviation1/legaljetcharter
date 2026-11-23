@@ -21,6 +21,7 @@ function sourceOf(field) {
   if (field.source === "both") return "Part 135 list and Air Operator search";
   if (field.source === "part135-list") return "Part 135 list";
   if (field.source === "air-operator") return "Air Operator search";
+  if (field.source === "site") return field.note || "Added on this site. Not in the FAA lists.";
   return field.source || "";
 }
 

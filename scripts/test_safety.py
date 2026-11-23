@@ -55,6 +55,31 @@ class NtsbTests(unittest.TestCase):
         self.assertEqual(operators[0]["safety"]["ntsb"], [])
         self.assertEqual(operators[1]["safety"]["ntsb"], [])
 
+    def test_reviewed_exclusion_blocks_a_certificate_match_and_site_dba_is_not_a_name_key(self):
+        record = {
+            "evId": "20200226X41215", "ntsbNumber": "ERA20CA113", "date": "2020-02-26",
+            "eventType": "Accident", "city": "Farmingdale", "state": "NJ", "highestInjury": "none",
+            "url": "https://my.ntsb.gov/report?ev_id=20200226X41215",
+            "aircraft": [{"registration": "N135LR", "make": "Learjet", "model": "55"}],
+            "operatorNames": ["NORTHWEST AIRCRAFT RENTAL INC"],
+            "operatorDbas": ["Upper Jets"],
+            "designators": ["GLRA"],
+            "farParts": ["135"],
+        }
+        aurora = operator("dsgn:GLRA", "Aurora Aviation, Inc.", "GLRA")
+        aurora["certificateNumber"] = {"value": "GLRA358E", "source": "air-operator"}
+        self.assertTrue(safety.is_safety_excluded(record, aurora, safety.safety_exclusion_rules()))
+        stats = safety.apply_safety([aurora], [record], [])
+        self.assertEqual(stats["ntsb"]["excluded"], 1)
+        self.assertEqual(aurora["safety"]["ntsb"], [])
+        safety.apply_operator_overrides([aurora])
+        self.assertEqual(aurora["dbas"]["value"], ["Upper Jets"])
+        self.assertEqual(aurora["dbas"]["source"], "site")
+        self.assertNotIn("Upper Jets", safety._operator_names(aurora))
+        again = safety.apply_safety([aurora], [record], [])
+        self.assertEqual(again["ntsb"]["excluded"], 1)
+        self.assertEqual(aurora["safety"]["ntsb"], [])
+
     def test_short_extract_fails(self):
         with self.assertRaises(safety.SyncError):
             safety.check_ntsb_count(10, None)
