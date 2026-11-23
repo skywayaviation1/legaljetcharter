@@ -1,86 +1,81 @@
-# Legal Jet Charter — Part 135 Verification
+# Legal Jet Charter
 
-Single-file static web app. Public visitors search the FAA Part 135 registry by tail number or operator name and cross-check against an editorial watchlist. Admins manage registry data and watchlist from a separate `/admin` dashboard.
+A public check against the FAA’s own Part 135 lists. Search by operator name, doing-business-as name, certificate number, designator, city, state, or tail number. The site does not invent operators or fill in fields the FAA files do not contain.
 
-## URLs
+Operated for SkyVia Ops / Skyway Aviation (Jake Cambria).
 
-- **`/`** — public verification page. Search tail number, operator name, browse watchlist. No admin UI is visible.
-- **`/admin`** — admin dashboard. Sign-in screen if not authenticated; full dashboard if signed in.
+## What the page is reading
 
-A small "Admin →" link in the public footer points to `/admin` for discoverability.
+Two FAA sources are merged. A row that exists in only one of them is kept and labeled. It is not dropped to force the lists to agree.
 
-## Default credentials
+1. **Part 135 operators and aircraft workbook.** The spreadsheet linked from [FAA-certificated Aircraft Operators (Legal Part 135 holders)](https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders). The FAA says this file is updated weekly. The sync reads the page, finds the current `.xlsx` / `.xls` / `.csv` link, and uses the file’s `Last-Modified` date as the file date shown on the site.
+2. **Air Operator 14 CFR search.** [faa.gov/av-info/air-operator-far-search](https://www.faa.gov/av-info/air-operator-far-search). The page embeds a Tableau workbook. Its Download sheet is published as a CSV at `explore.dot.gov` (`AVInfo_AirOperators/Download.csv`). The sync downloads that sheet once per letter A–Z with the Part filter set to 135, about one request a second. Each file has to come back as Part 135 only, with names starting with that letter, and a row count that is a multiple of the staffing measures. A short or mixed file fails the job. The CSV publishes the certificate number, designator, address, city, state, officers, phone, and staffing counts. It does not include a DBA column, and the DBA worksheet is not a separate public file, so DBA is left blank. Names that start with a digit are not returned by the letter filter; those holders stay on the Part 135 list and are labeled as list-only.
 
-- Username: `admin`
-- Passcode: `LegalJet2026`
+The on-page line is:
 
-**Change these immediately after first deploy** via `/admin` → Account → Change credentials → Save → Export updated app → push.
+> Data from FAA, updated &lt;Part 135 file date&gt;; last checked &lt;date&gt;
 
-## Admin dashboard sections
+If the Air Operator label is a different day, that date is shown too. Both FAA pages are linked.
 
-- **Overview** — registry & watchlist stats; quick-action cards to jump to any section
-- **FAA Data** — drop the latest FAA Part 135 `.xlsx` to refresh the registry; reset to built-in
-- **Watchlist** — add, edit, or delete flagged operators with severity, categories, summary, sources
-- **Account** — change username/passcode; recovery instructions; sign out
+### How a record is matched
 
-Every section has an "Export updated app ↓" button. Exporting downloads a new `index.html` with the current data, watchlist, and credentials hashed and baked in. Push the file to redeploy.
+- **Designator first.** The workbook’s `DSGN` code is matched to the Air Operator designator code. That is the certificate key.
+- **Legal name, only when it is unique.** If one side has no designator, and exactly one unmatched record on each side shares the same legal name (suffixes such as LLC and INC ignored), they are joined. If the same legal name sits on two certificates, they stay separate. Two records that both have designators are never joined on name when those designators differ.
+- **Not guessed.** City, DBA, certificate number, and issue date are whatever the Air Operator export actually contains. District office (`CHDO`) and authorized aircraft come from the workbook. A blank stays blank. Columns the FAA adds later are kept and shown with the column name they arrived under. A column we no longer recognize fails the job instead of being mapped to the wrong field.
 
-## Deployment workflow
+Differing values (legal name, FSDO, or a CFR part with no overlap) are stored on the operator and counted in `data/meta.json`. They are not overwritten.
+
+### Editorial watchlist
+
+`data/watchlist.json` is not FAA data. The sync never rewrites it. A note appears on an operator only when the normalized name matches. It is labeled as editorial.
+
+## Automatic update
+
+GitHub Action: `.github/workflows/sync-faa.yml`.
+
+- **How often:** every day at 12:15 UTC, plus any manual run from the Actions tab (`workflow_dispatch`).
+- **What a run does:** fetches the holders page and the workbook headers. If the link, `Last-Modified`, length, and `ETag` match the last publish, the workbook is not downloaded again. It always re-downloads the 26 Air Operator letter files, hashes the parsed operators, and rewrites operator rows only when that hash changed.
+- **When it commits:** after a successful check it updates `data/meta.json` (`lastChecked`, and the new dataset when a hash changed) and pushes to `main`. A run whose operator rows did not change still commits the check time, so the page can say when the FAA was last looked at. Operator rows are rewritten only when a source hash changed. A push to `main` does not start another Actions run; Vercel redeploys from the push.
+- **When it refuses to publish:** missing file link, unreadable workbook, missing required columns, zero rows, an Air Operator export that is not a Part 135-sized list, or a drop of more than 25% versus the previous publish (operators or aircraft). The job fails and the previous files stay as they are.
+
+The normalized extracts live in `data/sources/` so a later run can reuse them when the FAA fingerprint has not moved. `data/operators.json` is the merged file the page loads.
+
+### One-time setup
+
+The workflow asks for `permissions: contents: write`. In the GitHub repo, **Settings → Actions → General → Workflow permissions** must be **Read and write permissions**. Without that, the job can read the FAA files and then fail on `git push`. No extra secret is required; the run uses `GITHUB_TOKEN`.
+
+There is no branch protection ruleset on `main` that this account can see. If one is added later, the `github-actions[bot]` push has to be allowed to bypass it, or the daily commit will be rejected.
+
+### Vercel
+
+Pushes are already connected. The Vercel GitHub app deployed this branch as a preview on team `skywayaviation1s-projects`, project `legaljetcharter`:
+
+https://legaljetcharter-git-cursor-faa-03a3bb-skywayaviation1s-projects.vercel.app
+
+Earlier production deploys of `main` were also created by `vercel[bot]`. A push to `main` from the daily job redeploys production the same way. No Vercel token is required in GitHub. `GITHUB_TOKEN` pushes still notify Vercel.
+
+## Local
 
 ```bash
-# After changes (data update, watchlist edit, password change):
-# 1. In /admin, click "Export updated app ↓" — index.html downloads
-# 2. Replace the index.html in this folder with the downloaded file
-# 3. Commit and push:
-git add index.html
-git commit -m "Update registry / watchlist / credentials"
-git push
-# 4. Vercel auto-deploys in ~30 seconds
+python3 -m pip install -r scripts/requirements.txt
+python3 scripts/test_sync.py
+python3 scripts/sync_faa.py
+python3 -m http.server 8000
 ```
 
-## Security model
+A second `python3 scripts/sync_faa.py` immediately afterwards is the no-change run: it should leave `data/operators.json` byte-for-byte as it was and only move `lastChecked`.
 
-- Two layers of access control:
-  1. Hosting account — only the GitHub repo owner can push files
-  2. In-app admin login — required at `/admin` to access the dashboard
-- Passcodes are SHA-256 hashed before being baked into the file
-- Sign-in state lives in `sessionStorage` and clears on tab close
-- No server, no database — everything is client-side; the file IS the database
+`explore.dot.gov` answers the CSV with a normal browser user agent. A hard denial fails the job and does not publish. The script does not open a browser and does not crawl other certificate parts.
 
-## Recovery (forgot credentials)
-
-There's no email recovery. If locked out:
-
-1. Open `index.html` in a text editor
-2. Find the `auth-config` script tag near the top:
-   ```html
-   <script id="auth-config" type="application/json">{"user":"admin","hash":"..."}</script>
-   ```
-3. Replace with `{"user":"admin","hash":null}` (sets `hash` to `null`)
-4. Commit, push, redeploy
-5. Visit `/admin` — sign in with any credentials (since `hash` is null, the check passes for `admin`). Then go to Account → Change credentials → Save → Export & redeploy.
+GitHub-hosted runners are refused by that host (HTTP 403 from Akamai) even though `faa.gov` is reachable from them. The pull request runs the tests only. The daily job still tries the download and fails closed when it is refused, so it does not publish a partial list. To make the daily download succeed, add a self-hosted runner that can open `explore.dot.gov` and set the repository variable `FAA_RUNNER` to that runner's label. The workflow uses that label when the variable is set.
 
 ## Files
 
-- `index.html` — the entire app (HTML, CSS, JS, FAA data, watchlist data, hashed credentials)
-- `vercel.json` — Vercel config (clean URLs, `/admin` rewrite, security headers)
-- `package.json` — project metadata
-- `.gitignore`
-- `README.md` — this file
-
-## Built with
-
-- Plain HTML/CSS/JS (no framework, no build step)
-- [SheetJS](https://sheetjs.com/) (CDN) for in-browser `.xlsx` parsing
-- Vercel for hosting
-
-## Updating FAA data
-
-The FAA publishes the Part 135 Operators and Aircraft List approximately every 30 days. To refresh:
-
-1. Download the latest `Part_135_Operators_and_Aircraft_List.xlsx` from the FAA
-2. Sign in to `/admin`
-3. Go to **FAA Data** section
-4. Drop the file in the upload area
-5. Click **Export updated app ↓**
-6. Replace `index.html` and push
+- `index.html`, `styles.css`, `app.js` — the site
+- `data/operators.json` — merged operators the page searches
+- `data/meta.json` — file date, last check, counts, conflict summary
+- `data/sources/part135.json` — normalized workbook
+- `data/sources/air-operator.json` — normalized Part 135 Air Operator extract
+- `data/watchlist.json` — editorial notes, not touched by the sync
+- `scripts/sync_faa.py` — check, parse, merge, refuse bad publishes
+- `scripts/test_sync.py` — parsing, matching, and sanity tests

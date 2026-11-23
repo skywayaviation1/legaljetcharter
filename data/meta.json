@@ -1,0 +1,53 @@
+{
+  "lastChecked": "2026-11-22T23:35:33Z",
+  "holdersPage": "https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders",
+  "airOperatorPage": "https://www.faa.gov/av-info/air-operator-far-search",
+  "operatorCount": 1823,
+  "aircraftCount": 11632,
+  "part135": {
+    "sourcePage": "https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders",
+    "fileUrl": "https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders.xlsx",
+    "fileDate": "2026-11-16",
+    "lastModified": "Mon, 16 Nov 2026 19:03:18 GMT",
+    "contentHash": "f2441afcc2fd787213ddb2a02c2606a1654035cf1cd82aaa0d07fd5c6bc83cee",
+    "byteLength": 552251,
+    "fingerprint": {
+      "url": "https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders.xlsx",
+      "lastModified": "Mon, 16 Nov 2026 19:03:18 GMT",
+      "contentLength": "552251",
+      "etag": ""
+    },
+    "operatorCount": 1793,
+    "aircraftCount": 11632,
+    "columns": [
+      "CFR",
+      "CHDO",
+      "DSGN",
+      "Name",
+      "Aircraft M/M/S",
+      "Registration No.",
+      "Serial No."
+    ],
+    "unmappedColumns": []
+  },
+  "airOperator": {
+    "sourcePage": "https://www.faa.gov/av-info/air-operator-far-search",
+    "updatedLabel": "",
+    "extractedAt": "2026-11-22T23:35:34Z",
+    "method": "download-csv-by-letter",
+    "partFilter": "135",
+    "contentHash": "754387ff7317b93b3a7eb6337704761464f55de80673167195c735c268e166a9",
+    "operatorCount": 1816
+  },
+  "reconciliation": {
+    "inBoth": 1786,
+    "onlyPart135List": 7,
+    "onlyAirOperator": 30,
+    "conflictCount": 1,
+    "conflictFields": {
+      "legalName": 1
+    },
+    "ambiguousCount": 0
+  },
+  "datasetHash": "aa5d61684e36c49f713c4cbf58ce4158ec7a00e7f15024baa303f6313777842b"
+}
