@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-11-23T01:58:41Z",
+  "lastChecked": "2026-11-23T02:18:40Z",
   "holdersPage": "https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders",
   "airOperatorPage": "https://www.faa.gov/av-info/air-operator-far-search",
   "operatorCount": 1823,
@@ -49,7 +49,7 @@
     },
     "ambiguousCount": 0
   },
-  "datasetHash": "4a98ef61b6876b65cfc31711b020f296ab0bd570bdc03b1e6263cc946a2cb5e1",
+  "datasetHash": "dd64239f2088935730a633a84d2f56131145e6d9f4237d9b5a83c7d482be14c6",
   "safety": {
     "ntsb": {
       "sourceUrl": "https://data.ntsb.gov/avdata/",
@@ -58,12 +58,45 @@
       "fileSize": "97140358",
       "contentHash": "c1a447835b41104737f8c3fcf6b2bbaa4b6a00f506fe7668b528d3b3a2f78bbc",
       "aircraftRows": 932,
-      "eventCount": 923,
-      "matchedEvents": 605,
-      "certificateMatches": 347,
-      "nameMatches": 258,
-      "unmatched": 314,
-      "ambiguous": 4
+      "eventCount": 1139,
+      "updates": [
+        {
+          "name": "up08NOV.zip",
+          "fileDate": "2026-11-08",
+          "fileSize": "534267",
+          "downloadUrl": "https://data.ntsb.gov/avdata/FileDirectory/DownloadFile?fileID=up08NOV.zip",
+          "rows": 64,
+          "part135Rows": 2,
+          "contentHash": "71f14f3f73f0c8252fd32143b059853a62af505f461f66491a7532b8a931772c"
+        },
+        {
+          "name": "up15NOV.zip",
+          "fileDate": "2026-11-15",
+          "fileSize": "532255",
+          "downloadUrl": "https://data.ntsb.gov/avdata/FileDirectory/DownloadFile?fileID=up15NOV.zip",
+          "rows": 74,
+          "part135Rows": 2,
+          "contentHash": "be0ed093d1d0c349dd9d8a1e1817439589f465760ff2a62cb700e459bacb52e0"
+        },
+        {
+          "name": "up22NOV.zip",
+          "fileDate": "2026-11-22",
+          "fileSize": "651677",
+          "downloadUrl": "https://data.ntsb.gov/avdata/FileDirectory/DownloadFile?fileID=up22NOV.zip",
+          "rows": 98,
+          "part135Rows": 2,
+          "contentHash": "1363efad4e5f2236c7c6105a36b127466cef420efd91020e0ae6016e70168051"
+        }
+      ],
+      "updatesThrough": "2026-11-22",
+      "investigationPages": 1,
+      "investigationSource": "https://www.ntsb.gov/investigations/",
+      "matchedEvents": 617,
+      "certificateMatches": 349,
+      "registrationMatches": 88,
+      "nameMatches": 180,
+      "unmatched": 516,
+      "ambiguous": 6
     },
     "enforcement": {
       "sourceUrl": "https://www.faa.gov/about/office_org/headquarters_offices/agc/practice_areas/enforcement/reports",

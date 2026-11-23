@@ -206,7 +206,7 @@ def parse_city_state_zip(line: str):
     return {"city": city, "state": match.group("state"), "postalCode": match.group("zip")}
 
 
-def request(url: str, method: str = "GET", timeout: int = 90) -> tuple[bytes, dict]:
+def request(url: str, method: str = "GET", timeout: int = 90, headers: dict | None = None) -> tuple[bytes, dict]:
     req = urllib.request.Request(
         url,
         method=method,
@@ -214,6 +214,7 @@ def request(url: str, method: str = "GET", timeout: int = 90) -> tuple[bytes, di
             "User-Agent": UA,
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
             "Accept-Language": "en-US,en;q=0.9",
+            **(headers or {}),
         },
     )
     try:
@@ -1198,27 +1199,14 @@ def main(argv=None) -> int:
             file=sys.stderr,
         )
         merged = merge_records(part["operators"], air["operators"])
-        from safety import apply_safety, fetch_enforcement, fetch_ntsb
+        from safety import apply_safety, fetch_enforcement, fetch_ntsb, ntsb_public_meta
 
         previous_rows = ((previous.get("safety") or {}).get("ntsb") or {}).get("aircraftRows")
         ntsb_info, ntsb_records = fetch_ntsb(previous_rows)
         enforcement_info, enforcement_records = fetch_enforcement()
         stats = apply_safety(merged["operators"], ntsb_records, enforcement_records)
         safety_meta = {
-            "ntsb": {
-                "sourceUrl": ntsb_info["sourceUrl"],
-                "downloadUrl": ntsb_info["downloadUrl"],
-                "fileDate": ntsb_info["fileDate"],
-                "fileSize": ntsb_info["fileSize"],
-                "contentHash": ntsb_info["contentHash"],
-                "aircraftRows": ntsb_info["aircraftRows"],
-                "eventCount": ntsb_info["eventCount"],
-                "matchedEvents": stats["ntsb"]["certificateMatches"] + stats["ntsb"]["nameMatches"],
-                "certificateMatches": stats["ntsb"]["certificateMatches"],
-                "nameMatches": stats["ntsb"]["nameMatches"],
-                "unmatched": stats["ntsb"]["unmatched"],
-                "ambiguous": stats["ntsb"]["ambiguous"],
-            },
+            "ntsb": ntsb_public_meta(ntsb_info, stats),
             "enforcement": {
                 "sourceUrl": enforcement_info["sourceUrl"],
                 "contentHash": enforcement_info["contentHash"],

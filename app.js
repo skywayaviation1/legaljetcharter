@@ -269,7 +269,9 @@ function renderSafety(op) {
   const ntsb = safety.ntsb || [];
   if (!ntsb.length) {
     const fileDate = formatIso(ntsbMeta.fileDate) || "the current file date";
-    section.appendChild(el("p", "", `No NTSB-reported Part 135 accidents or incidents matched this operator in the NTSB aviation accident database (avall.zip, file dated ${fileDate}).`));
+    const through = formatIso(ntsbMeta.updatesThrough);
+    const updates = through && through !== fileDate ? ` plus weekly updates through ${through}` : "";
+    section.appendChild(el("p", "", `No NTSB accident or incident matched this operator in avall.zip (file dated ${fileDate}${updates}) or in NTSB investigation pages for events on or after that file date.`));
   } else {
     const list = document.createElement("ul");
     for (const item of ntsb) {
@@ -281,11 +283,14 @@ function renderSafety(op) {
       if (item.ntsbNumber) li.append(` · ${item.ntsbNumber}`);
       if (craft) li.append(` · ${craft}`);
       if (item.highestInjury) li.append(` · highest injury ${item.highestInjury}`);
+      if (item.farPart) li.append(` · FAR part ${item.farPart}`);
+      else if (item.preliminary) li.append(" · FAR part not coded on the investigation page");
+      if (item.preliminary) li.append(" · preliminary");
       li.append(". ");
       if (item.url) {
         const link = document.createElement("a");
         link.href = item.url;
-        link.textContent = "NTSB report";
+        link.textContent = item.preliminary ? "NTSB investigation" : "NTSB report";
         link.rel = "noopener";
         li.appendChild(link);
       }

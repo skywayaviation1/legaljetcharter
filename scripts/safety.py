@@ -3,24 +3,32 @@
 Sources, and only these:
 
 - NTSB aviation accident database, avall.zip, from https://data.ntsb.gov/avdata/
-  Rows whose aircraft far_part is 135 (accidents and incidents).
+  Aircraft rows whose FAR part is 135.
+- Weekly NTSB update files (upDDMMM.zip) published after that avall.zip snapshot.
+  Those files are how a crash that happened after the snapshot enters the database.
+- NTSB investigation pages for aviation events on or after the avall.zip file date
+  that are not in the database yet. The page is the record; nothing is copied
+  from news stories.
 - FAA quarterly enforcement reports linked from
   https://www.faa.gov/about/office_org/headquarters_offices/agc/practice_areas/enforcement/reports
-  Spreadsheet quarters only. Those reports list closed civil penalties and
-  certificate suspensions or revocations against regulated aviation entities.
+  Spreadsheet quarters only.
 
-Nothing is inferred. A name is attached only when it matches exactly one
-operator after the same legal-name normalization used for the FAA lists.
+A designator match is a certificate match. An N-number that is on exactly one
+operator's FAA aircraft list is a registration match. A legal name or DBA is
+attached only when it matches exactly one operator. If several operators share
+that name, the aircraft model named by NTSB can select one of them, and the
+page still says "name match - verify".
 """
 
 from __future__ import annotations
 
+import html
 import io
 import re
 import zipfile
 from collections import defaultdict
 from datetime import date, datetime
-from urllib.parse import urljoin
+from urllib.parse import urlencode, urljoin
 
 from sync_faa import (
     SyncError,
@@ -37,7 +45,17 @@ ENFORCEMENT_PAGE = (
     "practice_areas/enforcement/reports"
 )
 NTSB_REPORT = "https://my.ntsb.gov/report?ev_id={ev_id}"
+NTSB_INVESTIGATIONS = "https://www.ntsb.gov/investigations/_api/web/lists/getbytitle('Pages')/items"
 MIN_PART135_ROWS = 700
+MAKE_ALIASES = {
+    "LEARJET": "LR",
+    "LEAR": "LR",
+    "CESSNA": "C",
+    "BEECHCRAFT": "BE",
+    "BEECH": "BE",
+    "PIPER": "PA",
+    "ROBINSON": "R",
+}
 
 INJURY = {
     "F": "fatal",
@@ -73,15 +91,19 @@ def parse_mdy(value) -> str:
             return datetime.strptime(text, fmt).date().isoformat()
         except ValueError:
             continue
+    if "T" in text:
+        return parse_mdy(text.split("T", 1)[0])
     if " " in text:
         return parse_mdy(text.split(" ", 1)[0])
     return ""
 
 
-def part135_records(aircraft_rows: list[dict], events_by_id: dict[str, dict]) -> list[dict]:
+def part135_records(aircraft_rows: list[dict], events_by_id: dict[str, dict], parts=("135",)) -> list[dict]:
+    allowed = None if parts is None else {clean_text(part) for part in parts}
     grouped: dict[str, dict] = {}
     for row in aircraft_rows:
-        if clean_text(row.get("far_part")) != "135":
+        far_part = clean_text(row.get("far_part"))
+        if allowed is not None and far_part not in allowed:
             continue
         ev_id = clean_text(row.get("ev_id"))
         if not ev_id:
@@ -106,8 +128,12 @@ def part135_records(aircraft_rows: list[dict], events_by_id: dict[str, dict]) ->
                 "operatorNames": [],
                 "operatorDbas": [],
                 "designators": [],
+                "farParts": [],
+                "preliminary": False,
             }
             grouped[ev_id] = record
+        if far_part and far_part not in record["farParts"]:
+            record["farParts"].append(far_part)
         designator = norm_designator(row.get("oper_code"))
         name = clean_text(row.get("oper_name"))
         dba = clean_text(row.get("oper_dba"))
@@ -155,6 +181,51 @@ def norm_name_keep_suffix(value: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+def _operator_aircraft(operator: dict) -> list[dict]:
+    raw = operator.get("aircraft") or []
+    return [item for item in raw if isinstance(item, dict)]
+
+
+def registration_forms(value: str) -> set[str]:
+    text = re.sub(r"[^A-Z0-9]", "", clean_text(value).upper())
+    if len(text) < 2:
+        return set()
+    forms = {text}
+    if text.startswith("N") and text[1].isdigit():
+        forms.add(text[1:])
+    elif text[0].isdigit():
+        forms.add("N" + text)
+    return forms
+
+
+def model_pairs(text: str) -> set[tuple[str, str]]:
+    tokens = []
+    for token in re.findall(r"[A-Z0-9]+", clean_text(text).upper()):
+        tokens.append(MAKE_ALIASES.get(token, token))
+        mixed = re.fullmatch(r"([A-Z]{1,6})(\d{2,4})[A-Z]?", tokens[-1])
+        if mixed:
+            tokens.append(mixed.group(1))
+            tokens.append(mixed.group(2))
+    families = [token for token in tokens if re.search(r"[A-Z]", token) and len(token) >= 2]
+    numbers = [token for token in tokens if token.isdigit() and len(token) >= 2]
+    return {(family, number) for family in families for number in numbers}
+
+
+def record_model_pairs(record: dict) -> set[tuple[str, str]]:
+    pairs = set()
+    for craft in record.get("aircraft") or []:
+        pairs |= model_pairs(f"{craft.get('make') or ''} {craft.get('model') or ''}")
+    pairs |= model_pairs(record.get("modelText") or "")
+    return pairs
+
+
+def operator_model_pairs(operator: dict) -> set[tuple[str, str]]:
+    pairs = set()
+    for craft in _operator_aircraft(operator):
+        pairs |= model_pairs(craft.get("model") or "")
+    return pairs
+
+
 def match_records(operators: list[dict], records: list[dict], name_keys, designator_key, normalizer=norm_name) -> dict:
     """Return {operator id: [{record, match}]} and a small stats dict.
 
@@ -162,6 +233,7 @@ def match_records(operators: list[dict], records: list[dict], name_keys, designa
     """
     by_designator: dict[str, list] = defaultdict(list)
     by_name: dict[str, list] = defaultdict(list)
+    by_registration: dict[str, list] = defaultdict(list)
     for operator in operators:
         designator = _designator(operator)
         if designator:
@@ -170,9 +242,17 @@ def match_records(operators: list[dict], records: list[dict], name_keys, designa
             key = normalizer(name)
             if len(key) >= 6:
                 by_name[key].append(operator)
+        seen_tails = set()
+        for craft in _operator_aircraft(operator):
+            for form in registration_forms(craft.get("registration") or ""):
+                if form in seen_tails:
+                    continue
+                seen_tails.add(form)
+                by_registration[form].append(operator)
 
     attached: dict[str, list] = defaultdict(list)
     certificate = 0
+    registration = 0
     name_only = 0
     unmatched = 0
     ambiguous = 0
@@ -192,6 +272,11 @@ def match_records(operators: list[dict], records: list[dict], name_keys, designa
             ambiguous += 1
             continue
         else:
+            reg_hits = []
+            for craft in record.get("aircraft") or []:
+                for form in registration_forms(craft.get("registration") or ""):
+                    reg_hits.extend(by_registration.get(form, []))
+            unique_regs = {id(op): op for op in reg_hits}
             name_hits = []
             for name in name_keys(record):
                 key = normalizer(name)
@@ -199,23 +284,47 @@ def match_records(operators: list[dict], records: list[dict], name_keys, designa
                     continue
                 name_hits.extend(by_name.get(key, []))
             unique_names = {id(op): op for op in name_hits}
-            if len(unique_names) == 1:
-                chosen = next(iter(unique_names.values()))
-                match = "name match - verify"
-            elif len(unique_names) > 1:
+            name_was_ambiguous = len(unique_names) > 1
+            if name_was_ambiguous:
+                wanted = record_model_pairs(record)
+                narrowed = [
+                    op for op in unique_names.values()
+                    if wanted and operator_model_pairs(op) & wanted
+                ]
+                unique_names = {id(op): op for op in narrowed}
+            named = any(clean_text(name) for name in name_keys(record))
+            name_choice = next(iter(unique_names.values())) if len(unique_names) == 1 else None
+            reg_choice = next(iter(unique_regs.values())) if len(unique_regs) == 1 else None
+            recent = (record.get("date") or "") >= "2024-01-01" or bool(record.get("preliminary"))
+            if (name_was_ambiguous and name_choice is None) or (len(unique_regs) > 1 and name_choice is None):
                 ambiguous += 1
                 continue
+            if reg_choice and name_choice and reg_choice is not name_choice:
+                chosen = name_choice
+                match = "name match - verify"
+            elif reg_choice and name_choice is reg_choice:
+                chosen = reg_choice
+                match = "registration match"
+            elif reg_choice and not named and recent:
+                chosen = reg_choice
+                match = "registration match"
+            elif name_choice:
+                chosen = name_choice
+                match = "name match - verify"
         if chosen is None:
             unmatched += 1
             continue
         if match == "certificate match":
             certificate += 1
+        elif match == "registration match":
+            registration += 1
         else:
             name_only += 1
         attached[chosen["id"]].append({"match": match, "record": record})
     return {
         "attached": attached,
         "certificateMatches": certificate,
+        "registrationMatches": registration,
         "nameMatches": name_only,
         "unmatched": unmatched,
         "ambiguous": ambiguous,
@@ -228,6 +337,150 @@ def ntsb_name_keys(record):
 
 def ntsb_designators(record):
     return list(record.get("designators") or [])
+
+
+def parse_stamp(value) -> datetime | None:
+    text = clean_text(value)
+    formats = (
+        "%m/%d/%Y %I:%M:%S %p",
+        "%m/%d/%Y %H:%M:%S",
+        "%m/%d/%y %I:%M:%S %p",
+        "%m/%d/%Y",
+        "%Y-%m-%d",
+    )
+    for fmt in formats:
+        try:
+            return datetime.strptime(text, fmt)
+        except ValueError:
+            continue
+    return None
+
+
+def update_file_entries(html: str) -> list[dict]:
+    found = []
+    pattern = re.compile(
+        r'<td id="fileName">(up\d{2}[A-Z]{3}\.zip)</td>\s*<td id="fileDate">([^<]+)</td>\s*<td id="fileSize">([^<]+)</td>',
+        re.I,
+    )
+    for name, file_date, file_size in pattern.findall(html):
+        stamp = parse_stamp(file_date)
+        found.append({
+            "name": name,
+            "fileDate": parse_mdy(file_date),
+            "fileStamp": stamp,
+            "fileSize": clean_text(file_size),
+            "downloadUrl": f"https://data.ntsb.gov/avdata/FileDirectory/DownloadFile?fileID={name}",
+        })
+    return found
+
+
+def plain_text(value: str) -> str:
+    text = html.unescape(value or "")
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = text.replace("\u200b", "").replace("\ufeff", "")
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def parse_operated_by(text: str) -> tuple[str, str]:
+    match = re.search(
+        r"operated by\s+(.+?)(?:\s+d/?b/?a\s+(.+?))?(?=\s+in\b|\s+near\b|[.]|$)",
+        text,
+        flags=re.I,
+    )
+    if not match:
+        return "", ""
+    name = re.sub(r"[\s,.;:]+$", "", match.group(1) or "").strip()
+    dba = re.sub(r"[\s,.;:]+$", "", match.group(2) or "").strip()
+    return name, dba
+
+
+def aircraft_from_phrase(text: str) -> tuple[str, str, str]:
+    match = re.search(r"\b(?:crash|accident|incident)\s+of\s+(?:an?\s+)?(.+?)\s+operated by\b", text, flags=re.I)
+    if not match:
+        return "", "", ""
+    phrase = re.sub(r"[\s,.;:]+$", "", match.group(1)).strip()
+    parts = phrase.split()
+    if len(parts) >= 2 and re.search(r"\d", parts[-1]):
+        return phrase, " ".join(parts[:-1]), parts[-1]
+    return phrase, "", phrase
+
+
+def investigation_record(item: dict) -> dict | None:
+    ntsb_no = clean_text(item.get("NTSBAccidentID")).upper()
+    if not ntsb_no:
+        return None
+    summary = plain_text(item.get("PublishingPageContent") or "")
+    title = plain_text(item.get("Title") or "")
+    name, dba = parse_operated_by(summary or title)
+    phrase, make, model = aircraft_from_phrase(summary or title)
+    registrations = []
+    for tail in re.findall(r"\bN\d{1,5}[A-Z]{0,2}\b", f"{title} {summary}".upper()):
+        if tail not in registrations:
+            registrations.append(tail)
+    if not name and not dba and not registrations:
+        return None
+    kind = f"{title} {summary}".lower()
+    if "incident" in kind and "accident" not in kind and "crash" not in kind:
+        event_type = "Incident"
+    elif "crash" in kind or "accident" in kind:
+        event_type = "Accident"
+    else:
+        event_type = "Investigation"
+    file_ref = clean_text(item.get("FileRef"))
+    if file_ref.startswith("/"):
+        url = "https://www.ntsb.gov" + file_ref
+    else:
+        url = f"https://www.ntsb.gov/investigations/Pages/{ntsb_no}.aspx"
+    aircraft = []
+    if registrations or make or model:
+        if registrations:
+            for tail in registrations:
+                aircraft.append({"registration": tail, "make": make, "model": model})
+        else:
+            aircraft.append({"registration": "", "make": make, "model": model})
+    return {
+        "evId": "",
+        "ntsbNumber": ntsb_no,
+        "date": parse_mdy(item.get("Accident_x0020_Date")),
+        "eventType": event_type,
+        "eventTypeCode": "",
+        "city": clean_text(item.get("Accident_x0020_Location_x0020__x002d__x0020_City")),
+        "state": clean_text(item.get("Accident_x0020_Location_x0020__x002d__x0020_State")),
+        "highestInjury": "",
+        "url": url,
+        "aircraft": aircraft,
+        "operatorNames": [name] if name else [],
+        "operatorDbas": [dba] if dba else [],
+        "designators": [],
+        "farParts": [],
+        "preliminary": True,
+        "modelText": phrase,
+    }
+
+
+def merge_ntsb_records(base: list[dict], updates: list[dict]) -> list[dict]:
+    by_id = {record["evId"]: record for record in base if record.get("evId")}
+    for record in updates:
+        ev_id = record.get("evId")
+        if ev_id:
+            by_id[ev_id] = record
+    merged = list(by_id.values())
+    merged.sort(key=lambda item: item.get("date") or "", reverse=True)
+    return merged
+
+
+def add_investigations(records: list[dict], investigations: list[dict]) -> list[dict]:
+    known = {clean_text(record.get("ntsbNumber")).upper() for record in records if record.get("ntsbNumber")}
+    extra = []
+    for record in investigations:
+        number = clean_text(record.get("ntsbNumber")).upper()
+        if not number or number in known:
+            continue
+        known.add(number)
+        extra.append(record)
+    combined = records + extra
+    combined.sort(key=lambda item: item.get("date") or "", reverse=True)
+    return combined
 
 
 def enforcement_links(html: str) -> list[dict]:
@@ -336,25 +589,28 @@ def ntsb_fingerprint(html: str) -> dict:
     )
     if not match:
         raise SyncError("The NTSB download page has no avall.zip entry. Nothing was published.")
+    raw_date = match.group(1).strip()
     return {
-        "fileDate": parse_mdy(match.group(1).strip()),
+        "fileDate": parse_mdy(raw_date),
+        "fileStamp": parse_stamp(raw_date),
         "fileSize": clean_text(match.group(2)),
         "sourceUrl": NTSB_PAGE,
         "downloadUrl": "https://data.ntsb.gov/avdata/FileDirectory/DownloadFile?fileID=avall.zip",
     }
 
 
-def read_ntsb_part135(mdb_path: str) -> list[dict]:
+def read_ntsb_mdb(mdb_path: str, parts=("135",)):
     from access_parser import AccessParser
 
     database = AccessParser(mdb_path)
     aircraft = database.parse_table("aircraft")
     events = database.parse_table("events")
     count = len(aircraft["ev_id"])
+    allowed = None if parts is None else {clean_text(part) for part in parts}
     aircraft_rows = []
     for index in range(count):
         far_part = aircraft["far_part"][index]
-        if clean_text(far_part) != "135":
+        if allowed is not None and clean_text(far_part) not in allowed:
             continue
         aircraft_rows.append({
             "ev_id": aircraft["ev_id"][index],
@@ -378,8 +634,70 @@ def read_ntsb_part135(mdb_path: str) -> list[dict]:
             "ev_highest_injury": events["ev_highest_injury"][index],
             "ntsb_no": events["ntsb_no"][index],
         }
-    records = part135_records(aircraft_rows, events_by_id)
-    return records, len(aircraft_rows)
+    records = part135_records(aircraft_rows, events_by_id, parts=parts)
+    part135_rows = sum(1 for row in aircraft_rows if clean_text(row.get("far_part")) == "135")
+    return records, part135_rows
+
+
+def _mdb_from_zip(blob: bytes) -> tuple[list[dict], int]:
+    import os
+    import tempfile
+
+    with zipfile.ZipFile(io.BytesIO(blob)) as archive:
+        name = next(item for item in archive.namelist() if item.lower().endswith(".mdb"))
+        payload = archive.read(name)
+    with tempfile.TemporaryDirectory() as temp:
+        path = os.path.join(temp, "source.mdb")
+        with open(path, "wb") as handle:
+            handle.write(payload)
+        return read_ntsb_mdb(path, parts=("135",))
+
+
+def _mdb_updates_from_zip(blob: bytes):
+    import os
+    import tempfile
+
+    with zipfile.ZipFile(io.BytesIO(blob)) as archive:
+        name = next(item for item in archive.namelist() if item.lower().endswith(".mdb"))
+        payload = archive.read(name)
+    with tempfile.TemporaryDirectory() as temp:
+        path = os.path.join(temp, "update.mdb")
+        with open(path, "wb") as handle:
+            handle.write(payload)
+        return read_ntsb_mdb(path, parts=None)
+
+
+def fetch_investigation_pages(since: str) -> list[dict]:
+    if not since:
+        raise SyncError("NTSB investigation pages need the avall.zip file date. Nothing was published.")
+    query = urlencode({
+        "$select": ",".join([
+            "Title",
+            "NTSBAccidentID",
+            "FileRef",
+            "Accident_x0020_Date",
+            "Accident_x0020_Location_x0020__x002d__x0020_City",
+            "Accident_x0020_Location_x0020__x002d__x0020_State",
+            "Mode",
+            "PublishingPageContent",
+        ]),
+        "$filter": f"Mode eq 'Aviation' and Accident_x0020_Date ge datetime'{since}T00:00:00Z'",
+        "$top": "200",
+    })
+    url = NTSB_INVESTIGATIONS + "?" + query
+    blob, _headers = request(url, headers={"Accept": "application/json;odata=verbose"})
+    try:
+        import json
+        payload = json.loads(blob.decode("utf-8", "replace"))
+        rows = payload["d"]["results"]
+    except (KeyError, ValueError, TypeError) as exc:
+        raise SyncError("The NTSB investigation list did not return records. Nothing was published.") from exc
+    records = []
+    for item in rows:
+        record = investigation_record(item)
+        if record:
+            records.append(record)
+    return records
 
 
 def read_enforcement_reports(html: str) -> tuple[list[dict], list[dict]]:
@@ -408,24 +726,40 @@ def read_enforcement_reports(html: str) -> tuple[list[dict], list[dict]]:
 def fetch_ntsb(previous_rows: int | None):
     from sync_faa import sha256_bytes
 
-    html, _headers = request(NTSB_INDEX)
-    finger = ntsb_fingerprint(html.decode("utf-8", "replace"))
+    page, _headers = request(NTSB_INDEX)
+    html = page.decode("utf-8", "replace")
+    finger = ntsb_fingerprint(html)
+    listed = update_file_entries(html)
+    if len(listed) < 10:
+        raise SyncError("The NTSB download page is missing its weekly update files. Nothing was published.")
     blob, _headers = request(finger["downloadUrl"], timeout=300)
     finger["contentHash"] = sha256_bytes(blob)
-    with zipfile.ZipFile(io.BytesIO(blob)) as archive:
-        name = archive.namelist()[0]
-        mdb = archive.read(name)
-    import os
-    import tempfile
-
-    with tempfile.TemporaryDirectory() as temp:
-        path = os.path.join(temp, "avall.mdb")
-        with open(path, "wb") as handle:
-            handle.write(mdb)
-        records, aircraft_rows = read_ntsb_part135(path)
+    records, aircraft_rows = _mdb_from_zip(blob)
     check_ntsb_count(aircraft_rows, previous_rows)
+    avall_stamp = finger.get("fileStamp")
+    newer = [item for item in listed if avall_stamp and item.get("fileStamp") and item["fileStamp"] > avall_stamp]
+    applied = []
+    for item in sorted(newer, key=lambda row: row["fileStamp"]):
+        update_blob, _headers = request(item["downloadUrl"], timeout=180)
+        update_records, part135_rows = _mdb_updates_from_zip(update_blob)
+        records = merge_ntsb_records(records, update_records)
+        applied.append({
+            "name": item["name"],
+            "fileDate": item["fileDate"],
+            "fileSize": item["fileSize"],
+            "downloadUrl": item["downloadUrl"],
+            "rows": len(update_records),
+            "part135Rows": part135_rows,
+            "contentHash": sha256_bytes(update_blob),
+        })
+    investigations = fetch_investigation_pages(finger["fileDate"])
+    records = add_investigations(records, investigations)
     finger["aircraftRows"] = aircraft_rows
     finger["eventCount"] = len(records)
+    finger["updates"] = applied
+    finger["updatesThrough"] = applied[-1]["fileDate"] if applied else finger["fileDate"]
+    finger["investigationPages"] = len(investigations)
+    finger.pop("fileStamp", None)
     return finger, records
 
 
@@ -477,7 +811,13 @@ def apply_safety(operators: list[dict], ntsb_records: list[dict], enforcement_re
 
 def _public_ntsb(item: dict) -> dict:
     record = item["record"]
-    return {
+    names = ", ".join(record.get("operatorNames") or [])
+    dbas = ", ".join(record.get("operatorDbas") or [])
+    if names and dbas:
+        source = f"{names} DBA {dbas}"
+    else:
+        source = names or dbas
+    public = {
         "match": item["match"],
         "date": record.get("date") or "",
         "eventType": record.get("eventType") or "",
@@ -486,9 +826,41 @@ def _public_ntsb(item: dict) -> dict:
         "highestInjury": record.get("highestInjury") or "",
         "ntsbNumber": record.get("ntsbNumber") or "",
         "url": record.get("url") or "",
-        "aircraft": record.get("aircraft") or [],
-        "sourceOperator": ", ".join(record.get("operatorNames") or []) or ", ".join(record.get("operatorDbas") or []),
+        "aircraft": [
+            {"registration": craft.get("registration") or "", "make": craft.get("make") or "", "model": craft.get("model") or ""}
+            for craft in record.get("aircraft") or []
+        ],
+        "sourceOperator": source,
         "sourceDesignators": record.get("designators") or [],
+    }
+    far_parts = [part for part in record.get("farParts") or [] if part]
+    if far_parts:
+        public["farPart"] = ", ".join(far_parts)
+    if record.get("preliminary"):
+        public["preliminary"] = True
+    return public
+
+
+def ntsb_public_meta(info: dict, stats: dict) -> dict:
+    ntsb = stats["ntsb"]
+    return {
+        "sourceUrl": info["sourceUrl"],
+        "downloadUrl": info["downloadUrl"],
+        "fileDate": info["fileDate"],
+        "fileSize": info["fileSize"],
+        "contentHash": info["contentHash"],
+        "aircraftRows": info["aircraftRows"],
+        "eventCount": info["eventCount"],
+        "updates": info.get("updates") or [],
+        "updatesThrough": info.get("updatesThrough") or "",
+        "investigationPages": info.get("investigationPages") or 0,
+        "investigationSource": "https://www.ntsb.gov/investigations/",
+        "matchedEvents": ntsb["certificateMatches"] + ntsb["registrationMatches"] + ntsb["nameMatches"],
+        "certificateMatches": ntsb["certificateMatches"],
+        "registrationMatches": ntsb["registrationMatches"],
+        "nameMatches": ntsb["nameMatches"],
+        "unmatched": ntsb["unmatched"],
+        "ambiguous": ntsb["ambiguous"],
     }
 
 
@@ -506,16 +878,9 @@ def update_saved_site() -> None:
     meta["lastChecked"] = now_iso()
     meta["datasetHash"] = sha256_json(operators)
     meta["safety"] = {
-        "ntsb": {key: ntsb_info[key] for key in ("sourceUrl", "downloadUrl", "fileDate", "fileSize", "contentHash", "aircraftRows", "eventCount")},
+        "ntsb": ntsb_public_meta(ntsb_info, stats),
         "enforcement": {key: enforcement_info[key] for key in ("sourceUrl", "contentHash", "coverageStart", "coverageEnd", "rowCount", "files")},
     }
-    meta["safety"]["ntsb"].update({
-        "matchedEvents": stats["ntsb"]["certificateMatches"] + stats["ntsb"]["nameMatches"],
-        "certificateMatches": stats["ntsb"]["certificateMatches"],
-        "nameMatches": stats["ntsb"]["nameMatches"],
-        "unmatched": stats["ntsb"]["unmatched"],
-        "ambiguous": stats["ntsb"]["ambiguous"],
-    })
     meta["safety"]["enforcement"].update({
         "matchedRows": stats["enforcement"]["nameMatches"],
         "nameMatches": stats["enforcement"]["nameMatches"],
@@ -532,7 +897,10 @@ def update_saved_site() -> None:
         "ntsbFileDate": ntsb_info["fileDate"],
         "operatorsWithNtsb": with_ntsb,
         "ntsbCertificateMatches": stats["ntsb"]["certificateMatches"],
+        "ntsbRegistrationMatches": stats["ntsb"]["registrationMatches"],
         "ntsbNameMatches": stats["ntsb"]["nameMatches"],
+        "updatesThrough": ntsb_info.get("updatesThrough"),
+        "investigationPages": ntsb_info.get("investigationPages"),
         "enforcementRows": enforcement_info["rowCount"],
         "enforcementCoverage": [enforcement_info["coverageStart"], enforcement_info["coverageEnd"]],
         "operatorsWithEnforcement": with_enf,
