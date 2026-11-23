@@ -244,7 +244,98 @@ function renderDetail(op) {
     }
     box.appendChild(list);
   }
+  box.appendChild(renderSafety(op));
   return box;
+}
+
+function formatIso(value) {
+  if (!value) return "";
+  const date = new Date(`${value}T00:00:00Z`);
+  if (Number.isNaN(date.getTime())) return value;
+  return new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" }).format(date);
+}
+
+function renderSafety(op) {
+  const section = el("section", "safety");
+  section.appendChild(el("h4", "", "Safety history"));
+  const note = el("p", "safety-note");
+  note.textContent = "These are public records matched from the sources below. Finding none in a source is not a clean-record guarantee, and a listing is not a rating of current fitness to fly.";
+  section.appendChild(note);
+  const safety = op.safety || { ntsb: [], enforcement: [] };
+  const meta = (state.meta && state.meta.safety) || {};
+  const ntsbMeta = meta.ntsb || {};
+  const enfMeta = meta.enforcement || {};
+  section.appendChild(el("h5", "", "NTSB accidents and incidents"));
+  const ntsb = safety.ntsb || [];
+  if (!ntsb.length) {
+    const fileDate = formatIso(ntsbMeta.fileDate) || "the current file date";
+    section.appendChild(el("p", "", `No NTSB-reported Part 135 accidents or incidents matched this operator in the NTSB aviation accident database (avall.zip, file dated ${fileDate}).`));
+  } else {
+    const list = document.createElement("ul");
+    for (const item of ntsb) {
+      const li = document.createElement("li");
+      const place = [item.city, item.state].filter(Boolean).join(", ");
+      const craft = (item.aircraft || []).map((row) => [row.registration, row.make, row.model].filter(Boolean).join(" ")).filter(Boolean).join("; ");
+      li.append(`${formatIso(item.date) || "Date not in the file"} · ${item.eventType || "Record"}`);
+      if (place) li.append(` · ${place}`);
+      if (item.ntsbNumber) li.append(` · ${item.ntsbNumber}`);
+      if (craft) li.append(` · ${craft}`);
+      if (item.highestInjury) li.append(` · highest injury ${item.highestInjury}`);
+      li.append(". ");
+      if (item.url) {
+        const link = document.createElement("a");
+        link.href = item.url;
+        link.textContent = "NTSB report";
+        link.rel = "noopener";
+        li.appendChild(link);
+      }
+      li.append(` · ${item.match || "match not labeled"}`);
+      if (item.sourceOperator) li.append(` · source name “${item.sourceOperator}”`);
+      list.appendChild(li);
+    }
+    section.appendChild(list);
+  }
+  section.appendChild(el("h5", "", "FAA enforcement reports"));
+  const actions = safety.enforcement || [];
+  if (!actions.length) {
+    const start = formatIso(enfMeta.coverageStart);
+    const end = formatIso(enfMeta.coverageEnd);
+    const span = start && end ? ` covering ${start} through ${end}` : "";
+    section.appendChild(el("p", "", `No closed civil penalty or certificate action naming this operator was found in the FAA quarterly enforcement spreadsheets linked from the FAA enforcement reports page${span}.`));
+  } else {
+    const list = document.createElement("ul");
+    for (const item of actions) {
+      const li = document.createElement("li");
+      const money = item.amount ? ` · ${item.amount} ${item.sanction || ""}`.trimEnd() : "";
+      li.append(`${formatIso(item.closedDate) || "Closed date not in the file"} · ${item.action || "Enforcement action"} · ${item.name || ""}`);
+      if (item.caseNumber) li.append(` · case ${item.caseNumber}`);
+      if (item.caseType) li.append(` · ${item.caseType}`);
+      if (money) li.append(money);
+      li.append(". ");
+      if (item.url) {
+        const link = document.createElement("a");
+        link.href = item.url;
+        link.textContent = item.quarter ? `FAA report ${item.quarter}` : "FAA report";
+        link.rel = "noopener";
+        li.appendChild(link);
+      }
+      li.append(` · ${item.match || "name match - verify"}`);
+      list.appendChild(li);
+    }
+    section.appendChild(list);
+  }
+  const sources = el("p", "safety-note");
+  const ntsbLink = document.createElement("a");
+  ntsbLink.href = ntsbMeta.sourceUrl || "https://data.ntsb.gov/avdata/";
+  ntsbLink.textContent = "NTSB aviation accident database";
+  const faaLink = document.createElement("a");
+  faaLink.href = enfMeta.sourceUrl || "https://www.faa.gov/about/office_org/headquarters_offices/agc/practice_areas/enforcement/reports";
+  faaLink.textContent = "FAA quarterly enforcement reports";
+  sources.appendChild(ntsbLink);
+  sources.append(" · ");
+  sources.appendChild(faaLink);
+  section.appendChild(sources);
+  return section;
 }
 
 function renderCard(op) {
@@ -264,6 +355,9 @@ function renderCard(op) {
   const [kind, label] = badge(op);
   badges.appendChild(el("span", `badge ${kind}`, label));
   if ((op.conflicts || []).length) badges.appendChild(el("span", "badge diff", "Fields differ"));
+  const safety = op.safety || {};
+  const safetyCount = (safety.ntsb || []).length + (safety.enforcement || []).length;
+  if (safetyCount) badges.appendChild(el("span", "badge note", `${safetyCount} safety record${safetyCount === 1 ? "" : "s"}`));
   if ((state.watchIndex.get(op.id) || []).length) badges.appendChild(el("span", "badge note", "Editorial note"));
   text.appendChild(badges);
   head.appendChild(text);

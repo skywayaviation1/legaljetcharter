@@ -69,6 +69,16 @@ A second `python3 scripts/sync_faa.py` immediately afterwards is the no-change r
 
 GitHub-hosted runners are refused by that host (HTTP 403 from Akamai) even though `faa.gov` is reachable from them. The pull request runs the tests only. The daily job still tries the download and fails closed when it is refused, so it does not publish a partial list. To make the daily download succeed, add a self-hosted runner that can open `explore.dot.gov` and set the repository variable `FAA_RUNNER` to that runner's label. The workflow uses that label when the variable is set.
 
+## Safety history
+
+Each operator page has a Safety history section.
+
+- **NTSB.** The public aviation accident database `avall.zip` from [data.ntsb.gov/avdata](https://data.ntsb.gov/avdata/). The sync keeps aircraft rows whose FAR part is 135, from 1982 through the file date printed on that page (the current file is dated November 1, 2026). Each item links to the NTSB CAROL report for that event id. A designator in the NTSB `oper_code` field is a certificate match. Otherwise the legal name or DBA has to match exactly one operator after suffix normalization, and the page says “name match - verify”.
+- **FAA enforcement.** Spreadsheet quarters linked from the [FAA quarterly enforcement reports](https://www.faa.gov/about/office_org/headquarters_offices/agc/practice_areas/enforcement/reports). Those reports are closed civil penalties and certificate suspensions or revocations against regulated entities. Only air-carrier / commercial-operator rows are considered. The reports do not include a certificate designator, so a match is by the legal name as printed, with punctuation ignored, and is labeled “name match - verify”. Quarters that are not spreadsheets (older PDFs, and the 2023 files on that page) are not parsed. The page says which dates the spreadsheets cover.
+- **Not used.** The FAA Enforcement Information System is internal. ASIAS detailed queries are not an open download. NTSB’s newer API needs a developer account. This site does not guess from press-release prose.
+
+Absence of a row is stated for that source and date range. It is not a clean-record claim. If the NTSB extract is far smaller than the last good one, or an enforcement spreadsheet cannot be read, the sync fails and does not publish.
+
 ## Files
 
 - `index.html`, `styles.css`, `app.js` — the site
