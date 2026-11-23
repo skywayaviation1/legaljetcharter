@@ -27,7 +27,6 @@ import os
 import re
 import sys
 import tempfile
-import time
 import urllib.error
 import urllib.request
 from collections import defaultdict
@@ -1024,15 +1023,32 @@ def parse_air_operator_csv(text: str, slice_name: str) -> list[dict]:
 
 
 def download_air_operators() -> list[dict]:
-    print("Downloading Air Operator Part 135 slices…", file=sys.stderr)
-    operators = []
-    for index, letter in enumerate(AIR_LETTERS):
-        if index:
-            time.sleep(0.8)
-        url = f"{AIR_DOWNLOAD}?Operator%20FAR%20Parameter=135&Alphabet%20Parameter={letter}"
-        body, _headers = request(url)
-        operators.extend(parse_air_operator_csv(body.decode("utf-8", "replace"), letter))
-    return operators
+    """Fetch the letter CSVs inside a real Chrome session. Plain HTTP is refused."""
+    import subprocess
+
+    print("Downloading Air Operator Part 135 slices in Chrome…", file=sys.stderr)
+    script = Path(__file__).resolve().parent / "fetch_air_chrome.py"
+    with tempfile.TemporaryDirectory(prefix="faa-air-") as temp:
+        completed = subprocess.run(
+            [sys.executable, str(script), temp],
+            cwd=str(ROOT),
+            text=True,
+        )
+        if completed.returncode != 0:
+            raise SyncError(
+                "The Air Operator workbook could not be read in Chrome. "
+                "Nothing was published."
+            )
+        folder = Path(temp)
+        missing = [letter for letter in AIR_LETTERS if not (folder / f"{letter}.csv").exists()]
+        if missing:
+            raise SyncError(
+                "Chrome finished without slices "
+                + ", ".join(missing)
+                + ". Nothing was published."
+            )
+        texts = {letter: (folder / f"{letter}.csv").read_text() for letter in AIR_LETTERS}
+    return load_air_slices(texts)
 
 
 def load_air_slices(texts_by_slice: dict[str, str]) -> list[dict]:
@@ -1051,7 +1067,7 @@ def air_bundle(operators: list[dict]) -> dict:
         "updatedLabel": "",
         "partFilter": "135",
         "extractedAt": now_iso(),
-        "method": "download-csv-by-letter",
+        "method": "chrome-session-csv-by-letter",
         "operatorCount": len(operators),
         "contentHash": sha256_json(operators),
         "operators": operators,

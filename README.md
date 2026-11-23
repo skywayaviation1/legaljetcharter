@@ -9,7 +9,7 @@ Operated for SkyVia Ops / Skyway Aviation (Jake Cambria).
 Two FAA sources are merged. A row that exists in only one of them is kept and labeled. It is not dropped to force the lists to agree.
 
 1. **Part 135 operators and aircraft workbook.** The spreadsheet linked from [FAA-certificated Aircraft Operators (Legal Part 135 holders)](https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders). The FAA says this file is updated weekly. The sync reads the page, finds the current `.xlsx` / `.xls` / `.csv` link, and uses the file’s `Last-Modified` date as the file date shown on the site.
-2. **Air Operator 14 CFR search.** [faa.gov/av-info/air-operator-far-search](https://www.faa.gov/av-info/air-operator-far-search). The page embeds a Tableau workbook. Its Download sheet is published as a CSV at `explore.dot.gov` (`AVInfo_AirOperators/Download.csv`). The sync downloads that sheet once per letter A–Z with the Part filter set to 135, about one request a second. Each file has to come back as Part 135 only, with names starting with that letter, and a row count that is a multiple of the staffing measures. A short or mixed file fails the job. The CSV publishes the certificate number, designator, address, city, state, officers, phone, and staffing counts. It does not include a DBA column, and the DBA worksheet is not a separate public file, so DBA is left blank. Names that start with a digit are not returned by the letter filter; those holders stay on the Part 135 list and are labeled as list-only.
+2. **Air Operator 14 CFR search.** [faa.gov/av-info/air-operator-far-search](https://www.faa.gov/av-info/air-operator-far-search). The page embeds a Tableau workbook. Its Download sheet is a CSV on `explore.dot.gov`. Akamai rejects plain HTTP clients, so the sync opens the FAA page and then that workbook in Google Chrome, and requests one Part 135 letter file at a time from inside the browser session, about one second apart. Each file has to come back as Part 135 only, with names starting with that letter, and a row count that is a multiple of the staffing measures. A refusal or a short file fails the job and nothing is published. The CSV publishes the certificate number, designator, address, city, state, officers, phone, and staffing counts. It does not include a DBA column, and the DBA worksheet is not a separate public file, so DBA is left blank. Names that start with a digit are not returned by the letter filter; those holders stay on the Part 135 list and are labeled as list-only.
 
 The on-page line is:
 
@@ -65,9 +65,28 @@ python3 -m http.server 8000
 
 A second `python3 scripts/sync_faa.py` immediately afterwards is the no-change run: it should leave `data/operators.json` byte-for-byte as it was and only move `lastChecked`.
 
-`explore.dot.gov` answers the CSV with a normal browser user agent. A hard denial fails the job and does not publish. The script does not open a browser and does not crawl other certificate parts.
+`explore.dot.gov` rejects curl, including curl that sends a Chrome user agent, because Akamai checks the TLS fingerprint. The sync therefore uses the installed Google Chrome. On Linux it runs under `xvfb-run` (a headed browser on a virtual display). On macOS the workflow sets `FAA_CHROME_HEADED=1` and opens `/Applications/Google Chrome.app`. Headless Chrome on that Mac gets the same Akamai 403; a normal visible window loads the FAA page and the Tableau view. A hard denial fails the job and does not publish.
 
-GitHub-hosted runners are refused by that host (HTTP 403 from Akamai) even though `faa.gov` is reachable from them. The pull request runs the tests only. The daily job still tries the download and fails closed when it is refused, so it does not publish a partial list. To make the daily download succeed, add a self-hosted runner that can open `explore.dot.gov` and set the repository variable `FAA_RUNNER` to that runner's label. The workflow uses that label when the variable is set.
+GitHub-hosted runners are refused as well. A manual run on `ubuntu-latest` with this Chrome session loaded `faa.gov`, then got HTTP 403 Access Denied from `explore.dot.gov` before the workbook opened: https://github.com/skywayaviation1/legaljetcharter/actions/runs/45096629213. The same refusal happened earlier with headless Chrome on both Ubuntu and macOS GitHub runners. That block is the runner address, not the missing TLS fingerprint. A self-hosted runner on a network Akamai allows is required for the daily download. Set the repository variable `FAA_RUNNER` to that runner's label. Until then the scheduled job fails closed and leaves the published list in place.
+
+### Self-hosted runner on Jake's Mac
+
+Machine: arm64, macOS 27.2, no Xcode command-line tools. `/usr/bin/python3` is a stub that asks for those tools. Do not install the command-line tools, and do not use Homebrew. The workflow installs Python 3.12 with `actions/setup-python` and refuses to continue if `python3` is still `/usr/bin/python3`.
+
+1. Google Chrome must be the normal app at `/Applications/Google Chrome.app`. The macOS job launches that app in a visible window (`FAA_CHROME_HEADED=1`). Headless mode on this Mac is refused by Akamai.
+2. In the repo on GitHub: Settings → Actions → Runners → New self-hosted runner → macOS → ARM64. Download the tar.gz it offers (a prebuilt binary, nothing to compile). Then, in Terminal, while logged in to the Mac desktop:
+
+```bash
+mkdir -p ~/actions-runner && cd ~/actions-runner
+tar xzf ~/Downloads/actions-runner-osx-arm64-*.tar.gz
+./config.sh --url https://github.com/skywayaviation1/legaljetcharter --token <token from that page> --labels faa-sync --name jakes-mac
+./run.sh
+```
+
+Leave that Terminal window open, and stay logged in, while the job runs. Headed Chrome needs the window server, so do not install the runner as a background service with `./svc.sh`.
+
+3. Settings → Secrets and variables → Actions → Variables → New repository variable. Name `FAA_RUNNER`, value `faa-sync`.
+4. Actions → Sync FAA operator data → Run workflow, branch `main`. The job should print `Opening the FAA Air Operator page in Chrome` and then one line per letter, and finish green. A Chrome window has to appear on the Mac; that is the session Akamai accepts.
 
 ## Safety history
 
