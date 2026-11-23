@@ -48,16 +48,51 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+      # GitHub-hosted Ubuntu already has a writable hosted tool cache.
       - uses: actions/setup-python@v5
+        if: runner.os != 'macOS'
         with:
           python-version: "3.12"
-      - name: Use the Python from setup-python
+      # On Jake's Mac, setup-python's macOS installer creates
+      # /Users/runner/hostedtoolcache (permission denied; the runner home is
+      # /Users/jakecambria/actions-runner) and then sudo-installs a framework.
+      # uv puts CPython under the runner work directory instead. No Homebrew
+      # and no Xcode command-line tools.
+      - name: Install Python 3.12 on macOS
+        if: runner.os == 'macOS'
+        run: |
+          set -euo pipefail
+          case "$(uname -m)" in
+            arm64) triple=aarch64-apple-darwin ;;
+            x86_64) triple=x86_64-apple-darwin ;;
+            *) echo "No uv build for $(uname -m)"; exit 1 ;;
+          esac
+          tool="${RUNNER_WORKSPACE%/*}/_tool"
+          uvroot="$tool/uv-0.9.5"
+          if [ ! -x "$uvroot/uv" ]; then
+            mkdir -p "$uvroot"
+            tmp="$(mktemp -d)"
+            curl -fsSL -o "$tmp/uv.tgz" "https://github.com/astral-sh/uv/releases/download/0.9.5/uv-${triple}.tar.gz"
+            tar -xzf "$tmp/uv.tgz" -C "$uvroot" --strip-components=1
+          fi
+          export UV_PYTHON_INSTALL_DIR="$tool/python"
+          "$uvroot/uv" python install 3.12
+          py="$("$uvroot/uv" python find 3.12)"
+          bindir="$tool/bin"
+          mkdir -p "$bindir"
+          ln -sfn "$py" "$bindir/python3"
+          ln -sfn "$py" "$bindir/python"
+          echo "$bindir" >> "$GITHUB_PATH"
+          echo "AGENT_TOOLSDIRECTORY=$tool" >> "$GITHUB_ENV"
+          echo "RUNNER_TOOL_CACHE=$tool" >> "$GITHUB_ENV"
+          "$bindir/python3" -c 'import sys; assert sys.version_info[:2] == (3, 12), sys.version; print(sys.executable)'
+      - name: Use the job Python, not the macOS stub
         run: |
           exe="$(python3 -c 'import sys; print(sys.executable)')"
           echo "Python: $exe"
           case "$exe" in
             /usr/bin/python3)
-              echo "setup-python did not replace /usr/bin/python3. On this Mac that path is a stub and Xcode command-line tools are not installed."
+              echo "python3 is still /usr/bin/python3, the macOS stub. The job did not install its own Python."
               exit 1
               ;;
           esac
