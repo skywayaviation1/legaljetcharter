@@ -9,7 +9,7 @@ Operated for SkyVia Ops / Skyway Aviation (Jake Cambria).
 Two FAA sources are merged. A row that exists in only one of them is kept and labeled. It is not dropped to force the lists to agree.
 
 1. **Part 135 operators and aircraft workbook.** The spreadsheet linked from [FAA-certificated Aircraft Operators (Legal Part 135 holders)](https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders). The FAA says this file is updated weekly. The sync reads the page, finds the current `.xlsx` / `.xls` / `.csv` link, and uses the file’s `Last-Modified` date as the file date shown on the site.
-2. **Air Operator 14 CFR search.** [faa.gov/av-info/air-operator-far-search](https://www.faa.gov/av-info/air-operator-far-search). The page embeds a Tableau workbook. Its Download sheet is published as a CSV at `explore.dot.gov` (`AVInfo_AirOperators/Download.csv`). The sync downloads that sheet once per letter A–Z with the Part filter set to 135, about one request a second. Each file has to come back as Part 135 only, with names starting with that letter, and a row count that is a multiple of the staffing measures. A short or mixed file fails the job. The CSV publishes the certificate number, designator, address, city, state, officers, phone, and staffing counts. It does not include a DBA column, and the DBA worksheet is not a separate public file, so DBA is left blank. Names that start with a digit are not returned by the letter filter; those holders stay on the Part 135 list and are labeled as list-only.
+2. **Air Operator 14 CFR search.** [faa.gov/av-info/air-operator-far-search](https://www.faa.gov/av-info/air-operator-far-search). The page embeds a Tableau workbook. Its Download sheet is a CSV on `explore.dot.gov`. Akamai rejects plain HTTP clients, so the sync opens the FAA page and then that workbook in Google Chrome, and requests one Part 135 letter file at a time from inside the browser session, about one second apart. Each file has to come back as Part 135 only, with names starting with that letter, and a row count that is a multiple of the staffing measures. A refusal or a short file fails the job and nothing is published. The CSV publishes the certificate number, designator, address, city, state, officers, phone, and staffing counts. It does not include a DBA column, and the DBA worksheet is not a separate public file, so DBA is left blank. Names that start with a digit are not returned by the letter filter; those holders stay on the Part 135 list and are labeled as list-only.
 
 The on-page line is:
 
@@ -65,9 +65,9 @@ python3 -m http.server 8000
 
 A second `python3 scripts/sync_faa.py` immediately afterwards is the no-change run: it should leave `data/operators.json` byte-for-byte as it was and only move `lastChecked`.
 
-`explore.dot.gov` answers the CSV with a normal browser user agent. A hard denial fails the job and does not publish. The script does not open a browser and does not crawl other certificate parts.
+`explore.dot.gov` rejects curl, including curl that sends a Chrome user agent, because Akamai checks the TLS fingerprint. The sync therefore uses the installed Google Chrome. In GitHub Actions that Chrome runs under `xvfb-run` so it is a headed browser on a virtual display. A hard denial fails the job and does not publish.
 
-GitHub-hosted runners are refused by that host (HTTP 403 from Akamai) even though `faa.gov` is reachable from them. The pull request runs the tests only. The daily job still tries the download and fails closed when it is refused, so it does not publish a partial list. To make the daily download succeed, add a self-hosted runner that can open `explore.dot.gov` and set the repository variable `FAA_RUNNER` to that runner's label. The workflow uses that label when the variable is set.
+The pull request runs the unit tests. The daily job and a manual run (`workflow_dispatch`) do the Chrome download on a GitHub-hosted runner. `FAA_RUNNER` can still point that job at another runner label.
 
 ## Safety history
 

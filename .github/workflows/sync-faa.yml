@@ -40,21 +40,25 @@ jobs:
         run: python3 scripts/safety.py
 
   sync:
-    # Pull requests only run the tests above. explore.dot.gov answers 403 to
-    # GitHub-hosted addresses, so this job is the daily/manual check. Set the
-    # FAA_RUNNER repository variable to a self-hosted runner label if the
-    # default runner is refused.
+    # Pull requests run the tests only. This job is the daily check and any
+    # manual run. It opens the Air Operator workbook in real Chrome.
+    # FAA_RUNNER can point it at another runner label.
     if: github.event_name != 'pull_request'
     runs-on: ${{ vars.FAA_RUNNER || 'ubuntu-latest' }}
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: python3 -m pip install -r scripts/requirements.txt
+      - name: Install Google Chrome and a virtual display
+        run: |
+          wget -q -O /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt-get update
+          sudo apt-get install -y /tmp/chrome.deb xvfb
       - name: Sync FAA sources
-        run: python3 scripts/sync_faa.py
+        run: xvfb-run -a python3 scripts/sync_faa.py
       - name: Upload sync summary
         if: always()
         uses: actions/upload-artifact@v4
