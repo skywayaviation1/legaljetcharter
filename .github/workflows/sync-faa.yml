@@ -83,6 +83,7 @@ jobs:
           ln -sfn "$py" "$bindir/python3"
           ln -sfn "$py" "$bindir/python"
           echo "$bindir" >> "$GITHUB_PATH"
+          echo "$uvroot" >> "$GITHUB_PATH"
           echo "AGENT_TOOLSDIRECTORY=$tool" >> "$GITHUB_ENV"
           echo "RUNNER_TOOL_CACHE=$tool" >> "$GITHUB_ENV"
           "$bindir/python3" -c 'import sys; assert sys.version_info[:2] == (3, 12), sys.version; print(sys.executable)'
@@ -96,15 +97,34 @@ jobs:
               exit 1
               ;;
           esac
-      # uv's CPython is externally managed (PEP 668), so pip will not install
-      # into it. The same venv is used on Ubuntu so every later step, including
-      # the Chrome fetch, runs the interpreter that has Playwright.
+      # The uv-managed CPython has no ensurepip, so `python3 -m venv` exits 1.
+      # Install uv when it is not already on PATH, then build the venv with uv.
+      # Ubuntu gets the same path. The stdlib venv is only a fallback.
       - name: Create a virtualenv and install packages
         run: |
-          python3 -m venv "$RUNNER_TEMP/venv"
+          set -euo pipefail
+          echo "which python3: $(command -v python3)"
+          python3 --version
+          if ! command -v uv >/dev/null 2>&1; then
+            echo "which uv: not on PATH; installing"
+            curl -LsSf https://astral.sh/uv/install.sh | sh
+            export PATH="${HOME}/.local/bin:${PATH}"
+            echo "${HOME}/.local/bin" >> "$GITHUB_PATH"
+          fi
+          echo "which uv: $(command -v uv)"
+          uv --version
+          if command -v uv >/dev/null 2>&1; then
+            uv venv --python 3.12 "$RUNNER_TEMP/venv"
+            uv pip install --python "$RUNNER_TEMP/venv/bin/python" -r scripts/requirements.txt
+          elif python3 -m venv "$RUNNER_TEMP/venv"; then
+            "$RUNNER_TEMP/venv/bin/python" -m pip install -r scripts/requirements.txt
+          else
+            python3 -m venv --without-pip "$RUNNER_TEMP/venv"
+            curl -fsSL https://bootstrap.pypa.io/get-pip.py | "$RUNNER_TEMP/venv/bin/python"
+            "$RUNNER_TEMP/venv/bin/python" -m pip install -r scripts/requirements.txt
+          fi
           echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
-          "$RUNNER_TEMP/venv/bin/python" -m pip install -r scripts/requirements.txt
-          "$RUNNER_TEMP/venv/bin/python" -c "import playwright, openpyxl, access_parser"
+          "$RUNNER_TEMP/venv/bin/python" -c "import playwright, openpyxl, access_parser; print('packages ok')"
       - name: Confirm Chrome on macOS
         if: runner.os == 'macOS'
         run: |
