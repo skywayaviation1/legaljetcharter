@@ -10,12 +10,24 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: faa-sync
   cancel-in-progress: false
 
 jobs:
+  # workflow_dispatch is what the daily schedule uses. A pull request starts
+  # that same event on this branch so the Chrome download is proven before merge.
+  dispatch-sync:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start the sync workflow on this branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run "Sync FAA operator data" --ref "${{ github.head_ref }}"
+
   test:
     runs-on: ubuntu-latest
     steps:
