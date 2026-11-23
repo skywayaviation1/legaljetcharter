@@ -65,9 +65,29 @@ python3 -m http.server 8000
 
 A second `python3 scripts/sync_faa.py` immediately afterwards is the no-change run: it should leave `data/operators.json` byte-for-byte as it was and only move `lastChecked`.
 
-`explore.dot.gov` rejects curl, including curl that sends a Chrome user agent, because Akamai checks the TLS fingerprint. The sync therefore uses the installed Google Chrome. In GitHub Actions that Chrome runs under `xvfb-run` so it is a headed browser on a virtual display. A hard denial fails the job and does not publish.
+`explore.dot.gov` rejects curl, including curl that sends a Chrome user agent, because Akamai checks the TLS fingerprint. The sync therefore uses the installed Google Chrome. On Linux it runs under `xvfb-run` (a headed browser on a virtual display). On macOS it uses the Chrome already installed on that machine. A hard denial fails the job and does not publish.
 
-The pull request runs the unit tests. The daily job and a manual run (`workflow_dispatch`) do the Chrome download on a GitHub-hosted runner. `FAA_RUNNER` can still point that job at another runner label.
+GitHub-hosted runners are refused as well. A manual run on `ubuntu-latest` with this Chrome session loaded `faa.gov`, then got HTTP 403 Access Denied from `explore.dot.gov` before the workbook opened: https://github.com/skywayaviation1/legaljetcharter/actions/runs/45096629213. The same refusal happened earlier with headless Chrome on both Ubuntu and macOS GitHub runners. That block is the runner address, not the missing TLS fingerprint. A self-hosted runner on a network Akamai allows is required for the daily download. Set the repository variable `FAA_RUNNER` to that runner's label. Until then the scheduled job fails closed and leaves the published list in place.
+
+### Self-hosted runner on Jake's Mac
+
+Machine: arm64, macOS 27.2, no Xcode command-line tools. Do not use Homebrew. It asks for those tools.
+
+1. Install Google Chrome from https://www.google.com/chrome/ if it is not already in `/Applications`.
+2. Install Python from the macOS installer at https://www.python.org/downloads/macos/ (the universal2 pkg). Confirm `python3 --version` in Terminal. Do not install Python through Homebrew.
+3. In the repo on GitHub: Settings → Actions → Runners → New self-hosted runner → macOS → ARM64. Download the tar.gz it offers (a prebuilt binary, nothing to compile). Then, in Terminal:
+
+```bash
+mkdir -p ~/actions-runner && cd ~/actions-runner
+tar xzf ~/Downloads/actions-runner-osx-arm64-*.tar.gz
+./config.sh --url https://github.com/skywayaviation1/legaljetcharter --token <token from that page> --labels faa-sync --name jakes-mac
+./run.sh
+```
+
+Leave that Terminal window open while the job runs. `./svc.sh` is only needed if the Mac should listen after logout; skip it for the first run.
+
+4. Settings → Secrets and variables → Actions → Variables → New repository variable. Name `FAA_RUNNER`, value `faa-sync`.
+5. Actions → Sync FAA operator data → Run workflow, branch `main`. The job should print `Opening the FAA Air Operator page in Chrome` and then one line per letter, and finish green. Chrome may show a window on the Mac; that is the session Akamai accepts.
 
 ## Safety history
 

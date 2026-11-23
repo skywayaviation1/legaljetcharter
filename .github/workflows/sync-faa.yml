@@ -10,25 +10,12 @@ on:
 
 permissions:
   contents: write
-  actions: write
 
 concurrency:
   group: faa-sync
   cancel-in-progress: false
 
 jobs:
-  # workflow_dispatch is what the daily schedule uses. A pull request starts
-  # that same event on this branch so the Chrome download is proven before merge.
-  dispatch-sync:
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Start the sync workflow on this branch
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-        run: gh workflow run "Sync FAA operator data" --repo "$GH_REPO" --ref "${{ github.head_ref }}"
-
   test:
     runs-on: ubuntu-latest
     steps:
@@ -54,8 +41,8 @@ jobs:
 
   sync:
     # Pull requests run the tests only. This job is the daily check and any
-    # manual run. It opens the Air Operator workbook in real Chrome.
-    # FAA_RUNNER can point it at another runner label.
+    # manual run. GitHub-hosted runners are refused by explore.dot.gov even
+    # in real Chrome, so set FAA_RUNNER to a self-hosted label (Jake's Mac).
     if: github.event_name != 'pull_request'
     runs-on: ${{ vars.FAA_RUNNER || 'ubuntu-latest' }}
     timeout-minutes: 30
@@ -66,12 +53,19 @@ jobs:
           python-version: "3.12"
       - run: python3 -m pip install -r scripts/requirements.txt
       - name: Install Google Chrome and a virtual display
+        if: runner.os == 'Linux'
         run: |
           wget -q -O /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo apt-get update
           sudo apt-get install -y /tmp/chrome.deb xvfb
       - name: Sync FAA sources
+        if: runner.os == 'Linux'
         run: xvfb-run -a python3 scripts/sync_faa.py
+      - name: Sync FAA sources on macOS
+        if: runner.os == 'macOS'
+        env:
+          FAA_CHROME_HEADED: "1"
+        run: python3 scripts/sync_faa.py
       - name: Upload sync summary
         if: always()
         uses: actions/upload-artifact@v4
