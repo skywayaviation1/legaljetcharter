@@ -96,7 +96,21 @@ jobs:
               exit 1
               ;;
           esac
-      - run: python3 -m pip install -r scripts/requirements.txt
+      # uv's CPython is externally managed (PEP 668), so pip will not install
+      # into it. The same venv is used on Ubuntu so every later step, including
+      # the Chrome fetch, runs the interpreter that has Playwright.
+      - name: Create a virtualenv and install packages
+        run: |
+          python3 -m venv "$RUNNER_TEMP/venv"
+          echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/venv/bin/python" -m pip install -r scripts/requirements.txt
+          "$RUNNER_TEMP/venv/bin/python" -c "import playwright, openpyxl, access_parser"
+      - name: Confirm Chrome on macOS
+        if: runner.os == 'macOS'
+        run: |
+          chrome="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+          test -x "$chrome"
+          echo "Chrome: $chrome"
       - name: Install Google Chrome and a virtual display
         if: runner.os == 'Linux'
         run: |
@@ -124,9 +138,10 @@ jobs:
           if-no-files-found: ignore
       - name: Commit when the check finished
         if: github.event_name != 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          set -euo pipefail
           git add data/operators.json data/meta.json data/sources/part135.json data/sources/air-operator.json
           if git diff --cached --quiet; then
             echo "Nothing to commit."
@@ -137,5 +152,14 @@ jobs:
           else
             msg="data: sync FAA Part 135 operator lists"
           fi
-          git commit -m "$msg"
-          git push
+          # A self-hosted Mac may have commit.gpgsign or a credential helper in
+          # the user gitconfig. Commit without signing, and push with the job
+          # token instead of the macOS keychain.
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              -c commit.gpgsign=false \
+              commit --no-verify -m "$msg"
+          auth="$(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 | tr -d '\n')"
+          git -c credential.helper= \
+              -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${auth}" \
+              push origin "HEAD:${GITHUB_REF_NAME}"
