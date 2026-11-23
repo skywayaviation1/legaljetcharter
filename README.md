@@ -71,7 +71,7 @@ GitHub-hosted runners are refused as well. A manual run on `ubuntu-latest` with 
 
 ### Self-hosted runner on Jake's Mac
 
-Machine: arm64, macOS 27.2, no Xcode command-line tools. `/usr/bin/python3` is a stub that asks for those tools. Do not install the command-line tools, and do not use Homebrew. The workflow installs Python 3.12 with `actions/setup-python` and refuses to continue if `python3` is still `/usr/bin/python3`.
+Machine: arm64, macOS 27.2, no Xcode command-line tools. `/usr/bin/python3` is a stub that asks for those tools. Do not install the command-line tools, and do not use Homebrew. Ubuntu jobs still use `actions/setup-python`. The Mac job does not: that action tries to create `/Users/runner/hostedtoolcache`, which this account cannot write, and its package installer needs `sudo`. The Mac job instead installs CPython 3.12 with uv into the runner work directory (`_work/_tool`) and refuses to continue if `python3` is still `/usr/bin/python3`.
 
 1. Google Chrome must be the normal app at `/Applications/Google Chrome.app`. The macOS job launches that app in a visible window (`FAA_CHROME_HEADED=1`). Headless mode on this Mac is refused by Akamai.
 2. In the repo on GitHub: Settings → Actions → Runners → New self-hosted runner → macOS → ARM64. Download the tar.gz it offers (a prebuilt binary, nothing to compile). Then, in Terminal, while logged in to the Mac desktop:
