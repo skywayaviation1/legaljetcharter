@@ -26,7 +26,8 @@ jobs:
       - name: Start the sync workflow on this branch
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run "Sync FAA operator data" --ref "${{ github.head_ref }}"
+          GH_REPO: ${{ github.repository }}
+        run: gh workflow run "Sync FAA operator data" --repo "$GH_REPO" --ref "${{ github.head_ref }}"
 
   test:
     runs-on: ubuntu-latest
