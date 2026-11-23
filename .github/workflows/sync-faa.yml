@@ -51,6 +51,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Use the Python from setup-python
+        run: |
+          exe="$(python3 -c 'import sys; print(sys.executable)')"
+          echo "Python: $exe"
+          case "$exe" in
+            /usr/bin/python3)
+              echo "setup-python did not replace /usr/bin/python3. On this Mac that path is a stub and Xcode command-line tools are not installed."
+              exit 1
+              ;;
+          esac
       - run: python3 -m pip install -r scripts/requirements.txt
       - name: Install Google Chrome and a virtual display
         if: runner.os == 'Linux'
@@ -61,10 +71,14 @@ jobs:
       - name: Sync FAA sources
         if: runner.os == 'Linux'
         run: xvfb-run -a python3 scripts/sync_faa.py
+      # Headless Chrome on Jake's Mac is refused by Akamai (HTTP 403). A normal
+      # visible window loads the FAA page and the Tableau view, so this step
+      # must stay headed and must use the Chrome app in /Applications.
       - name: Sync FAA sources on macOS
         if: runner.os == 'macOS'
         env:
           FAA_CHROME_HEADED: "1"
+          CHROME_PATH: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
         run: python3 scripts/sync_faa.py
       - name: Upload sync summary
         if: always()
