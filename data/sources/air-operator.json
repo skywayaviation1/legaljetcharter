@@ -3,10 +3,10 @@
   "downloadUrl": "https://explore.dot.gov/t/FAA/views/AVInfo_AirOperators/Download.csv",
   "updatedLabel": "",
   "partFilter": "135",
-  "extractedAt": "2026-11-22T23:35:25Z",
-  "method": "download-csv-by-letter",
-  "operatorCount": 1816,
-  "contentHash": "754387ff7317b93b3a7eb6337704761464f55de80673167195c735c268e166a9",
+  "extractedAt": "2026-11-23T23:58:26Z",
+  "method": "chrome-session-csv-by-letter",
+  "operatorCount": 1815,
+  "contentHash": "a28bc29208c303ea5c47564df4303505fd874017f05c4307bf5b4046dcc9c650",
   "operators": [
     {
       "name": "ACME PEST CONTROL, LLC",
@@ -1131,6 +1131,39 @@
       "extra": {}
     },
     {
+      "name": "AIR STAT INC",
+      "designator": "Y4KA",
+      "certificateNumber": "Y4KA082M",
+      "issueDate": "2008-05-14",
+      "address": "295 AVIATION PARKWAY",
+      "city": "BRUNSWICK",
+      "state": "GA",
+      "postalCode": "31525",
+      "country": "US",
+      "phone": "8779819819",
+      "ceo": "",
+      "chiefPilot": "",
+      "directorOfMaintenance": "",
+      "directorOfOperations": "",
+      "fsdo": "",
+      "status": "",
+      "cfrs": [
+        "135"
+      ],
+      "dbas": [],
+      "aircraft": [],
+      "staff": {
+        "picCaptains": "8",
+        "inspectors": "0",
+        "designatedInspectors": "0",
+        "nonCertificatedMechanics": "0",
+        "certificatedMechanics": "2",
+        "repairmen": "0",
+        "totalEmployees": "25"
+      },
+      "extra": {}
+    },
+    {
       "name": "AIR CENTER HELICOPTERS, INC.",
       "designator": "MHNA",
       "certificateNumber": "MHNA438G",
@@ -1141,7 +1174,7 @@
       "postalCode": "76028",
       "country": "US",
       "phone": "",
-      "ceo": "JENSEN, JAMES L",
+      "ceo": "DALTON, CHRIS",
       "chiefPilot": "FOSTER, JERRY",
       "directorOfMaintenance": "SUTTERER, KEITH",
       "directorOfOperations": "SEHLER, JEREMY",
@@ -1406,9 +1439,9 @@
       "country": "US",
       "phone": "",
       "ceo": "CARBON, DAVID",
-      "chiefPilot": "OGLETREE, FRANK JAMES",
+      "chiefPilot": "",
       "directorOfMaintenance": "ARMAS, EDEL",
-      "directorOfOperations": "ACEVEDO, DOMINIC E",
+      "directorOfOperations": "OGLETREE, FRANK JAMES",
       "fsdo": "",
       "status": "",
       "cfrs": [
@@ -1457,39 +1490,6 @@
         "certificatedMechanics": "1",
         "repairmen": "0",
         "totalEmployees": "1"
-      },
-      "extra": {}
-    },
-    {
-      "name": "AIR STAT INC",
-      "designator": "Y4KA",
-      "certificateNumber": "Y4KA082M",
-      "issueDate": "2008-05-14",
-      "address": "454 JOHN T. LANE ROAD",
-      "city": "THOMSON",
-      "state": "GA",
-      "postalCode": "30824",
-      "country": "US",
-      "phone": "",
-      "ceo": "",
-      "chiefPilot": "",
-      "directorOfMaintenance": "",
-      "directorOfOperations": "",
-      "fsdo": "",
-      "status": "",
-      "cfrs": [
-        "135"
-      ],
-      "dbas": [],
-      "aircraft": [],
-      "staff": {
-        "picCaptains": "8",
-        "inspectors": "0",
-        "designatedInspectors": "0",
-        "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "2",
-        "repairmen": "0",
-        "totalEmployees": "25"
       },
       "extra": {}
     },
@@ -1824,6 +1824,39 @@
       "extra": {}
     },
     {
+      "name": "ALL IN JETS LLC",
+      "designator": "955A",
+      "certificateNumber": "955A377O",
+      "issueDate": "2017-01-30",
+      "address": "548 RICKENBACKER DRIVE, HANGAR A STE 106",
+      "city": "ORLANDO",
+      "state": "FL",
+      "postalCode": "32803",
+      "country": "US",
+      "phone": "",
+      "ceo": "",
+      "chiefPilot": "",
+      "directorOfMaintenance": "",
+      "directorOfOperations": "",
+      "fsdo": "",
+      "status": "",
+      "cfrs": [
+        "135"
+      ],
+      "dbas": [],
+      "aircraft": [],
+      "staff": {
+        "picCaptains": "2",
+        "inspectors": "0",
+        "designatedInspectors": "0",
+        "nonCertificatedMechanics": "0",
+        "certificatedMechanics": "1",
+        "repairmen": "0",
+        "totalEmployees": "9"
+      },
+      "extra": {}
+    },
+    {
       "name": "AIR CHARTER EXPRESS, INC.",
       "designator": "X31A",
       "certificateNumber": "X31A319I",
@@ -2154,39 +2187,6 @@
       "extra": {}
     },
     {
-      "name": "ALL IN JETS LLC",
-      "designator": "955A",
-      "certificateNumber": "955A377O",
-      "issueDate": "2017-01-30",
-      "address": "801 INTERNATIONAL PARKWAY, 5TH FLOOR",
-      "city": "LAKE MARY",
-      "state": "FL",
-      "postalCode": "32746",
-      "country": "US",
-      "phone": "",
-      "ceo": "",
-      "chiefPilot": "",
-      "directorOfMaintenance": "",
-      "directorOfOperations": "",
-      "fsdo": "",
-      "status": "",
-      "cfrs": [
-        "135"
-      ],
-      "dbas": [],
-      "aircraft": [],
-      "staff": {
-        "picCaptains": "2",
-        "inspectors": "0",
-        "designatedInspectors": "0",
-        "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "1",
-        "repairmen": "0",
-        "totalEmployees": "9"
-      },
-      "extra": {}
-    },
-    {
       "name": "ARKANSAS HELICOPTERS LLC",
       "designator": "8HKA",
       "certificateNumber": "8HKA384N",
@@ -2421,7 +2421,7 @@
       "name": "AVIATION CHARTERS, INC.",
       "designator": "V7PA",
       "certificateNumber": "V7PA956L",
-      "issueDate": "2007-09-27",
+      "issueDate": "2007-09-26",
       "address": "1000 JACK STEPHAN WAY",
       "city": "EWING",
       "state": "NJ",
@@ -2616,39 +2616,6 @@
       "extra": {}
     },
     {
-      "name": "ALASKAN OUTBACK AVIATION INC",
-      "designator": "FWHC",
-      "certificateNumber": "FWHC071E",
-      "issueDate": "2008-10-09",
-      "address": "1060 CROSSWIND COURT",
-      "city": "WASILLA",
-      "state": "AK",
-      "postalCode": "99654",
-      "country": "US",
-      "phone": "",
-      "ceo": "MAYEUR, TERRI-JO A.",
-      "chiefPilot": "",
-      "directorOfMaintenance": "",
-      "directorOfOperations": "",
-      "fsdo": "",
-      "status": "",
-      "cfrs": [
-        "135"
-      ],
-      "dbas": [],
-      "aircraft": [],
-      "staff": {
-        "picCaptains": "1",
-        "inspectors": "0",
-        "designatedInspectors": "0",
-        "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "1",
-        "repairmen": "0",
-        "totalEmployees": "2"
-      },
-      "extra": {}
-    },
-    {
       "name": "ALASKA LAND EXPLORATION LLC",
       "designator": "1XLA",
       "certificateNumber": "1XLA181N",
@@ -2737,11 +2704,11 @@
       "dbas": [],
       "aircraft": [],
       "staff": {
-        "picCaptains": "63",
-        "inspectors": "3",
+        "picCaptains": "64",
+        "inspectors": "2",
         "designatedInspectors": "0",
-        "nonCertificatedMechanics": "7",
-        "certificatedMechanics": "29",
+        "nonCertificatedMechanics": "2",
+        "certificatedMechanics": "49",
         "repairmen": "0",
         "totalEmployees": "152"
       },
@@ -5982,6 +5949,39 @@
       "extra": {}
     },
     {
+      "name": "ALASKAN OUTBACK AVIATION INC",
+      "designator": "FWHC",
+      "certificateNumber": "FWHC071E",
+      "issueDate": "2008-10-09",
+      "address": "6218 E BEECHCRAFT CIRCLE",
+      "city": "WASILLA",
+      "state": "AK",
+      "postalCode": "99654",
+      "country": "US",
+      "phone": "9079427322",
+      "ceo": "MCCARTHY, KIVA A.",
+      "chiefPilot": "",
+      "directorOfMaintenance": "",
+      "directorOfOperations": "",
+      "fsdo": "",
+      "status": "",
+      "cfrs": [
+        "135"
+      ],
+      "dbas": [],
+      "aircraft": [],
+      "staff": {
+        "picCaptains": "1",
+        "inspectors": "0",
+        "designatedInspectors": "0",
+        "nonCertificatedMechanics": "0",
+        "certificatedMechanics": "1",
+        "repairmen": "0",
+        "totalEmployees": "2"
+      },
+      "extra": {}
+    },
+    {
       "name": "AVIATION SPECIALISTS INC",
       "designator": "6VIA",
       "certificateNumber": "6VIA351N",
@@ -6967,7 +6967,7 @@
         "nonCertificatedMechanics": "0",
         "certificatedMechanics": "2",
         "repairmen": "0",
-        "totalEmployees": "9"
+        "totalEmployees": "13"
       },
       "extra": {}
     },
@@ -8413,13 +8413,13 @@
       "dbas": [],
       "aircraft": [],
       "staff": {
-        "picCaptains": "22",
+        "picCaptains": "30",
         "inspectors": "0",
         "designatedInspectors": "0",
         "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "4",
+        "certificatedMechanics": "10",
         "repairmen": "0",
-        "totalEmployees": "58"
+        "totalEmployees": "80"
       },
       "extra": {}
     },
@@ -9073,13 +9073,13 @@
       "dbas": [],
       "aircraft": [],
       "staff": {
-        "picCaptains": "17",
-        "inspectors": "2",
+        "picCaptains": "11",
+        "inspectors": "1",
         "designatedInspectors": "0",
-        "nonCertificatedMechanics": "1",
-        "certificatedMechanics": "15",
+        "nonCertificatedMechanics": "0",
+        "certificatedMechanics": "8",
         "repairmen": "0",
-        "totalEmployees": "54"
+        "totalEmployees": "23"
       },
       "extra": {}
     },
@@ -9130,7 +9130,7 @@
       "ceo": "LOONEY, JORDAN",
       "chiefPilot": "CLARK, MICHAEL L",
       "directorOfMaintenance": "BRUNO, VINCENT",
-      "directorOfOperations": "LAWRENCE, JOSEPH",
+      "directorOfOperations": "LAWRENCE, JOSEPH LEE",
       "fsdo": "",
       "status": "",
       "cfrs": [
@@ -9417,7 +9417,7 @@
       "name": "BLATTI AVIATION, LLC",
       "designator": "BQOA",
       "certificateNumber": "BQOA432T",
-      "issueDate": "1991-04-12",
+      "issueDate": "1991-04-08",
       "address": "1630 AVIATION DRIVE",
       "city": "WEST LAFAYETTE",
       "state": "IN",
@@ -10507,7 +10507,7 @@
       "designator": "Q9LA",
       "certificateNumber": "Q9LA117R",
       "issueDate": "2024-06-26",
-      "address": "7306 W. MARKET STREET",
+      "address": "7300 W. MARKET STREET",
       "city": "GREENSBORO",
       "state": "NC",
       "postalCode": "27409",
@@ -10803,7 +10803,7 @@
       "name": "BLUE ASH CHARTERS, LLC.",
       "designator": "O6WA",
       "certificateNumber": "O6WA853K",
-      "issueDate": "2004-06-04",
+      "issueDate": "2004-06-03",
       "address": "10600 SPRINGBORO PIKE",
       "city": "MIAMISBURG",
       "state": "OH",
@@ -11097,6 +11097,39 @@
       "extra": {}
     },
     {
+      "name": "BROOKS FLYERS LLC.",
+      "designator": "X9ZC",
+      "certificateNumber": "X9ZC227N",
+      "issueDate": "2008-07-31",
+      "address": "24399 S PARKS HWY",
+      "city": "TRAPPER CREEK",
+      "state": "AK",
+      "postalCode": "99683",
+      "country": "US",
+      "phone": "",
+      "ceo": "",
+      "chiefPilot": "",
+      "directorOfMaintenance": "",
+      "directorOfOperations": "",
+      "fsdo": "",
+      "status": "",
+      "cfrs": [
+        "135"
+      ],
+      "dbas": [],
+      "aircraft": [],
+      "staff": {
+        "picCaptains": "1",
+        "inspectors": "0",
+        "designatedInspectors": "0",
+        "nonCertificatedMechanics": "0",
+        "certificatedMechanics": "1",
+        "repairmen": "0",
+        "totalEmployees": "1"
+      },
+      "extra": {}
+    },
+    {
       "name": "BADGER HELICOPTERS INC",
       "designator": "QBHA",
       "certificateNumber": "QBHA836B",
@@ -11192,39 +11225,6 @@
         "certificatedMechanics": "0",
         "repairmen": "0",
         "totalEmployees": "2"
-      },
-      "extra": {}
-    },
-    {
-      "name": "BROOKS FLYERS LLC.",
-      "designator": "X9ZC",
-      "certificateNumber": "X9ZC227N",
-      "issueDate": "2008-07-31",
-      "address": "28545 S. BRADLEY ROAD",
-      "city": "TRAPPER CREEK",
-      "state": "AK",
-      "postalCode": "99683",
-      "country": "US",
-      "phone": "",
-      "ceo": "",
-      "chiefPilot": "",
-      "directorOfMaintenance": "",
-      "directorOfOperations": "",
-      "fsdo": "",
-      "status": "",
-      "cfrs": [
-        "135"
-      ],
-      "dbas": [],
-      "aircraft": [],
-      "staff": {
-        "picCaptains": "1",
-        "inspectors": "0",
-        "designatedInspectors": "0",
-        "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "1",
-        "repairmen": "0",
-        "totalEmployees": "1"
       },
       "extra": {}
     },
@@ -11694,7 +11694,7 @@
       "name": "B & F AVIATION INC",
       "designator": "2BZA",
       "certificateNumber": "2BZA342N",
-      "issueDate": "2012-08-15",
+      "issueDate": "2012-08-12",
       "address": "PORTLAND MUNICIPAL AIRPORT, 661 W. 100 N.",
       "city": "PORTLAND",
       "state": "IN",
@@ -12406,7 +12406,7 @@
       "dbas": [],
       "aircraft": [],
       "staff": {
-        "picCaptains": "0",
+        "picCaptains": "1",
         "inspectors": "0",
         "designatedInspectors": "0",
         "nonCertificatedMechanics": "0",
@@ -12542,7 +12542,7 @@
         "inspectors": "3",
         "designatedInspectors": "0",
         "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "6",
+        "certificatedMechanics": "7",
         "repairmen": "0",
         "totalEmployees": "50"
       },
@@ -15529,10 +15529,10 @@
       "postalCode": "99801",
       "country": "US",
       "phone": "",
-      "ceo": "BERTO, ETHAN",
-      "chiefPilot": "CARROLL, DUSTIN J.",
-      "directorOfMaintenance": "ORTEGA, ANNAMARIE W.",
-      "directorOfOperations": "RAWSON, ROBERT MICHAEL",
+      "ceo": "",
+      "chiefPilot": "",
+      "directorOfMaintenance": "",
+      "directorOfOperations": "",
       "fsdo": "",
       "status": "",
       "cfrs": [
@@ -18096,7 +18096,7 @@
       "name": "DAVINCI JETS LLC",
       "designator": "6JPA",
       "certificateNumber": "6JPA022M",
-      "issueDate": "2008-07-07",
+      "issueDate": "2008-07-06",
       "address": "5207 MORRIS FIELD DRIVE",
       "city": "CHARLOTTE",
       "state": "NC",
@@ -19601,12 +19601,12 @@
       "aircraft": [],
       "staff": {
         "picCaptains": "10",
-        "inspectors": "0",
+        "inspectors": "3",
         "designatedInspectors": "0",
         "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "0",
+        "certificatedMechanics": "6",
         "repairmen": "0",
-        "totalEmployees": "34"
+        "totalEmployees": "36"
       },
       "extra": {}
     },
@@ -20403,6 +20403,39 @@
       "extra": {}
     },
     {
+      "name": "EAGLE HELICOPTERS INC.",
+      "designator": "IOAA",
+      "certificateNumber": "IOAA074F",
+      "issueDate": "1986-07-10",
+      "address": "5311 EAST RUTTER AVENUE",
+      "city": "SPOKANE",
+      "state": "WA",
+      "postalCode": "99212-1368",
+      "country": "US",
+      "phone": "",
+      "ceo": "HANSON, DENNIS",
+      "chiefPilot": "HANSON, DENNIS A",
+      "directorOfMaintenance": "ROUGH, JOSEPH W.",
+      "directorOfOperations": "MACKENZIE, ROBERT",
+      "fsdo": "",
+      "status": "",
+      "cfrs": [
+        "135"
+      ],
+      "dbas": [],
+      "aircraft": [],
+      "staff": {
+        "picCaptains": "3",
+        "inspectors": "0",
+        "designatedInspectors": "0",
+        "nonCertificatedMechanics": "0",
+        "certificatedMechanics": "3",
+        "repairmen": "0",
+        "totalEmployees": "4"
+      },
+      "extra": {}
+    },
+    {
       "name": "EMERALD COAST AIR CHARTERS INC",
       "designator": "CFXA",
       "certificateNumber": "CFXA601Q",
@@ -21092,39 +21125,6 @@
         "certificatedMechanics": "0",
         "repairmen": "0",
         "totalEmployees": "31"
-      },
-      "extra": {}
-    },
-    {
-      "name": "EAGLE HELICOPTERS INC.",
-      "designator": "IOAA",
-      "certificateNumber": "IOAA074F",
-      "issueDate": "1986-07-10",
-      "address": "EAGLE HELICOPTERS, INC., 5311 EAST RUTTER AVENUE",
-      "city": "SPOKANE",
-      "state": "WA",
-      "postalCode": "99212-1368",
-      "country": "US",
-      "phone": "",
-      "ceo": "HANSON, DENNIS",
-      "chiefPilot": "HANSON, DENNIS A",
-      "directorOfMaintenance": "ROUGH, JOSEPH W.",
-      "directorOfOperations": "MACKENZIE, ROBERT",
-      "fsdo": "",
-      "status": "",
-      "cfrs": [
-        "135"
-      ],
-      "dbas": [],
-      "aircraft": [],
-      "staff": {
-        "picCaptains": "3",
-        "inspectors": "0",
-        "designatedInspectors": "0",
-        "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "3",
-        "repairmen": "0",
-        "totalEmployees": "4"
       },
       "extra": {}
     },
@@ -22120,6 +22120,39 @@
       "extra": {}
     },
     {
+      "name": "FREEMAN HOLDINGS OF BAKERSFIELD LLC",
+      "designator": "LOYA",
+      "certificateNumber": "LOYA165G",
+      "issueDate": "2006-04-06",
+      "address": "1601 SKYWAY DRIVE",
+      "city": "BAKERSFIELD",
+      "state": "CA",
+      "postalCode": "93308",
+      "country": "US",
+      "phone": "",
+      "ceo": "LOYD, STEVE",
+      "chiefPilot": "WIERSCHEM, SCOTT M.",
+      "directorOfMaintenance": "FLORES, AURELIO",
+      "directorOfOperations": "CROWL, RYAN D.",
+      "fsdo": "",
+      "status": "",
+      "cfrs": [
+        "135"
+      ],
+      "dbas": [],
+      "aircraft": [],
+      "staff": {
+        "picCaptains": "4",
+        "inspectors": "0",
+        "designatedInspectors": "0",
+        "nonCertificatedMechanics": "0",
+        "certificatedMechanics": "0",
+        "repairmen": "0",
+        "totalEmployees": "9"
+      },
+      "extra": {}
+    },
+    {
       "name": "FAMILY AIR TOURS, LLC",
       "designator": "F52C",
       "certificateNumber": "F52C913J",
@@ -22882,7 +22915,7 @@
       "name": "FLYCAROLINA, LLC",
       "designator": "E58A",
       "certificateNumber": "E58A651K",
-      "issueDate": "2009-05-27",
+      "issueDate": "2009-05-26",
       "address": "8601 AVIATION BLVD NW",
       "city": "CONCORD",
       "state": "NC",
@@ -22901,13 +22934,13 @@
       "dbas": [],
       "aircraft": [],
       "staff": {
-        "picCaptains": "8",
+        "picCaptains": "12",
         "inspectors": "0",
         "designatedInspectors": "0",
         "nonCertificatedMechanics": "4",
         "certificatedMechanics": "4",
         "repairmen": "0",
-        "totalEmployees": "16"
+        "totalEmployees": "20"
       },
       "extra": {}
     },
@@ -23152,7 +23185,7 @@
       "state": "FL",
       "postalCode": "33186",
       "country": "US",
-      "phone": "",
+      "phone": "7738373300",
       "ceo": "MOHAMMUD, ZUHGER NAHMUD",
       "chiefPilot": "",
       "directorOfMaintenance": "",
@@ -24110,9 +24143,9 @@
       "postalCode": "33315",
       "country": "US",
       "phone": "",
-      "ceo": "CRUZ ESCALANTE, LUIS ALBERTO",
+      "ceo": "",
       "chiefPilot": "",
-      "directorOfMaintenance": "RIOS, RAMON NATIVIDAD",
+      "directorOfMaintenance": "",
       "directorOfOperations": "",
       "fsdo": "",
       "status": "",
@@ -24242,10 +24275,10 @@
       "postalCode": "33406",
       "country": "US",
       "phone": "",
-      "ceo": "NORWITCH, ADAM SEAN",
-      "chiefPilot": "HITE, CHRISTOPHER LEE",
-      "directorOfMaintenance": "VOGT, MICHAEL NATHAN",
-      "directorOfOperations": "NORWITCH, ADAM",
+      "ceo": "",
+      "chiefPilot": "",
+      "directorOfMaintenance": "",
+      "directorOfOperations": "",
       "fsdo": "",
       "status": "",
       "cfrs": [
@@ -24925,7 +24958,7 @@
       "extra": {}
     },
     {
-      "name": "GRANT AVIATION INC",
+      "name": "GRANT AVIATION LLC",
       "designator": "ENHA",
       "certificateNumber": "ENHA618D",
       "issueDate": "1994-02-22",
@@ -26083,14 +26116,14 @@
       "name": "HOUSTON AIR INC",
       "designator": "H3AA",
       "certificateNumber": "H3AA668W",
-      "issueDate": "1994-05-20",
+      "issueDate": "1994-05-19",
       "address": "794 GASTON DAY SCHOOL RD.",
       "city": "GASTONIA",
       "state": "NC",
       "postalCode": "28056",
       "country": "US",
       "phone": "",
-      "ceo": "ROBERTS, MITCHELL",
+      "ceo": "MORA, JUAN JOSE",
       "chiefPilot": "TOLEDO, ROMULO",
       "directorOfMaintenance": "TORRES, RAMON",
       "directorOfOperations": "ROBERTS, MITCHELL",
@@ -26201,11 +26234,11 @@
       "dbas": [],
       "aircraft": [],
       "staff": {
-        "picCaptains": "3",
+        "picCaptains": "2",
         "inspectors": "0",
         "designatedInspectors": "0",
         "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "1",
+        "certificatedMechanics": "2",
         "repairmen": "0",
         "totalEmployees": "10"
       },
@@ -27631,7 +27664,7 @@
       "extra": {}
     },
     {
-      "name": "HMS HOLDINGS, LLC",
+      "name": "HMS AVIATION 135, LLC",
       "designator": "Q6HA",
       "certificateNumber": "Q6HA192M",
       "issueDate": "2012-06-12",
@@ -28988,7 +29021,7 @@
       "designator": "41HA",
       "certificateNumber": "41HA238Q",
       "issueDate": "2019-08-12",
-      "address": "3131 FLIGHTLINE DR. SUITE 315",
+      "address": "3240 AIRFIELD DR.",
       "city": "LAKELAND",
       "state": "FL",
       "postalCode": "33811",
@@ -30337,39 +30370,6 @@
       "extra": {}
     },
     {
-      "name": "JB AVIATION LLC",
-      "designator": "4J8A",
-      "certificateNumber": "4J8A537O",
-      "issueDate": "2018-09-20",
-      "address": "1142 ROUTE 9H",
-      "city": "HUDSON",
-      "state": "NY",
-      "postalCode": "12534",
-      "country": "US",
-      "phone": "",
-      "ceo": "BRAMBLE, JEFFERSON",
-      "chiefPilot": "RICHARDS, SHELDON",
-      "directorOfMaintenance": "VANAUKEN, RAYMOND",
-      "directorOfOperations": "RICHARDS, SHELDON O",
-      "fsdo": "",
-      "status": "",
-      "cfrs": [
-        "135"
-      ],
-      "dbas": [],
-      "aircraft": [],
-      "staff": {
-        "picCaptains": "2",
-        "inspectors": "0",
-        "designatedInspectors": "0",
-        "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "1",
-        "repairmen": "0",
-        "totalEmployees": "3"
-      },
-      "extra": {}
-    },
-    {
       "name": "J BEAR TOURS LLC",
       "designator": "JBTC",
       "certificateNumber": "JBTC783R",
@@ -30579,9 +30579,9 @@
       "country": "US",
       "phone": "",
       "ceo": "BELLO, FABIAN",
-      "chiefPilot": "SANDS, MICHAEL",
-      "directorOfMaintenance": "HUDDLESTON, TONI L",
-      "directorOfOperations": "REINARDY, NICHOLAS T",
+      "chiefPilot": "SANDS, MICHAEL DAVID",
+      "directorOfMaintenance": "HUDDLESTON, TONI LYNN",
+      "directorOfOperations": "REINARDY, NICHOLAS TIMOTHY",
       "fsdo": "",
       "status": "",
       "cfrs": [
@@ -31195,20 +31195,20 @@
       "extra": {}
     },
     {
-      "name": "JAMES W. STRANG",
-      "designator": "NXYA",
-      "certificateNumber": "NXYA256U",
-      "issueDate": "1993-07-23",
-      "address": "MILLINOCKET SEAPLANE BASE, GOLDEN ROAD, AMBAJEJUS LAKE",
-      "city": "MILLINOCKET",
-      "state": "ME",
-      "postalCode": "04462",
+      "name": "JB AVIATION LLC",
+      "designator": "4J8A",
+      "certificateNumber": "4J8A537O",
+      "issueDate": "2018-09-20",
+      "address": "WESTCHESTER COUNTY AIRPORT, 2 HANGAR ROAD, HANGAR C-1",
+      "city": "WHITE PLAINS",
+      "state": "NY",
+      "postalCode": "10604",
       "country": "US",
       "phone": "",
-      "ceo": "CREELEY, SEAN",
-      "chiefPilot": "HARTT, ANDREW FRANCIS",
-      "directorOfMaintenance": "CURTIS, CALEB",
-      "directorOfOperations": "STRANG, JAMES WILFRED",
+      "ceo": "BRAMBLE, JEFFERSON",
+      "chiefPilot": "RICHARDS, SHELDON",
+      "directorOfMaintenance": "VANAUKEN, RAYMOND",
+      "directorOfOperations": "RICHARDS, SHELDON O",
       "fsdo": "",
       "status": "",
       "cfrs": [
@@ -31217,11 +31217,11 @@
       "dbas": [],
       "aircraft": [],
       "staff": {
-        "picCaptains": "4",
+        "picCaptains": "2",
         "inspectors": "0",
         "designatedInspectors": "0",
         "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "0",
+        "certificatedMechanics": "1",
         "repairmen": "0",
         "totalEmployees": "3"
       },
@@ -31338,7 +31338,7 @@
       "country": "US",
       "phone": "907-842-10",
       "ceo": "BANFIELD, PETER",
-      "chiefPilot": "EADIE, ALEXANDER",
+      "chiefPilot": "EADIE, ALEXANDER DOW",
       "directorOfMaintenance": "RHODES, PATRICK STEPHEN",
       "directorOfOperations": "BASSETT, CHRISTOPHER",
       "fsdo": "",
@@ -31534,7 +31534,7 @@
       "state": "FL",
       "postalCode": "33040",
       "country": "US",
-      "phone": "",
+      "phone": "3053047907",
       "ceo": "PONTECORVO, NICHOLAS JOHN",
       "chiefPilot": "",
       "directorOfMaintenance": "",
@@ -31822,39 +31822,6 @@
       "extra": {}
     },
     {
-      "name": "KLM AVIATION INC.",
-      "designator": "LDQA",
-      "certificateNumber": "LDQA488T",
-      "issueDate": "1991-02-14",
-      "address": "1520-4 NE 5TH AVE",
-      "city": "POMPANO BEACH",
-      "state": "FL",
-      "postalCode": "33060",
-      "country": "US",
-      "phone": "9548814799",
-      "ceo": "SMYTH, STEVEN",
-      "chiefPilot": "SMYTH, STEVEN JOSEPH",
-      "directorOfMaintenance": "BROWN, WINSOR PAUL",
-      "directorOfOperations": "",
-      "fsdo": "",
-      "status": "",
-      "cfrs": [
-        "135"
-      ],
-      "dbas": [],
-      "aircraft": [],
-      "staff": {
-        "picCaptains": "1",
-        "inspectors": "0",
-        "designatedInspectors": "0",
-        "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "1",
-        "repairmen": "0",
-        "totalEmployees": "5"
-      },
-      "extra": {}
-    },
-    {
       "name": "K & A AVIATION",
       "designator": "KISA",
       "certificateNumber": "KISA801Q",
@@ -31882,6 +31849,39 @@
         "designatedInspectors": "0",
         "nonCertificatedMechanics": "0",
         "certificatedMechanics": "2",
+        "repairmen": "0",
+        "totalEmployees": "5"
+      },
+      "extra": {}
+    },
+    {
+      "name": "KLM AVIATION INC.",
+      "designator": "LDQA",
+      "certificateNumber": "LDQA488T",
+      "issueDate": "1991-02-14",
+      "address": "1570-2 NE 5TH AVENUE",
+      "city": "POMPANO BEACH",
+      "state": "FL",
+      "postalCode": "33060",
+      "country": "US",
+      "phone": "9548814799",
+      "ceo": "SMYTH, STEVEN",
+      "chiefPilot": "SMYTH, STEVEN",
+      "directorOfMaintenance": "D'AMICO, SALVATORE",
+      "directorOfOperations": "COHN, ALAN",
+      "fsdo": "",
+      "status": "",
+      "cfrs": [
+        "135"
+      ],
+      "dbas": [],
+      "aircraft": [],
+      "staff": {
+        "picCaptains": "1",
+        "inspectors": "0",
+        "designatedInspectors": "0",
+        "nonCertificatedMechanics": "0",
+        "certificatedMechanics": "1",
         "repairmen": "0",
         "totalEmployees": "5"
       },
@@ -32682,6 +32682,39 @@
       "extra": {}
     },
     {
+      "name": "KATAHDIN AIR SERVICE INC",
+      "designator": "NXYA",
+      "certificateNumber": "NXYA256U",
+      "issueDate": "1993-07-23",
+      "address": "MILLINOCKET SEAPLANE BASE, GOLDEN ROAD, AMBAJEJUS LAKE",
+      "city": "MILLINOCKET",
+      "state": "ME",
+      "postalCode": "04462",
+      "country": "US",
+      "phone": "",
+      "ceo": "CREELEY, SEAN",
+      "chiefPilot": "HARTT, ANDREW FRANCIS",
+      "directorOfMaintenance": "CURTIS, CALEB",
+      "directorOfOperations": "STRANG, JAMES WILFRED",
+      "fsdo": "",
+      "status": "",
+      "cfrs": [
+        "135"
+      ],
+      "dbas": [],
+      "aircraft": [],
+      "staff": {
+        "picCaptains": "4",
+        "inspectors": "0",
+        "designatedInspectors": "0",
+        "nonCertificatedMechanics": "0",
+        "certificatedMechanics": "0",
+        "repairmen": "0",
+        "totalEmployees": "3"
+      },
+      "extra": {}
+    },
+    {
       "name": "KING AIR INC",
       "designator": "KQAC",
       "certificateNumber": "KQAC769F",
@@ -33074,39 +33107,6 @@
         "certificatedMechanics": "99",
         "repairmen": "0",
         "totalEmployees": "865"
-      },
-      "extra": {}
-    },
-    {
-      "name": "LOYD'S AVIATION",
-      "designator": "LOYA",
-      "certificateNumber": "LOYA165G",
-      "issueDate": "2006-04-06",
-      "address": "1601 SKYWAY DRIVE",
-      "city": "BAKERSFIELD",
-      "state": "CA",
-      "postalCode": "93308",
-      "country": "US",
-      "phone": "",
-      "ceo": "LOYD, STEVE",
-      "chiefPilot": "WIERSCHEM, SCOTT M.",
-      "directorOfMaintenance": "FLORES, AURELIO",
-      "directorOfOperations": "CROWL, RYAN D.",
-      "fsdo": "",
-      "status": "",
-      "cfrs": [
-        "135"
-      ],
-      "dbas": [],
-      "aircraft": [],
-      "staff": {
-        "picCaptains": "4",
-        "inspectors": "0",
-        "designatedInspectors": "0",
-        "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "0",
-        "repairmen": "0",
-        "totalEmployees": "9"
       },
       "extra": {}
     },
@@ -34675,7 +34675,7 @@
       "ceo": "BAYIRD, KEITH",
       "chiefPilot": "SPRINGFIELD, JOASH C.",
       "directorOfMaintenance": "LESTER, IVES",
-      "directorOfOperations": "WALTON, MICHAEL R",
+      "directorOfOperations": "SPRINGFIELD, JOASH C.",
       "fsdo": "",
       "status": "",
       "cfrs": [
@@ -36041,9 +36041,9 @@
         "inspectors": "0",
         "designatedInspectors": "0",
         "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "7",
+        "certificatedMechanics": "6",
         "repairmen": "0",
-        "totalEmployees": "24"
+        "totalEmployees": "23"
       },
       "extra": {}
     },
@@ -39230,7 +39230,7 @@
       "phone": "",
       "ceo": "SCHLAK, GLEN M",
       "chiefPilot": "SPAULDING, KEVIN PAUL",
-      "directorOfMaintenance": "BUHRMAN, DAVID",
+      "directorOfMaintenance": "WESCOTT, BRADLEY",
       "directorOfOperations": "SCHLAK, GLENN MICHAEL",
       "fsdo": "",
       "status": "",
@@ -39683,7 +39683,7 @@
       "name": "NETJETS AVIATION, INC.",
       "designator": "DXTA",
       "certificateNumber": "DXTA401D",
-      "issueDate": "1978-11-27",
+      "issueDate": "1978-11-16",
       "address": "4111 BRIDGEWAY AVENUE",
       "city": "COLUMBUS",
       "state": "OH",
@@ -39987,7 +39987,7 @@
       "postalCode": "99676",
       "country": "US",
       "phone": "",
-      "ceo": "HICKS, NICUS DAVID",
+      "ceo": "MULCAIRE, TRISTEN EDWARD",
       "chiefPilot": "",
       "directorOfMaintenance": "",
       "directorOfOperations": "",
@@ -40593,13 +40593,13 @@
       "dbas": [],
       "aircraft": [],
       "staff": {
-        "picCaptains": "0",
+        "picCaptains": "2",
         "inspectors": "0",
         "designatedInspectors": "0",
         "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "0",
+        "certificatedMechanics": "1",
         "repairmen": "0",
-        "totalEmployees": "1"
+        "totalEmployees": "5"
       },
       "extra": {}
     },
@@ -41507,7 +41507,7 @@
       "phone": "",
       "ceo": "ASHLEY, MARSHALL",
       "chiefPilot": "DANG, ABIGAIL C",
-      "directorOfMaintenance": "",
+      "directorOfMaintenance": "RAUENHORST, DEAN",
       "directorOfOperations": "VANDERKAMP, JAMES E JR.",
       "fsdo": "",
       "status": "",
@@ -41828,7 +41828,7 @@
       "name": "PUBLIC CHARTERS INC",
       "designator": "5JGA",
       "certificateNumber": "5JGA279N",
-      "issueDate": "2012-09-25",
+      "issueDate": "2012-09-24",
       "address": "201 HANGAR ROAD",
       "city": "AVOCA",
       "state": "PA",
@@ -42463,7 +42463,7 @@
       "country": "US",
       "phone": "",
       "ceo": "ROBINSON, KYRA",
-      "chiefPilot": "PILLAI, CONRAD JUDE",
+      "chiefPilot": "THERIAULT, RICHARD C",
       "directorOfMaintenance": "ROACH, TIMOTHY",
       "directorOfOperations": "CAMELIN, HERVE P.",
       "fsdo": "",
@@ -42628,9 +42628,9 @@
       "country": "US",
       "phone": "",
       "ceo": "ARCE, OSCAR",
-      "chiefPilot": "ORTEGA, JUAN",
-      "directorOfMaintenance": "STROIK, DUANE",
-      "directorOfOperations": "ARCE, OSCAR",
+      "chiefPilot": "ORTEGA, JUAN CARLOS",
+      "directorOfMaintenance": "STROIK, DUANE ROBERT",
+      "directorOfOperations": "ARCE, OSCAR ENRIQUE",
       "fsdo": "",
       "status": "",
       "cfrs": [
@@ -42727,7 +42727,7 @@
       "country": "US",
       "phone": "",
       "ceo": "PANEPINTO, LANCE A.",
-      "chiefPilot": "BOURGEOIS, TIMOTHY P",
+      "chiefPilot": "BOURGEOIS, TIMOTHY",
       "directorOfMaintenance": "POOLE, KENNETH R.",
       "directorOfOperations": "PANEPINTO, LANCE A.",
       "fsdo": "",
@@ -42778,39 +42778,6 @@
         "certificatedMechanics": "1",
         "repairmen": "0",
         "totalEmployees": "13"
-      },
-      "extra": {}
-    },
-    {
-      "name": "PREMIER TRANS AIRE INC",
-      "designator": "IRYA",
-      "certificateNumber": "IRYA661T",
-      "issueDate": "1993-03-05",
-      "address": "2351 BENNINGTON DRIVE",
-      "city": "SAN BRUNO",
-      "state": "CA",
-      "postalCode": "94066",
-      "country": "US",
-      "phone": "6503157560",
-      "ceo": "YEE, WENDRICK K",
-      "chiefPilot": "EDWARDS, ALAN",
-      "directorOfMaintenance": "",
-      "directorOfOperations": "",
-      "fsdo": "",
-      "status": "",
-      "cfrs": [
-        "135"
-      ],
-      "dbas": [],
-      "aircraft": [],
-      "staff": {
-        "picCaptains": "1",
-        "inspectors": "0",
-        "designatedInspectors": "0",
-        "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "1",
-        "repairmen": "0",
-        "totalEmployees": "2"
       },
       "extra": {}
     },
@@ -42877,6 +42844,39 @@
         "certificatedMechanics": "2",
         "repairmen": "0",
         "totalEmployees": "4"
+      },
+      "extra": {}
+    },
+    {
+      "name": "PREMIER TRANS AIRE INC",
+      "designator": "IRYA",
+      "certificateNumber": "IRYA661T",
+      "issueDate": "1993-03-05",
+      "address": "2668 LIN GATE COURT",
+      "city": "PLEASANTON",
+      "state": "CA",
+      "postalCode": "94566",
+      "country": "US",
+      "phone": "5108166660",
+      "ceo": "YEE, WENDRICK K",
+      "chiefPilot": "EDWARDS, ALAN",
+      "directorOfMaintenance": "",
+      "directorOfOperations": "",
+      "fsdo": "",
+      "status": "",
+      "cfrs": [
+        "135"
+      ],
+      "dbas": [],
+      "aircraft": [],
+      "staff": {
+        "picCaptains": "1",
+        "inspectors": "0",
+        "designatedInspectors": "0",
+        "nonCertificatedMechanics": "0",
+        "certificatedMechanics": "1",
+        "repairmen": "0",
+        "totalEmployees": "2"
       },
       "extra": {}
     },
@@ -43717,7 +43717,7 @@
       "country": "US",
       "phone": "",
       "ceo": "OBENG, KOFI CKACHIE",
-      "chiefPilot": "PANCHAL, PARTH RASIKLAL",
+      "chiefPilot": "",
       "directorOfMaintenance": "VALLE, JOEL",
       "directorOfOperations": "",
       "fsdo": "",
@@ -44409,10 +44409,10 @@
       "postalCode": "33054",
       "country": "US",
       "phone": "9548740955",
-      "ceo": "HOSMANN, PETER",
+      "ceo": "",
       "chiefPilot": "",
-      "directorOfMaintenance": "GARCIA, DIEGO",
-      "directorOfOperations": "ENGELKE, EDWIN P. III",
+      "directorOfMaintenance": "",
+      "directorOfOperations": "",
       "fsdo": "",
       "status": "",
       "cfrs": [
@@ -44706,10 +44706,10 @@
       "postalCode": "96819",
       "country": "US",
       "phone": "",
-      "ceo": "LUPKEY, STEVE",
+      "ceo": "NIKKHOO, BABAK",
       "chiefPilot": "",
       "directorOfMaintenance": "BELL, CORY JAMES",
-      "directorOfOperations": "LUPKEY, STEVEN",
+      "directorOfOperations": "",
       "fsdo": "",
       "status": "",
       "cfrs": [
@@ -45708,13 +45708,13 @@
       "dbas": [],
       "aircraft": [],
       "staff": {
-        "picCaptains": "10",
+        "picCaptains": "4",
         "inspectors": "3",
         "designatedInspectors": "0",
-        "nonCertificatedMechanics": "1",
+        "nonCertificatedMechanics": "0",
         "certificatedMechanics": "3",
         "repairmen": "0",
-        "totalEmployees": "60"
+        "totalEmployees": "24"
       },
       "extra": {}
     },
@@ -46455,7 +46455,7 @@
       "postalCode": "99729",
       "country": "US",
       "phone": "",
-      "ceo": "ATKINS, RAY",
+      "ceo": "SIEGFORD, RILEY",
       "chiefPilot": "",
       "directorOfMaintenance": "",
       "directorOfOperations": "",
@@ -47669,7 +47669,7 @@
       "name": "SKYS THE LIMIT INC",
       "designator": "S2LA",
       "certificateNumber": "S2LA514W",
-      "issueDate": "1993-12-01",
+      "issueDate": "1993-11-30",
       "address": "322 TERMINAL ROAD",
       "city": "GREENWOOD",
       "state": "SC",
@@ -48414,13 +48414,13 @@
       "dbas": [],
       "aircraft": [],
       "staff": {
-        "picCaptains": "6",
+        "picCaptains": "8",
         "inspectors": "0",
         "designatedInspectors": "0",
         "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "1",
+        "certificatedMechanics": "2",
         "repairmen": "0",
-        "totalEmployees": "9"
+        "totalEmployees": "11"
       },
       "extra": {}
     },
@@ -49525,7 +49525,7 @@
       "country": "US",
       "phone": "",
       "ceo": "STEELMAN, PAUL C.",
-      "chiefPilot": "SANTOS, JORDON A.",
+      "chiefPilot": "SANTOS, JORDAN A.",
       "directorOfMaintenance": "BLACKWOOD, MARK",
       "directorOfOperations": "ATKINS, TERRY BYNO",
       "fsdo": "",
@@ -50108,39 +50108,6 @@
       "extra": {}
     },
     {
-      "name": "SOUTHERNMOST SEAPLANE SERVICE LLC",
-      "designator": "6ESA",
-      "certificateNumber": "6ESA398N",
-      "issueDate": "2015-11-30",
-      "address": "3791 SOUTH ROOSEVELT BOULEVARD",
-      "city": "KEY WEST",
-      "state": "FL",
-      "postalCode": "33040",
-      "country": "US",
-      "phone": "",
-      "ceo": "FLOYD, JULIEANN",
-      "chiefPilot": "",
-      "directorOfMaintenance": "",
-      "directorOfOperations": "",
-      "fsdo": "",
-      "status": "",
-      "cfrs": [
-        "135"
-      ],
-      "dbas": [],
-      "aircraft": [],
-      "staff": {
-        "picCaptains": "1",
-        "inspectors": "0",
-        "designatedInspectors": "0",
-        "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "1",
-        "repairmen": "0",
-        "totalEmployees": "3"
-      },
-      "extra": {}
-    },
-    {
       "name": "SOLOY HELICOPTERS LLC",
       "designator": "2SYA",
       "certificateNumber": "2SYA140N",
@@ -50581,9 +50548,9 @@
       "country": "US",
       "phone": "",
       "ceo": "OWEN, JOHN",
-      "chiefPilot": "PECUIL, LARRY EDWIN",
+      "chiefPilot": "MONTALVO, JULIO CESAR",
       "directorOfMaintenance": "GRIMES, ALEXANDER S.",
-      "directorOfOperations": "POLSKY, RUSSELL W.",
+      "directorOfOperations": "PECUIL, LARRY EDWIN",
       "fsdo": "",
       "status": "",
       "cfrs": [
@@ -50592,13 +50559,13 @@
       "dbas": [],
       "aircraft": [],
       "staff": {
-        "picCaptains": "52",
+        "picCaptains": "34",
         "inspectors": "4",
         "designatedInspectors": "15",
         "nonCertificatedMechanics": "0",
         "certificatedMechanics": "19",
         "repairmen": "0",
-        "totalEmployees": "140"
+        "totalEmployees": "65"
       },
       "extra": {}
     },
@@ -50805,12 +50772,12 @@
       "designator": "11SA",
       "certificateNumber": "11SA907L",
       "issueDate": "2007-10-04",
-      "address": "6128 N. 400 W.",
+      "address": "6128 W 400N",
       "city": "GREENFIELD",
       "state": "IN",
       "postalCode": "46140",
       "country": "US",
-      "phone": "3176012454",
+      "phone": "",
       "ceo": "",
       "chiefPilot": "",
       "directorOfMaintenance": "",
@@ -51266,7 +51233,7 @@
       "name": "SWEET AVIATION LLC",
       "designator": "4SWA",
       "certificateNumber": "4SWA285L",
-      "issueDate": "2017-08-16",
+      "issueDate": "2017-08-15",
       "address": "11119 W. PERIMETER RD.",
       "city": "FORT WAYNE",
       "state": "IN",
@@ -51373,7 +51340,7 @@
       "country": "US",
       "phone": "2514940502",
       "ceo": "BOOTHE, ASHLEY MIXON",
-      "chiefPilot": "ELLIS, JOSEPH C.",
+      "chiefPilot": "THOMPSON, WILLIAM H",
       "directorOfMaintenance": "FOWLER, CHRISTOPHER C.",
       "directorOfOperations": "BOOTHE, ASHLEY MIXON",
       "fsdo": "",
@@ -51571,7 +51538,7 @@
       "country": "US",
       "phone": "6517670757",
       "ceo": "ALVAREZ, JORGE",
-      "chiefPilot": "VELLA, STEPHEN J",
+      "chiefPilot": "SALGADO, SAMUEL ABRAHAM",
       "directorOfMaintenance": "SALAZAR, LUIS FERNANDO",
       "directorOfOperations": "BUTT, HANIF",
       "fsdo": "",
@@ -52157,7 +52124,7 @@
       "name": "SPECTRUM HEALTH HOSPITALS",
       "designator": "BTEA",
       "certificateNumber": "BTEA482C",
-      "issueDate": "1987-03-18",
+      "issueDate": "1987-03-17",
       "address": "GERALD R. FORD INTERNATIONAL AIRPOR, 4494 CORPORATE DR. S.E.",
       "city": "GRAND RAPIDS",
       "state": "MI",
@@ -54321,13 +54288,13 @@
       "dbas": [],
       "aircraft": [],
       "staff": {
-        "picCaptains": "2",
+        "picCaptains": "4",
         "inspectors": "0",
         "designatedInspectors": "0",
         "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "1",
+        "certificatedMechanics": "0",
         "repairmen": "0",
-        "totalEmployees": "3"
+        "totalEmployees": "10"
       },
       "extra": {}
     },
@@ -55774,13 +55741,13 @@
       "dbas": [],
       "aircraft": [],
       "staff": {
-        "picCaptains": "5",
+        "picCaptains": "3",
         "inspectors": "2",
         "designatedInspectors": "1",
         "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "4",
+        "certificatedMechanics": "3",
         "repairmen": "0",
-        "totalEmployees": "23"
+        "totalEmployees": "13"
       },
       "extra": {}
     },
@@ -57183,9 +57150,9 @@
       "country": "US",
       "phone": "",
       "ceo": "REPASKY, RONALD LEE JR.",
-      "chiefPilot": "DIXON, ROBERT",
+      "chiefPilot": "DIXON, ROBERT D",
       "directorOfMaintenance": "CRUMMER, KURT",
-      "directorOfOperations": "DIXON, ROBERT",
+      "directorOfOperations": "DIXON, ROBERT D",
       "fsdo": "",
       "status": "",
       "cfrs": [
@@ -57431,7 +57398,7 @@
         "nonCertificatedMechanics": "0",
         "certificatedMechanics": "2",
         "repairmen": "0",
-        "totalEmployees": "7"
+        "totalEmployees": "8"
       },
       "extra": {}
     },
@@ -58568,7 +58535,7 @@
       "postalCode": "93727",
       "country": "US",
       "phone": "",
-      "ceo": "OLSON, LAWRENCE W.",
+      "ceo": "MARIKIS, SCOTT",
       "chiefPilot": "RYLANDER, RICHARD",
       "directorOfMaintenance": "AGBISIT, DAVID S.",
       "directorOfOperations": "JACOX, SCOTT DIXON",

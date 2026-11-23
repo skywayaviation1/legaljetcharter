@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-11-23T02:51:48Z",
+  "lastChecked": "2026-11-23T23:56:47Z",
   "holdersPage": "https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders",
   "airOperatorPage": "https://www.faa.gov/av-info/air-operator-far-search",
   "operatorCount": 1823,
@@ -33,19 +33,19 @@
   "airOperator": {
     "sourcePage": "https://www.faa.gov/av-info/air-operator-far-search",
     "updatedLabel": "",
-    "extractedAt": "2026-11-23T02:53:11Z",
-    "method": "download-csv-by-letter",
+    "extractedAt": "2026-11-23T23:58:26Z",
+    "method": "chrome-session-csv-by-letter",
     "partFilter": "135",
-    "contentHash": "754387ff7317b93b3a7eb6337704761464f55de80673167195c735c268e166a9",
-    "operatorCount": 1816
+    "contentHash": "a28bc29208c303ea5c47564df4303505fd874017f05c4307bf5b4046dcc9c650",
+    "operatorCount": 1815
   },
   "reconciliation": {
-    "inBoth": 1786,
-    "onlyPart135List": 7,
+    "inBoth": 1785,
+    "onlyPart135List": 8,
     "onlyAirOperator": 30,
-    "conflictCount": 1,
+    "conflictCount": 4,
     "conflictFields": {
-      "legalName": 1
+      "legalName": 4
     },
     "ambiguousCount": 0
   },
@@ -205,5 +205,5 @@
       "ambiguous": 2
     }
   },
-  "datasetHash": "3b2b6dde96d5a3d3b109b229ab9bf585996a77e7d87e99c05c8a6efe4b715b6f"
+  "datasetHash": "eedd19eb0363c996aa33989db724faa268050517a49e5848e237cfc628287dfb"
 }
