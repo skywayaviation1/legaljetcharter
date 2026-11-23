@@ -158,8 +158,6 @@ jobs:
           if-no-files-found: ignore
       - name: Commit when the check finished
         if: github.event_name != 'pull_request'
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           git add data/operators.json data/meta.json data/sources/part135.json data/sources/air-operator.json
@@ -172,14 +170,11 @@ jobs:
           else
             msg="data: sync FAA Part 135 operator lists"
           fi
-          # A self-hosted Mac may have commit.gpgsign or a credential helper in
-          # the user gitconfig. Commit without signing, and push with the job
-          # token instead of the macOS keychain.
+          # A self-hosted Mac may sign commits or use the keychain. Checkout
+          # already stored one Authorization header; a second extraheader makes
+          # GitHub reject the push with "Duplicate header".
           git -c user.name="github-actions[bot]" \
               -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
               -c commit.gpgsign=false \
               commit --no-verify -m "$msg"
-          auth="$(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 | tr -d '\n')"
-          git -c credential.helper= \
-              -c "http.https://github.com/.extraheader=AUTHORIZATION: basic ${auth}" \
-              push origin "HEAD:${GITHUB_REF_NAME}"
+          git -c credential.helper= push origin "HEAD:${GITHUB_REF_NAME}"
