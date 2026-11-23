@@ -163,6 +163,13 @@ def _operator_names(operator: dict) -> list[str]:
         if text:
             names.append(clean_text(text))
     dbas = operator.get("dbas")
+    if isinstance(dbas, dict) and dbas.get("source") == "site":
+        # Reviewed site DBAs are for display and search only. They are not
+        # NTSB name keys, so "Upper Jets" does not pull in another operator
+        # that used the same trade name.
+        faa = dbas.get("faa") or []
+        names.extend(clean_text(item) for item in faa if item)
+        return names
     raw = dbas.get("value") if isinstance(dbas, dict) else dbas
     if isinstance(raw, list):
         names.extend(clean_text(item) for item in raw if item)
@@ -250,12 +257,14 @@ def match_records(operators: list[dict], records: list[dict], name_keys, designa
                 seen_tails.add(form)
                 by_registration[form].append(operator)
 
+    rules = safety_exclusion_rules()
     attached: dict[str, list] = defaultdict(list)
     certificate = 0
     registration = 0
     name_only = 0
     unmatched = 0
     ambiguous = 0
+    excluded = 0
     for record in records:
         chosen = None
         match = ""
@@ -314,6 +323,9 @@ def match_records(operators: list[dict], records: list[dict], name_keys, designa
         if chosen is None:
             unmatched += 1
             continue
+        if is_safety_excluded(record, chosen, rules):
+            excluded += 1
+            continue
         if match == "certificate match":
             certificate += 1
         elif match == "registration match":
@@ -328,6 +340,7 @@ def match_records(operators: list[dict], records: list[dict], name_keys, designa
         "nameMatches": name_only,
         "unmatched": unmatched,
         "ambiguous": ambiguous,
+        "excluded": excluded,
     }
 
 
@@ -337,6 +350,31 @@ def ntsb_name_keys(record):
 
 def ntsb_designators(record):
     return list(record.get("designators") or [])
+
+
+def safety_exclusion_rules() -> list[dict]:
+    from sync_faa import DATA, load_json
+
+    payload = load_json(DATA / "safety-overrides.json", {})
+    rules = payload.get("exclude") if isinstance(payload, dict) else None
+    return list(rules or [])
+
+
+def is_safety_excluded(record: dict, operator: dict, rules: list[dict]) -> bool:
+    ev_id = clean_text(record.get("evId"))
+    number = clean_text(record.get("ntsbNumber")).upper()
+    designator = _designator(operator)
+    for rule in rules:
+        rule_designator = norm_designator(rule.get("designator"))
+        if rule_designator and rule_designator != designator:
+            continue
+        rule_ev = clean_text(rule.get("evId"))
+        rule_number = clean_text(rule.get("ntsbNumber")).upper()
+        if rule_ev and rule_ev == ev_id:
+            return True
+        if rule_number and rule_number == number:
+            return True
+    return False
 
 
 def parse_stamp(value) -> datetime | None:
@@ -864,6 +902,53 @@ def ntsb_public_meta(info: dict, stats: dict) -> dict:
     }
 
 
+def apply_operator_overrides(operators: list[dict]) -> None:
+    """Add reviewed DBAs after safety matching so a site alias is searchable
+    and visible, but is not an NTSB name key."""
+    from sync_faa import DATA, load_json
+
+    payload = load_json(DATA / "operator-overrides.json", {})
+    items = payload.get("operators") if isinstance(payload, dict) else None
+    if not items:
+        return
+    by_designator = {_designator(operator): operator for operator in operators if _designator(operator)}
+    for item in items:
+        operator = by_designator.get(norm_designator(item.get("designator")))
+        if operator is None:
+            continue
+        expected = clean_text(item.get("certificateNumber")).upper()
+        if expected:
+            current = operator.get("certificateNumber")
+            current_text = current.get("value") if isinstance(current, dict) else current
+            if clean_text(current_text).upper() not in ("", expected):
+                continue
+        site_names = []
+        for name in item.get("dbas") or []:
+            text = clean_text(name.get("name") if isinstance(name, dict) else name)
+            if text and text not in site_names:
+                site_names.append(text)
+        if not site_names:
+            continue
+        existing = operator.get("dbas")
+        faa = []
+        if isinstance(existing, dict):
+            if "faa" in existing:
+                faa = [clean_text(value) for value in existing.get("faa") or [] if clean_text(value)]
+            elif existing.get("source") != "site":
+                faa = [clean_text(value) for value in existing.get("value") or [] if clean_text(value)]
+        merged = list(faa)
+        for name in site_names:
+            if name not in merged:
+                merged.append(name)
+        operator["dbas"] = {
+            "value": merged,
+            "source": "site",
+            "faa": faa,
+            "site": site_names,
+            "note": item.get("note") or "Added on this site. The FAA Part 135 list and Air Operator search do not print this DBA.",
+        }
+
+
 def update_saved_site() -> None:
     from sync_faa import META_PATH, OPERATORS_PATH, load_json, now_iso, sha256_json, write_json
 
@@ -875,6 +960,7 @@ def update_saved_site() -> None:
     ntsb_info, ntsb_records = fetch_ntsb(previous_rows)
     enforcement_info, enforcement_records = fetch_enforcement()
     stats = apply_safety(operators, ntsb_records, enforcement_records)
+    apply_operator_overrides(operators)
     meta["lastChecked"] = now_iso()
     meta["datasetHash"] = sha256_json(operators)
     meta["safety"] = {

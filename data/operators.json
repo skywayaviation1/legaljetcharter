@@ -36699,31 +36699,20 @@
           "sourceOperator": "Aurora Aviation DBA Upper Jet",
           "sourceDesignators": [],
           "preliminary": true
-        },
-        {
-          "match": "certificate match",
-          "date": "2020-02-26",
-          "eventType": "Accident",
-          "city": "Farmingdale",
-          "state": "NJ",
-          "highestInjury": "none",
-          "ntsbNumber": "ERA20CA113",
-          "url": "https://my.ntsb.gov/report?ev_id=20200226X41215",
-          "aircraft": [
-            {
-              "registration": "N135LR",
-              "make": "Learjet",
-              "model": "55"
-            }
-          ],
-          "sourceOperator": "NORTHWEST AIRCRAFT RENTAL INC DBA Upper Jets",
-          "sourceDesignators": [
-            "GLRA"
-          ],
-          "farPart": "135"
         }
       ],
       "enforcement": []
+    },
+    "dbas": {
+      "value": [
+        "Upper Jets"
+      ],
+      "source": "site",
+      "faa": [],
+      "site": [
+        "Upper Jets"
+      ],
+      "note": "Added on this site. The FAA Part 135 list and Air Operator search do not print this DBA."
     }
   },
   {

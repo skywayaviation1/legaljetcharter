@@ -1215,12 +1215,13 @@ def main(argv=None) -> int:
             file=sys.stderr,
         )
         merged = merge_records(part["operators"], air["operators"])
-        from safety import apply_safety, fetch_enforcement, fetch_ntsb, ntsb_public_meta
+        from safety import apply_operator_overrides, apply_safety, fetch_enforcement, fetch_ntsb, ntsb_public_meta
 
         previous_rows = ((previous.get("safety") or {}).get("ntsb") or {}).get("aircraftRows")
         ntsb_info, ntsb_records = fetch_ntsb(previous_rows)
         enforcement_info, enforcement_records = fetch_enforcement()
         stats = apply_safety(merged["operators"], ntsb_records, enforcement_records)
+        apply_operator_overrides(merged["operators"])
         safety_meta = {
             "ntsb": ntsb_public_meta(ntsb_info, stats),
             "enforcement": {
