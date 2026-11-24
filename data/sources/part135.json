@@ -9,8 +9,8 @@
     "Serial No."
   ],
   "unmappedColumns": [],
-  "operatorCount": 1793,
-  "aircraftCount": 11632,
+  "operatorCount": 1794,
+  "aircraftCount": 11517,
   "operators": [
     {
       "designator": "10FA",
@@ -2531,12 +2531,6 @@
           "cfr": "135"
         },
         {
-          "registration": "N4599X",
-          "model": "PA-32-300",
-          "serial": "32-7640040",
-          "cfr": "135"
-        },
-        {
           "registration": "N670MP",
           "model": "PA-32-300",
           "serial": "32-7140021",
@@ -4001,6 +3995,12 @@
           "registration": "N25LZ",
           "model": "CE-525-525A",
           "serial": "525A-0177",
+          "cfr": "135"
+        },
+        {
+          "registration": "N642WW",
+          "model": "CE-525-525A",
+          "serial": "525A-0418",
           "cfr": "135"
         }
       ]
@@ -7070,6 +7070,12 @@
           "cfr": "135"
         },
         {
+          "registration": "N482RK",
+          "model": "BE-400-A",
+          "serial": "RK-222",
+          "cfr": "135"
+        },
+        {
           "registration": "N661WD",
           "model": "BE-400-A",
           "serial": "RK-94",
@@ -7271,12 +7277,6 @@
           "registration": "N41WC",
           "model": "BE-300-B300",
           "serial": "FL-1065",
-          "cfr": "135"
-        },
-        {
-          "registration": "N497PF",
-          "model": "CE-550-B",
-          "serial": "550-0964",
           "cfr": "135"
         },
         {
@@ -10946,6 +10946,18 @@
       ],
       "aircraft": [
         {
+          "registration": "N419TM",
+          "model": "BE-400-A",
+          "serial": "RK-495",
+          "cfr": "135"
+        },
+        {
+          "registration": "N450TM",
+          "model": "BE-400-A",
+          "serial": "RK-508",
+          "cfr": "135"
+        },
+        {
           "registration": "N477TM",
           "model": "BE-400-A",
           "serial": "RK-519",
@@ -11583,12 +11595,6 @@
           "cfr": "135"
         },
         {
-          "registration": "N444BC",
-          "model": "CE-750-750",
-          "serial": "750-0025",
-          "cfr": "135"
-        },
-        {
           "registration": "N474ME",
           "model": "CE-750-750",
           "serial": "750-0155",
@@ -11733,6 +11739,12 @@
           "registration": "N560P",
           "model": "BHT-206-L3",
           "serial": "51013",
+          "cfr": "135"
+        },
+        {
+          "registration": "N408SK",
+          "model": "BHT-407-407",
+          "serial": "54362",
           "cfr": "135"
         }
       ]
@@ -13022,13 +13034,7 @@
         {
           "registration": "N76ZE",
           "model": "CE-525-525B",
-          "serial": "0606",
-          "cfr": "135"
-        },
-        {
-          "registration": "N79ZE",
-          "model": "CE-750-750",
-          "serial": "750-0510",
+          "serial": "606",
           "cfr": "135"
         }
       ]
@@ -13840,18 +13846,6 @@
       ]
     },
     {
-      "designator": "6ESA",
-      "name": "SOUTHERNMOST SEAPLANE SERVICE LLC",
-      "nameVariants": [],
-      "cfrs": [
-        "135"
-      ],
-      "chdos": [
-        "SO19"
-      ],
-      "aircraft": []
-    },
-    {
       "designator": "6FMA",
       "name": "FLETCHER MOUNTAIN AVIATION LLC",
       "nameVariants": [],
@@ -13943,6 +13937,12 @@
           "cfr": "135"
         },
         {
+          "registration": "N271PH",
+          "model": "CE-680-680",
+          "serial": "680-0151",
+          "cfr": "135"
+        },
+        {
           "registration": "N210TA",
           "model": "SR-22",
           "serial": "9077",
@@ -13952,12 +13952,6 @@
           "registration": "N293LM",
           "model": "SR-22",
           "serial": "4227",
-          "cfr": "135"
-        },
-        {
-          "registration": "N805SR",
-          "model": "SR-22",
-          "serial": "1998",
           "cfr": "135"
         },
         {
@@ -15259,15 +15253,15 @@
           "cfr": "135"
         },
         {
-          "registration": "N416F",
+          "registration": "N402DB",
           "model": "BD-100-1A10",
-          "serial": "20262",
+          "serial": "20118",
           "cfr": "135"
         },
         {
-          "registration": "N526FX",
+          "registration": "N416F",
           "model": "BD-100-1A10",
-          "serial": "20118",
+          "serial": "20262",
           "cfr": "135"
         },
         {
@@ -15415,9 +15409,21 @@
           "cfr": "135"
         },
         {
+          "registration": "N905UP",
+          "model": "CE-750-750",
+          "serial": "750-0133",
+          "cfr": "135"
+        },
+        {
           "registration": "N908UP",
           "model": "CE-750-750",
           "serial": "750-0144",
+          "cfr": "135"
+        },
+        {
+          "registration": "N909UP",
+          "model": "CE-750-750",
+          "serial": "750-0135",
           "cfr": "135"
         },
         {
@@ -15765,12 +15771,6 @@
       ],
       "aircraft": [
         {
-          "registration": "N415MA",
-          "model": "GA-IV-IV",
-          "serial": "1463",
-          "cfr": "135"
-        },
-        {
           "registration": "N585D",
           "model": "GA-V-V",
           "serial": "597",
@@ -16001,6 +16001,12 @@
           "cfr": "135"
         },
         {
+          "registration": "N722AP",
+          "model": "CIRRUS-SF50",
+          "serial": "50",
+          "cfr": "135"
+        },
+        {
           "registration": "N867CA",
           "model": "CIRRUS-SF50",
           "serial": "600",
@@ -16016,12 +16022,6 @@
           "registration": "N412PG",
           "model": "SR-22",
           "serial": "11276",
-          "cfr": "135"
-        },
-        {
-          "registration": "N722AP",
-          "model": "SR-22",
-          "serial": "50",
           "cfr": "135"
         },
         {
@@ -19060,12 +19060,6 @@
           "cfr": "135"
         },
         {
-          "registration": "N26XM",
-          "model": "PC-12-47E",
-          "serial": "2312",
-          "cfr": "135"
-        },
-        {
           "registration": "N36PJ",
           "model": "PC-12-47E",
           "serial": "2114",
@@ -19610,6 +19604,12 @@
           "registration": "N2026L",
           "model": "CE-680A",
           "serial": "680A0483",
+          "cfr": "135"
+        },
+        {
+          "registration": "N808VJ",
+          "model": "DASSAULT-FALCON-2000LX",
+          "serial": "273",
           "cfr": "135"
         },
         {
@@ -22713,15 +22713,39 @@
           "cfr": "135"
         },
         {
+          "registration": "N8783E",
+          "model": "CL-600-2B19",
+          "serial": "7783",
+          "cfr": "135"
+        },
+        {
+          "registration": "N8908D",
+          "model": "CL-600-2B19",
+          "serial": "7908",
+          "cfr": "135"
+        },
+        {
           "registration": "N890SA",
           "model": "CL-600-2B19",
           "serial": "7548",
           "cfr": "135"
         },
         {
+          "registration": "N8974C",
+          "model": "CL-600-2B19",
+          "serial": "7974",
+          "cfr": "135"
+        },
+        {
           "registration": "N907SA",
           "model": "CL-600-2B19",
           "serial": "7934",
+          "cfr": "135"
+        },
+        {
+          "registration": "N940SA",
+          "model": "CL-600-2B19",
+          "serial": "7979",
           "cfr": "135"
         },
         {
@@ -24254,6 +24278,12 @@
           "cfr": "135"
         },
         {
+          "registration": "N560TV",
+          "model": "CE-560-560XLS",
+          "serial": "560-5545",
+          "cfr": "135"
+        },
+        {
           "registration": "N789XJ",
           "model": "CE-750-750",
           "serial": "750-0289",
@@ -25691,12 +25721,6 @@
           "cfr": "135"
         },
         {
-          "registration": "N818BA",
-          "model": "BD-700-2A12",
-          "serial": "70018",
-          "cfr": "135"
-        },
-        {
           "registration": "N680G",
           "model": "CE-680-680A",
           "serial": "680A-0280",
@@ -25823,18 +25847,6 @@
           "cfr": "135"
         },
         {
-          "registration": "N221DG",
-          "model": "G-VI-G650",
-          "serial": "6061",
-          "cfr": "135"
-        },
-        {
-          "registration": "N112CS",
-          "model": "G-VI-G650ER",
-          "serial": "6090",
-          "cfr": "135"
-        },
-        {
           "registration": "N1759C",
           "model": "G-VI-G650ER",
           "serial": "6163",
@@ -25859,12 +25871,6 @@
           "cfr": "135"
         },
         {
-          "registration": "N756SJ",
-          "model": "GVII-G500",
-          "serial": "72021",
-          "cfr": "135"
-        },
-        {
           "registration": "N13G",
           "model": "GVII-G600",
           "serial": "73065",
@@ -25880,12 +25886,6 @@
           "registration": "N56CA",
           "model": "GVII-G600",
           "serial": "73179",
-          "cfr": "135"
-        },
-        {
-          "registration": "N700KS",
-          "model": "GVIII-G700",
-          "serial": "87040",
           "cfr": "135"
         },
         {
@@ -26091,6 +26091,12 @@
           "registration": "N10EM",
           "model": "EMB-500-500",
           "serial": "50000044",
+          "cfr": "135"
+        },
+        {
+          "registration": "N439EE",
+          "model": "EMB-500-500",
+          "serial": "50000439",
           "cfr": "135"
         },
         {
@@ -28649,12 +28655,6 @@
           "cfr": "135"
         },
         {
-          "registration": "N253AE",
-          "model": "SF-340-340B",
-          "serial": "340B-253",
-          "cfr": "135"
-        },
-        {
           "registration": "N336SA",
           "model": "SF-340-340B",
           "serial": "340B-336",
@@ -29743,6 +29743,12 @@
           "cfr": "135"
         },
         {
+          "registration": "N935CX",
+          "model": "CE-750",
+          "serial": "750-0510",
+          "cfr": "135"
+        },
+        {
           "registration": "N1WP",
           "model": "CESSNA-700",
           "serial": "700-0020",
@@ -29932,6 +29938,12 @@
           "registration": "N305TK",
           "model": "EMB-135-BJ",
           "serial": "14500950",
+          "cfr": "135"
+        },
+        {
+          "registration": "N4752W",
+          "model": "EMB-550",
+          "serial": "55020250",
           "cfr": "135"
         },
         {
@@ -33005,6 +33017,12 @@
           "cfr": "135"
         },
         {
+          "registration": "N716QS",
+          "model": "BD-100-1A10",
+          "serial": "21138",
+          "cfr": "135"
+        },
+        {
           "registration": "N725QS",
           "model": "BD-100-1A10",
           "serial": "20663",
@@ -33725,6 +33743,12 @@
           "cfr": "135"
         },
         {
+          "registration": "N149QS",
+          "model": "BD-700-1A11",
+          "serial": "60221",
+          "cfr": "135"
+        },
+        {
           "registration": "N175QS",
           "model": "BD-700-2A12",
           "serial": "70088",
@@ -34052,12 +34076,6 @@
           "registration": "N320QS",
           "model": "CE-680-680",
           "serial": "680-0169",
-          "cfr": "135"
-        },
-        {
-          "registration": "N323QS",
-          "model": "CE-680-680",
-          "serial": "680-0134",
           "cfr": "135"
         },
         {
@@ -35504,6 +35522,12 @@
           "registration": "N762QS",
           "model": "CESSNA-700",
           "serial": "700-0179",
+          "cfr": "135"
+        },
+        {
+          "registration": "N763QS",
+          "model": "CESSNA-700",
+          "serial": "700-0181",
           "cfr": "135"
         },
         {
@@ -38305,25 +38329,6 @@
       ]
     },
     {
-      "designator": "E5AA",
-      "name": "Executive Air Charter LLC",
-      "nameVariants": [],
-      "cfrs": [
-        "135"
-      ],
-      "chdos": [
-        "WP17"
-      ],
-      "aircraft": [
-        {
-          "registration": "N414RW",
-          "model": "CE-414-A",
-          "serial": "414A0295",
-          "cfr": "135"
-        }
-      ]
-    },
-    {
       "designator": "E8BA",
       "name": "Air Charter Service, Inc",
       "nameVariants": [],
@@ -39447,7 +39452,7 @@
     },
     {
       "designator": "ENHA",
-      "name": "GRANT AVIATION INC",
+      "name": "GRANT AVIATION LLC",
       "nameVariants": [],
       "cfrs": [
         "135"
@@ -41759,6 +41764,12 @@
           "registration": "N795AE",
           "model": "EC-130-T2",
           "serial": "9462",
+          "cfr": "135"
+        },
+        {
+          "registration": "N82AH",
+          "model": "EC-130-T2",
+          "serial": "9361",
           "cfr": "135"
         },
         {
@@ -44652,12 +44663,6 @@
           "cfr": "135"
         },
         {
-          "registration": "N644CH",
-          "model": "R-44-II",
-          "serial": "13687",
-          "cfr": "135"
-        },
-        {
           "registration": "N998TP",
           "model": "R-44-II",
           "serial": "13120",
@@ -46275,15 +46280,9 @@
       ],
       "aircraft": [
         {
-          "registration": "N824HG",
-          "model": "BE-400-A",
-          "serial": "RK-143",
-          "cfr": "135"
-        },
-        {
-          "registration": "N820LR",
-          "model": "HAWKER-900XP",
-          "serial": "HA-0021",
+          "registration": "N710HR",
+          "model": "HAWKER-800XP-800XP",
+          "serial": "258390",
           "cfr": "135"
         }
       ]
@@ -47818,6 +47817,12 @@
           "cfr": "135"
         },
         {
+          "registration": "N45HK",
+          "model": "LR-45-45",
+          "serial": "349",
+          "cfr": "135"
+        },
+        {
           "registration": "N825CA",
           "model": "LR-45-45",
           "serial": "220",
@@ -47827,6 +47832,12 @@
           "registration": "N157MW",
           "model": "LR-45-75",
           "serial": "45-456",
+          "cfr": "135"
+        },
+        {
+          "registration": "N9120Y",
+          "model": "PA-46-350P",
+          "serial": "46-8608010",
           "cfr": "135"
         }
       ]
@@ -48090,6 +48101,25 @@
           "registration": "N810J",
           "model": "R-66-66",
           "serial": "23",
+          "cfr": "135"
+        }
+      ]
+    },
+    {
+      "designator": "H3AA",
+      "name": "HOUSTON AIR INC",
+      "nameVariants": [],
+      "cfrs": [
+        "135"
+      ],
+      "chdos": [
+        "EA68"
+      ],
+      "aircraft": [
+        {
+          "registration": "N236AT",
+          "model": "CE-414-414",
+          "serial": "414-0805",
           "cfr": "135"
         }
       ]
@@ -51510,12 +51540,6 @@
           "cfr": "135"
         },
         {
-          "registration": "N608T",
-          "model": "AS-350-B2",
-          "serial": "3151",
-          "cfr": "135"
-        },
-        {
           "registration": "N6094E",
           "model": "AS-350-B2",
           "serial": "2750",
@@ -53803,12 +53827,6 @@
         "EA23"
       ],
       "aircraft": [
-        {
-          "registration": "N4B",
-          "model": "EMB-505-505",
-          "serial": "50500347",
-          "cfr": "135"
-        },
         {
           "registration": "N5A",
           "model": "EMB-505-505",
@@ -57828,12 +57846,6 @@
           "cfr": "135"
         },
         {
-          "registration": "N313RX",
-          "model": "ECD-EC135-P2+",
-          "serial": "1097",
-          "cfr": "135"
-        },
-        {
           "registration": "N314RX",
           "model": "ECD-EC135-P2+",
           "serial": "1122",
@@ -57870,6 +57882,12 @@
           "cfr": "135"
         },
         {
+          "registration": "N334GR",
+          "model": "ECD-EC135-P2+",
+          "serial": "0561",
+          "cfr": "135"
+        },
+        {
           "registration": "N36RX",
           "model": "ECD-EC135-P2+",
           "serial": "0859",
@@ -57891,12 +57909,6 @@
           "registration": "N444YE",
           "model": "ECD-EC135-P2+",
           "serial": "0599",
-          "cfr": "135"
-        },
-        {
-          "registration": "N555YE",
-          "model": "ECD-EC135-P2+",
-          "serial": "0561",
           "cfr": "135"
         },
         {
@@ -63451,7 +63463,7 @@
     },
     {
       "designator": "LOYA",
-      "name": "Loyd's Aviation",
+      "name": "Freeman Holdings of Bakersfield LLC",
       "nameVariants": [],
       "cfrs": [
         "135"
@@ -64673,12 +64685,6 @@
           "registration": "N135UT",
           "model": "ECD-EC135-P2+",
           "serial": "776",
-          "cfr": "135"
-        },
-        {
-          "registration": "N135VV",
-          "model": "ECD-EC135-P2+",
-          "serial": "1019",
           "cfr": "135"
         },
         {
@@ -66761,6 +66767,12 @@
       ],
       "aircraft": [
         {
+          "registration": "N909FX",
+          "model": "ATR-42-300",
+          "serial": "275",
+          "cfr": "121/135"
+        },
+        {
           "registration": "N916FX",
           "model": "ATR-42-300",
           "serial": "314",
@@ -68399,6 +68411,12 @@
           "cfr": "135"
         },
         {
+          "registration": "N608ES",
+          "model": "CE-680-680A",
+          "serial": "680A-0487",
+          "cfr": "135"
+        },
+        {
           "registration": "N315RC",
           "model": "HAWKER-800XP-800XP",
           "serial": "258480",
@@ -68668,7 +68686,7 @@
     },
     {
       "designator": "NXYA",
-      "name": "JAMES W. STRANG",
+      "name": "KATAHDIN AIR SERVICE INC",
       "nameVariants": [],
       "cfrs": [
         "135"
@@ -68854,726 +68872,6 @@
           "model": "GVII-G600",
           "serial": "73063",
           "cfr": "135"
-        },
-        {
-          "registration": "N225JR",
-          "model": "BD-100-1A10",
-          "serial": "20785",
-          "cfr": "135"
-        },
-        {
-          "registration": "N356ML",
-          "model": "BD-100-1A10",
-          "serial": "20075",
-          "cfr": "135"
-        },
-        {
-          "registration": "N57810",
-          "model": "BD-100-1A10",
-          "serial": "21015",
-          "cfr": "135"
-        },
-        {
-          "registration": "N707SG",
-          "model": "BD-100-1A10",
-          "serial": "20806",
-          "cfr": "135"
-        },
-        {
-          "registration": "N563DW",
-          "model": "CE-560-560XLS+",
-          "serial": "560-6169",
-          "cfr": "135"
-        },
-        {
-          "registration": "N900LC",
-          "model": "DASSAULT-FALCON-900C",
-          "serial": "186",
-          "cfr": "135"
-        },
-        {
-          "registration": "N106CK",
-          "model": "DASSAULT-FALCON-900EX EASy",
-          "serial": "214",
-          "cfr": "135"
-        },
-        {
-          "registration": "N577JM",
-          "model": "EMB-505-505",
-          "serial": "505-00301",
-          "cfr": "135"
-        },
-        {
-          "registration": "N313AR",
-          "model": "GA-IV-IV",
-          "serial": "1317",
-          "cfr": "135"
-        },
-        {
-          "registration": "N318DC",
-          "model": "GA-IV-X",
-          "serial": "4229",
-          "cfr": "135"
-        },
-        {
-          "registration": "N325CTEXCLUSIVEUSE",
-          "model": "GA-V-SP",
-          "serial": "5401",
-          "cfr": "135"
-        },
-        {
-          "registration": "N33055",
-          "model": "GA-V-SP",
-          "serial": "5407",
-          "cfr": "135"
-        },
-        {
-          "registration": "N827Z",
-          "model": "GA-V-SP",
-          "serial": "5395",
-          "cfr": "135"
-        },
-        {
-          "registration": "N909AD",
-          "model": "GA-V-SP",
-          "serial": "5135",
-          "cfr": "135"
-        },
-        {
-          "registration": "N660DX",
-          "model": "GVII-G600",
-          "serial": "73063",
-          "cfr": "135"
-        },
-        {
-          "registration": "N225JR",
-          "model": "BD-100-1A10",
-          "serial": "20785",
-          "cfr": "135"
-        },
-        {
-          "registration": "N356ML",
-          "model": "BD-100-1A10",
-          "serial": "20075",
-          "cfr": "135"
-        },
-        {
-          "registration": "N57810",
-          "model": "BD-100-1A10",
-          "serial": "21015",
-          "cfr": "135"
-        },
-        {
-          "registration": "N707SG",
-          "model": "BD-100-1A10",
-          "serial": "20806",
-          "cfr": "135"
-        },
-        {
-          "registration": "N563DW",
-          "model": "CE-560-560XLS+",
-          "serial": "560-6169",
-          "cfr": "135"
-        },
-        {
-          "registration": "N900LC",
-          "model": "DASSAULT-FALCON-900C",
-          "serial": "186",
-          "cfr": "135"
-        },
-        {
-          "registration": "N106CK",
-          "model": "DASSAULT-FALCON-900EX EASy",
-          "serial": "214",
-          "cfr": "135"
-        },
-        {
-          "registration": "N577JM",
-          "model": "EMB-505-505",
-          "serial": "505-00301",
-          "cfr": "135"
-        },
-        {
-          "registration": "N313AR",
-          "model": "GA-IV-IV",
-          "serial": "1317",
-          "cfr": "135"
-        },
-        {
-          "registration": "N318DC",
-          "model": "GA-IV-X",
-          "serial": "4229",
-          "cfr": "135"
-        },
-        {
-          "registration": "N325CTEXCLUSIVEUSE",
-          "model": "GA-V-SP",
-          "serial": "5401",
-          "cfr": "135"
-        },
-        {
-          "registration": "N33055",
-          "model": "GA-V-SP",
-          "serial": "5407",
-          "cfr": "135"
-        },
-        {
-          "registration": "N827Z",
-          "model": "GA-V-SP",
-          "serial": "5395",
-          "cfr": "135"
-        },
-        {
-          "registration": "N909AD",
-          "model": "GA-V-SP",
-          "serial": "5135",
-          "cfr": "135"
-        },
-        {
-          "registration": "N660DX",
-          "model": "GVII-G600",
-          "serial": "73063",
-          "cfr": "135"
-        },
-        {
-          "registration": "N225JR",
-          "model": "BD-100-1A10",
-          "serial": "20785",
-          "cfr": "135"
-        },
-        {
-          "registration": "N356ML",
-          "model": "BD-100-1A10",
-          "serial": "20075",
-          "cfr": "135"
-        },
-        {
-          "registration": "N57810",
-          "model": "BD-100-1A10",
-          "serial": "21015",
-          "cfr": "135"
-        },
-        {
-          "registration": "N707SG",
-          "model": "BD-100-1A10",
-          "serial": "20806",
-          "cfr": "135"
-        },
-        {
-          "registration": "N563DW",
-          "model": "CE-560-560XLS+",
-          "serial": "560-6169",
-          "cfr": "135"
-        },
-        {
-          "registration": "N900LC",
-          "model": "DASSAULT-FALCON-900C",
-          "serial": "186",
-          "cfr": "135"
-        },
-        {
-          "registration": "N106CK",
-          "model": "DASSAULT-FALCON-900EX EASy",
-          "serial": "214",
-          "cfr": "135"
-        },
-        {
-          "registration": "N577JM",
-          "model": "EMB-505-505",
-          "serial": "505-00301",
-          "cfr": "135"
-        },
-        {
-          "registration": "N313AR",
-          "model": "GA-IV-IV",
-          "serial": "1317",
-          "cfr": "135"
-        },
-        {
-          "registration": "N318DC",
-          "model": "GA-IV-X",
-          "serial": "4229",
-          "cfr": "135"
-        },
-        {
-          "registration": "N325CTEXCLUSIVEUSE",
-          "model": "GA-V-SP",
-          "serial": "5401",
-          "cfr": "135"
-        },
-        {
-          "registration": "N33055",
-          "model": "GA-V-SP",
-          "serial": "5407",
-          "cfr": "135"
-        },
-        {
-          "registration": "N827Z",
-          "model": "GA-V-SP",
-          "serial": "5395",
-          "cfr": "135"
-        },
-        {
-          "registration": "N909AD",
-          "model": "GA-V-SP",
-          "serial": "5135",
-          "cfr": "135"
-        },
-        {
-          "registration": "N660DX",
-          "model": "GVII-G600",
-          "serial": "73063",
-          "cfr": "135"
-        },
-        {
-          "registration": "N225JR",
-          "model": "BD-100-1A10",
-          "serial": "20785",
-          "cfr": "135"
-        },
-        {
-          "registration": "N356ML",
-          "model": "BD-100-1A10",
-          "serial": "20075",
-          "cfr": "135"
-        },
-        {
-          "registration": "N57810",
-          "model": "BD-100-1A10",
-          "serial": "21015",
-          "cfr": "135"
-        },
-        {
-          "registration": "N707SG",
-          "model": "BD-100-1A10",
-          "serial": "20806",
-          "cfr": "135"
-        },
-        {
-          "registration": "N563DW",
-          "model": "CE-560-560XLS+",
-          "serial": "560-6169",
-          "cfr": "135"
-        },
-        {
-          "registration": "N900LC",
-          "model": "DASSAULT-FALCON-900C",
-          "serial": "186",
-          "cfr": "135"
-        },
-        {
-          "registration": "N106CK",
-          "model": "DASSAULT-FALCON-900EX EASy",
-          "serial": "214",
-          "cfr": "135"
-        },
-        {
-          "registration": "N577JM",
-          "model": "EMB-505-505",
-          "serial": "505-00301",
-          "cfr": "135"
-        },
-        {
-          "registration": "N313AR",
-          "model": "GA-IV-IV",
-          "serial": "1317",
-          "cfr": "135"
-        },
-        {
-          "registration": "N318DC",
-          "model": "GA-IV-X",
-          "serial": "4229",
-          "cfr": "135"
-        },
-        {
-          "registration": "N325CTEXCLUSIVEUSE",
-          "model": "GA-V-SP",
-          "serial": "5401",
-          "cfr": "135"
-        },
-        {
-          "registration": "N33055",
-          "model": "GA-V-SP",
-          "serial": "5407",
-          "cfr": "135"
-        },
-        {
-          "registration": "N827Z",
-          "model": "GA-V-SP",
-          "serial": "5395",
-          "cfr": "135"
-        },
-        {
-          "registration": "N909AD",
-          "model": "GA-V-SP",
-          "serial": "5135",
-          "cfr": "135"
-        },
-        {
-          "registration": "N660DX",
-          "model": "GVII-G600",
-          "serial": "73063",
-          "cfr": "135"
-        },
-        {
-          "registration": "N225JR",
-          "model": "BD-100-1A10",
-          "serial": "20785",
-          "cfr": "135"
-        },
-        {
-          "registration": "N356ML",
-          "model": "BD-100-1A10",
-          "serial": "20075",
-          "cfr": "135"
-        },
-        {
-          "registration": "N57810",
-          "model": "BD-100-1A10",
-          "serial": "21015",
-          "cfr": "135"
-        },
-        {
-          "registration": "N707SG",
-          "model": "BD-100-1A10",
-          "serial": "20806",
-          "cfr": "135"
-        },
-        {
-          "registration": "N563DW",
-          "model": "CE-560-560XLS+",
-          "serial": "560-6169",
-          "cfr": "135"
-        },
-        {
-          "registration": "N900LC",
-          "model": "DASSAULT-FALCON-900C",
-          "serial": "186",
-          "cfr": "135"
-        },
-        {
-          "registration": "N106CK",
-          "model": "DASSAULT-FALCON-900EX EASy",
-          "serial": "214",
-          "cfr": "135"
-        },
-        {
-          "registration": "N577JM",
-          "model": "EMB-505-505",
-          "serial": "505-00301",
-          "cfr": "135"
-        },
-        {
-          "registration": "N313AR",
-          "model": "GA-IV-IV",
-          "serial": "1317",
-          "cfr": "135"
-        },
-        {
-          "registration": "N318DC",
-          "model": "GA-IV-X",
-          "serial": "4229",
-          "cfr": "135"
-        },
-        {
-          "registration": "N325CTEXCLUSIVEUSE",
-          "model": "GA-V-SP",
-          "serial": "5401",
-          "cfr": "135"
-        },
-        {
-          "registration": "N33055",
-          "model": "GA-V-SP",
-          "serial": "5407",
-          "cfr": "135"
-        },
-        {
-          "registration": "N827Z",
-          "model": "GA-V-SP",
-          "serial": "5395",
-          "cfr": "135"
-        },
-        {
-          "registration": "N909AD",
-          "model": "GA-V-SP",
-          "serial": "5135",
-          "cfr": "135"
-        },
-        {
-          "registration": "N660DX",
-          "model": "GVII-G600",
-          "serial": "73063",
-          "cfr": "135"
-        },
-        {
-          "registration": "N225JR",
-          "model": "BD-100-1A10",
-          "serial": "20785",
-          "cfr": "135"
-        },
-        {
-          "registration": "N356ML",
-          "model": "BD-100-1A10",
-          "serial": "20075",
-          "cfr": "135"
-        },
-        {
-          "registration": "N57810",
-          "model": "BD-100-1A10",
-          "serial": "21015",
-          "cfr": "135"
-        },
-        {
-          "registration": "N707SG",
-          "model": "BD-100-1A10",
-          "serial": "20806",
-          "cfr": "135"
-        },
-        {
-          "registration": "N563DW",
-          "model": "CE-560-560XLS+",
-          "serial": "560-6169",
-          "cfr": "135"
-        },
-        {
-          "registration": "N900LC",
-          "model": "DASSAULT-FALCON-900C",
-          "serial": "186",
-          "cfr": "135"
-        },
-        {
-          "registration": "N106CK",
-          "model": "DASSAULT-FALCON-900EX EASy",
-          "serial": "214",
-          "cfr": "135"
-        },
-        {
-          "registration": "N577JM",
-          "model": "EMB-505-505",
-          "serial": "505-00301",
-          "cfr": "135"
-        },
-        {
-          "registration": "N313AR",
-          "model": "GA-IV-IV",
-          "serial": "1317",
-          "cfr": "135"
-        },
-        {
-          "registration": "N318DC",
-          "model": "GA-IV-X",
-          "serial": "4229",
-          "cfr": "135"
-        },
-        {
-          "registration": "N325CTEXCLUSIVEUSE",
-          "model": "GA-V-SP",
-          "serial": "5401",
-          "cfr": "135"
-        },
-        {
-          "registration": "N33055",
-          "model": "GA-V-SP",
-          "serial": "5407",
-          "cfr": "135"
-        },
-        {
-          "registration": "N827Z",
-          "model": "GA-V-SP",
-          "serial": "5395",
-          "cfr": "135"
-        },
-        {
-          "registration": "N909AD",
-          "model": "GA-V-SP",
-          "serial": "5135",
-          "cfr": "135"
-        },
-        {
-          "registration": "N660DX",
-          "model": "GVII-G600",
-          "serial": "73063",
-          "cfr": "135"
-        },
-        {
-          "registration": "N225JR",
-          "model": "BD-100-1A10",
-          "serial": "20785",
-          "cfr": "135"
-        },
-        {
-          "registration": "N356ML",
-          "model": "BD-100-1A10",
-          "serial": "20075",
-          "cfr": "135"
-        },
-        {
-          "registration": "N57810",
-          "model": "BD-100-1A10",
-          "serial": "21015",
-          "cfr": "135"
-        },
-        {
-          "registration": "N707SG",
-          "model": "BD-100-1A10",
-          "serial": "20806",
-          "cfr": "135"
-        },
-        {
-          "registration": "N563DW",
-          "model": "CE-560-560XLS+",
-          "serial": "560-6169",
-          "cfr": "135"
-        },
-        {
-          "registration": "N900LC",
-          "model": "DASSAULT-FALCON-900C",
-          "serial": "186",
-          "cfr": "135"
-        },
-        {
-          "registration": "N106CK",
-          "model": "DASSAULT-FALCON-900EX EASy",
-          "serial": "214",
-          "cfr": "135"
-        },
-        {
-          "registration": "N577JM",
-          "model": "EMB-505-505",
-          "serial": "505-00301",
-          "cfr": "135"
-        },
-        {
-          "registration": "N313AR",
-          "model": "GA-IV-IV",
-          "serial": "1317",
-          "cfr": "135"
-        },
-        {
-          "registration": "N318DC",
-          "model": "GA-IV-X",
-          "serial": "4229",
-          "cfr": "135"
-        },
-        {
-          "registration": "N325CTEXCLUSIVEUSE",
-          "model": "GA-V-SP",
-          "serial": "5401",
-          "cfr": "135"
-        },
-        {
-          "registration": "N33055",
-          "model": "GA-V-SP",
-          "serial": "5407",
-          "cfr": "135"
-        },
-        {
-          "registration": "N827Z",
-          "model": "GA-V-SP",
-          "serial": "5395",
-          "cfr": "135"
-        },
-        {
-          "registration": "N909AD",
-          "model": "GA-V-SP",
-          "serial": "5135",
-          "cfr": "135"
-        },
-        {
-          "registration": "N660DX",
-          "model": "GVII-G600",
-          "serial": "73063",
-          "cfr": "135"
-        },
-        {
-          "registration": "N225JR",
-          "model": "BD-100-1A10",
-          "serial": "20785",
-          "cfr": "135"
-        },
-        {
-          "registration": "N356ML",
-          "model": "BD-100-1A10",
-          "serial": "20075",
-          "cfr": "135"
-        },
-        {
-          "registration": "N57810",
-          "model": "BD-100-1A10",
-          "serial": "21015",
-          "cfr": "135"
-        },
-        {
-          "registration": "N707SG",
-          "model": "BD-100-1A10",
-          "serial": "20806",
-          "cfr": "135"
-        },
-        {
-          "registration": "N563DW",
-          "model": "CE-560-560XLS+",
-          "serial": "560-6169",
-          "cfr": "135"
-        },
-        {
-          "registration": "N900LC",
-          "model": "DASSAULT-FALCON-900C",
-          "serial": "186",
-          "cfr": "135"
-        },
-        {
-          "registration": "N106CK",
-          "model": "DASSAULT-FALCON-900EX EASy",
-          "serial": "214",
-          "cfr": "135"
-        },
-        {
-          "registration": "N577JM",
-          "model": "EMB-505-505",
-          "serial": "505-00301",
-          "cfr": "135"
-        },
-        {
-          "registration": "N313AR",
-          "model": "GA-IV-IV",
-          "serial": "1317",
-          "cfr": "135"
-        },
-        {
-          "registration": "N318DC",
-          "model": "GA-IV-X",
-          "serial": "4229",
-          "cfr": "135"
-        },
-        {
-          "registration": "N325CTEXCLUSIVEUSE",
-          "model": "GA-V-SP",
-          "serial": "5401",
-          "cfr": "135"
-        },
-        {
-          "registration": "N33055",
-          "model": "GA-V-SP",
-          "serial": "5407",
-          "cfr": "135"
-        },
-        {
-          "registration": "N827Z",
-          "model": "GA-V-SP",
-          "serial": "5395",
-          "cfr": "135"
-        },
-        {
-          "registration": "N909AD",
-          "model": "GA-V-SP",
-          "serial": "5135",
-          "cfr": "135"
-        },
-        {
-          "registration": "N660DX",
-          "model": "GVII-G600",
-          "serial": "73063",
-          "cfr": "135"
         }
       ]
     },
@@ -69646,6 +68944,25 @@
           "registration": "N438RV",
           "model": "LR-45-45",
           "serial": "333",
+          "cfr": "135"
+        }
+      ]
+    },
+    {
+      "designator": "O2MA",
+      "name": "OMNI AIR TRANSPORT, LLC",
+      "nameVariants": [],
+      "cfrs": [
+        "135"
+      ],
+      "chdos": [
+        "SW15"
+      ],
+      "aircraft": [
+        {
+          "registration": "N626JE",
+          "model": "GA-V-V",
+          "serial": "642",
           "cfr": "135"
         }
       ]
@@ -70372,15 +69689,15 @@
           "cfr": "135"
         },
         {
-          "registration": "N1056B",
-          "model": "PC-12-45",
-          "serial": "499",
+          "registration": "N555WZ",
+          "model": "CE-560-560XL",
+          "serial": "560-5366",
           "cfr": "135"
         },
         {
-          "registration": "N347KC",
+          "registration": "N1056B",
           "model": "PC-12-45",
-          "serial": "347",
+          "serial": "499",
           "cfr": "135"
         },
         {
@@ -71265,6 +70582,12 @@
           "cfr": "135"
         },
         {
+          "registration": "N613BR",
+          "model": "GA-V-V",
+          "serial": "531",
+          "cfr": "135"
+        },
+        {
           "registration": "N718JJ",
           "model": "GA-V-V",
           "serial": "681",
@@ -71537,12 +70860,6 @@
           "registration": "N359PA",
           "model": "AS-350-B3",
           "serial": "3329",
-          "cfr": "135"
-        },
-        {
-          "registration": "N704RH",
-          "model": "AS-350-B3",
-          "serial": "8467",
           "cfr": "135"
         },
         {
@@ -72545,12 +71862,6 @@
           "model": "CE-560-ULTRA",
           "serial": "560-0503",
           "cfr": "135"
-        },
-        {
-          "registration": "N5728G",
-          "model": "Kodiak-100-100",
-          "serial": "100-0075",
-          "cfr": "135"
         }
       ]
     },
@@ -73428,7 +72739,7 @@
     },
     {
       "designator": "Q6HA",
-      "name": "HMS HOLDINGS, LLC",
+      "name": "HMS Aviation 135, LLC",
       "nameVariants": [],
       "cfrs": [
         "135"
@@ -75662,12 +74973,6 @@
           "cfr": "135"
         },
         {
-          "registration": "N145NK",
-          "model": "MBB-BK117-C2",
-          "serial": "9627",
-          "cfr": "135"
-        },
-        {
           "registration": "N145SJ",
           "model": "MBB-BK117-C2",
           "serial": "9091",
@@ -75797,6 +75102,12 @@
           "registration": "N984ME",
           "model": "MBB-BK117-C2",
           "serial": "9080",
+          "cfr": "135"
+        },
+        {
+          "registration": "N985CC",
+          "model": "MBB-BK117-C2",
+          "serial": "9627",
           "cfr": "135"
         },
         {
@@ -77754,12 +77065,6 @@
           "registration": "N643EA",
           "model": "BE-90-C90A",
           "serial": "LJ-1643",
-          "cfr": "135"
-        },
-        {
-          "registration": "N2706A",
-          "model": "CE-335-335",
-          "serial": "3350013",
           "cfr": "135"
         }
       ]
@@ -80806,12 +80111,6 @@
           "model": "CE-560-560",
           "serial": "560-0707",
           "cfr": "135"
-        },
-        {
-          "registration": "N253SC",
-          "model": "LR-45-45",
-          "serial": "252",
-          "cfr": "135"
         }
       ]
     },
@@ -81395,27 +80694,9 @@
       ],
       "aircraft": [
         {
-          "registration": "N85VR",
-          "model": "CE-525-525",
-          "serial": "525-0425",
-          "cfr": "135"
-        },
-        {
-          "registration": "N918BK",
-          "model": "CE-525-525",
-          "serial": "525-0419",
-          "cfr": "135"
-        },
-        {
           "registration": "N912GW",
           "model": "CE-525-525A",
           "serial": "525A-0304",
-          "cfr": "135"
-        },
-        {
-          "registration": "N604DR",
-          "model": "CE-525-525C",
-          "serial": "525C-0201",
           "cfr": "135"
         },
         {
@@ -81446,12 +80727,6 @@
           "registration": "N83SP",
           "model": "CE-560-560XL",
           "serial": "560XL-5202",
-          "cfr": "135"
-        },
-        {
-          "registration": "N17TX",
-          "model": "CE-560-CITATION V",
-          "serial": "560-0166",
           "cfr": "135"
         },
         {
@@ -83371,6 +82646,12 @@
           "cfr": "135"
         },
         {
+          "registration": "N551FR",
+          "model": "G-V-SP",
+          "serial": "5040",
+          "cfr": "135"
+        },
+        {
           "registration": "N768JJ",
           "model": "G-V-SP",
           "serial": "5217",
@@ -83722,6 +83003,12 @@
           "registration": "N325RD",
           "model": "CE-650-CITATION VII",
           "serial": "650-7056",
+          "cfr": "135"
+        },
+        {
+          "registration": "N650AC",
+          "model": "CE-650-CITATION VII",
+          "serial": "650-7065",
           "cfr": "135"
         },
         {
@@ -84344,12 +83631,6 @@
           "cfr": "135"
         },
         {
-          "registration": "N234BZ",
-          "model": "EMB-135-LR",
-          "serial": "145388",
-          "cfr": "135"
-        },
-        {
           "registration": "N403RW",
           "model": "EMB-135-LR",
           "serial": "145262",
@@ -84645,6 +83926,12 @@
         "SW11"
       ],
       "aircraft": [
+        {
+          "registration": "N479BR",
+          "model": "BE-200-B200",
+          "serial": "BB-1179",
+          "cfr": "135"
+        },
         {
           "registration": "N79EF",
           "model": "BE-200-B200",
@@ -86824,12 +86111,6 @@
           "cfr": "135"
         },
         {
-          "registration": "N5X",
-          "model": "BD-700-1A11",
-          "serial": "60106",
-          "cfr": "135"
-        },
-        {
           "registration": "N831PB",
           "model": "CL-600-2B16",
           "serial": "5895",
@@ -87444,6 +86725,25 @@
           "registration": "N307WH",
           "model": "R-66-66",
           "serial": "183",
+          "cfr": "135"
+        }
+      ]
+    },
+    {
+      "designator": "WTCA",
+      "name": "T&E AVIATION, LLC",
+      "nameVariants": [],
+      "cfrs": [
+        "135"
+      ],
+      "chdos": [
+        "GL21"
+      ],
+      "aircraft": [
+        {
+          "registration": "N44AF",
+          "model": "MU-2B-60",
+          "serial": "790SA",
           "cfr": "135"
         }
       ]
@@ -88618,6 +87918,12 @@
           "cfr": "135"
         },
         {
+          "registration": "N808MF",
+          "model": "G-IV",
+          "serial": "1448",
+          "cfr": "135"
+        },
+        {
           "registration": "N740SS",
           "model": "GV",
           "serial": "532",
@@ -88689,12 +87995,6 @@
           "registration": "N723M",
           "model": "M-7-235B",
           "serial": "23003C",
-          "cfr": "135"
-        },
-        {
-          "registration": "N574KB",
-          "model": "MX-7-180",
-          "serial": "22046C",
           "cfr": "135"
         }
       ]
@@ -89318,6 +88618,12 @@
           "model": "CE-501-501",
           "serial": "501-0217",
           "cfr": "135"
+        },
+        {
+          "registration": "N550MZ",
+          "model": "CE-550-B",
+          "serial": "550-1075",
+          "cfr": "135"
         }
       ]
     },
@@ -89685,6 +88991,12 @@
           "cfr": "135"
         },
         {
+          "registration": "N800AF",
+          "model": "HS-125-800A",
+          "serial": "258158",
+          "cfr": "135"
+        },
+        {
           "registration": "N375RC",
           "model": "HS-125-800XP",
           "serial": "258565",
@@ -90020,12 +89332,6 @@
           "registration": "N28BQ",
           "model": "CL-604-604",
           "serial": "5433",
-          "cfr": "135"
-        },
-        {
-          "registration": "N309WB",
-          "model": "CL-604-604",
-          "serial": "5394",
           "cfr": "135"
         },
         {
@@ -90853,6 +90159,12 @@
           "registration": "N185WR",
           "model": "CE-185-A185F",
           "serial": "18503121",
+          "cfr": "135"
+        },
+        {
+          "registration": "N120LP",
+          "model": "PA-31-325",
+          "serial": "31-7812010",
           "cfr": "135"
         }
       ]
@@ -91721,6 +91033,12 @@
           "cfr": "135"
         },
         {
+          "registration": "N286CX",
+          "model": "DASALT-FALCON-2000",
+          "serial": "102",
+          "cfr": "135"
+        },
+        {
           "registration": "N676GH",
           "model": "HAWKER-800XP-800XP",
           "serial": "258676",
@@ -91952,6 +91270,12 @@
           "registration": "N17XR",
           "model": "CE-750-750",
           "serial": "750-0251",
+          "cfr": "135"
+        },
+        {
+          "registration": "N510SJ",
+          "model": "CL-600-2B19",
+          "serial": "7481",
           "cfr": "135"
         }
       ]
@@ -93079,14 +92403,14 @@
   ],
   "sourcePage": "https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders",
   "fileUrl": "https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders.xlsx",
-  "fileDate": "2026-11-16",
-  "lastModified": "Mon, 16 Nov 2026 19:03:18 GMT",
+  "fileDate": "2026-11-24",
+  "lastModified": "Tue, 24 Nov 2026 14:16:42 GMT",
   "fingerprint": {
     "url": "https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders.xlsx",
-    "lastModified": "Mon, 16 Nov 2026 19:03:18 GMT",
-    "contentLength": "552251",
+    "lastModified": "Tue, 24 Nov 2026 14:16:42 GMT",
+    "contentLength": "552319",
     "etag": ""
   },
-  "contentHash": "f2441afcc2fd787213ddb2a02c2606a1654035cf1cd82aaa0d07fd5c6bc83cee",
-  "byteLength": 552251
+  "contentHash": "0e0af44a323f05bd2bb888c9c4ad283361183cab8f3ea7c439ee6fa38624b651",
+  "byteLength": 552319
 }

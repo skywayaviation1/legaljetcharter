@@ -1,24 +1,24 @@
 {
-  "lastChecked": "2026-11-23T23:56:47Z",
+  "lastChecked": "2026-11-24T22:29:34Z",
   "holdersPage": "https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders",
   "airOperatorPage": "https://www.faa.gov/av-info/air-operator-far-search",
-  "operatorCount": 1823,
-  "aircraftCount": 11632,
+  "operatorCount": 1822,
+  "aircraftCount": 11517,
   "part135": {
     "sourcePage": "https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders",
     "fileUrl": "https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders.xlsx",
-    "fileDate": "2026-11-16",
-    "lastModified": "Mon, 16 Nov 2026 19:03:18 GMT",
-    "contentHash": "f2441afcc2fd787213ddb2a02c2606a1654035cf1cd82aaa0d07fd5c6bc83cee",
-    "byteLength": 552251,
+    "fileDate": "2026-11-24",
+    "lastModified": "Tue, 24 Nov 2026 14:16:42 GMT",
+    "contentHash": "0e0af44a323f05bd2bb888c9c4ad283361183cab8f3ea7c439ee6fa38624b651",
+    "byteLength": 552319,
     "fingerprint": {
       "url": "https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders.xlsx",
-      "lastModified": "Mon, 16 Nov 2026 19:03:18 GMT",
-      "contentLength": "552251",
+      "lastModified": "Tue, 24 Nov 2026 14:16:42 GMT",
+      "contentLength": "552319",
       "etag": ""
     },
-    "operatorCount": 1793,
-    "aircraftCount": 11632,
+    "operatorCount": 1794,
+    "aircraftCount": 11517,
     "columns": [
       "CFR",
       "CHDO",
@@ -33,19 +33,19 @@
   "airOperator": {
     "sourcePage": "https://www.faa.gov/av-info/air-operator-far-search",
     "updatedLabel": "",
-    "extractedAt": "2026-11-23T23:58:26Z",
+    "extractedAt": "2026-11-24T22:31:09Z",
     "method": "chrome-session-csv-by-letter",
     "partFilter": "135",
     "contentHash": "a28bc29208c303ea5c47564df4303505fd874017f05c4307bf5b4046dcc9c650",
     "operatorCount": 1815
   },
   "reconciliation": {
-    "inBoth": 1785,
-    "onlyPart135List": 8,
-    "onlyAirOperator": 30,
-    "conflictCount": 4,
+    "inBoth": 1787,
+    "onlyPart135List": 7,
+    "onlyAirOperator": 28,
+    "conflictCount": 1,
     "conflictFields": {
-      "legalName": 4
+      "legalName": 1
     },
     "ambiguousCount": 0
   },
@@ -92,10 +92,10 @@
       "investigationSource": "https://www.ntsb.gov/investigations/",
       "matchedEvents": 616,
       "certificateMatches": 348,
-      "registrationMatches": 88,
-      "nameMatches": 180,
-      "unmatched": 516,
-      "ambiguous": 6
+      "registrationMatches": 87,
+      "nameMatches": 181,
+      "unmatched": 517,
+      "ambiguous": 5
     },
     "enforcement": {
       "sourceUrl": "https://www.faa.gov/about/office_org/headquarters_offices/agc/practice_areas/enforcement/reports",
@@ -205,5 +205,5 @@
       "ambiguous": 2
     }
   },
-  "datasetHash": "eedd19eb0363c996aa33989db724faa268050517a49e5848e237cfc628287dfb"
+  "datasetHash": "d11471a001fad2b72f7c326ec220246f9449f6024897e198bfee6319790d2e4b"
 }

@@ -11360,6 +11360,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N82AH",
+        "model": "EC-130-T2",
+        "serial": "9361",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N861LH",
         "model": "EC-130-T2",
         "serial": "8804",
@@ -11850,7 +11857,7 @@
       ],
       "enforcement": []
     },
-    "aircraftCount": 188
+    "aircraftCount": 189
   },
   {
     "id": "dsgn:YAXA",
@@ -15569,13 +15576,6 @@
         "source": "part135-list"
       },
       {
-        "registration": "N145NK",
-        "model": "MBB-BK117-C2",
-        "serial": "9627",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N145SJ",
         "model": "MBB-BK117-C2",
         "serial": "9091",
@@ -15726,6 +15726,13 @@
         "registration": "N984ME",
         "model": "MBB-BK117-C2",
         "serial": "9080",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
+        "registration": "N985CC",
+        "model": "MBB-BK117-C2",
+        "serial": "9627",
         "cfr": "135",
         "source": "part135-list"
       },
@@ -18084,6 +18091,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N800AF",
+        "model": "HS-125-800A",
+        "serial": "258158",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N375RC",
         "model": "HS-125-800XP",
         "serial": "258565",
@@ -18142,7 +18156,7 @@
       ],
       "enforcement": []
     },
-    "aircraftCount": 4
+    "aircraftCount": 5
   },
   {
     "id": "dsgn:1E5A",
@@ -29709,13 +29723,6 @@
         "serial": "560-0707",
         "cfr": "135",
         "source": "part135-list"
-      },
-      {
-        "registration": "N253SC",
-        "model": "LR-45-45",
-        "serial": "252",
-        "cfr": "135",
-        "source": "part135-list"
       }
     ],
     "conflicts": [],
@@ -29755,7 +29762,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 5
+    "aircraftCount": 4
   },
   {
     "id": "dsgn:A8JA",
@@ -37697,6 +37704,13 @@
         "serial": "525A-0177",
         "cfr": "135",
         "source": "part135-list"
+      },
+      {
+        "registration": "N642WW",
+        "model": "CE-525-525A",
+        "serial": "525A-0418",
+        "cfr": "135",
+        "source": "part135-list"
       }
     ],
     "conflicts": [],
@@ -37736,7 +37750,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 4
+    "aircraftCount": 5
   },
   {
     "id": "dsgn:7AMA",
@@ -38618,13 +38632,6 @@
         "source": "part135-list"
       },
       {
-        "registration": "N5X",
-        "model": "BD-700-1A11",
-        "serial": "60106",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N831PB",
         "model": "CL-600-2B16",
         "serial": "5895",
@@ -38676,7 +38683,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 11
+    "aircraftCount": 10
   },
   {
     "id": "dsgn:VE6A",
@@ -41461,16 +41468,16 @@
         "source": "part135-list"
       },
       {
-        "registration": "N416F",
+        "registration": "N402DB",
         "model": "BD-100-1A10",
-        "serial": "20262",
+        "serial": "20118",
         "cfr": "135",
         "source": "part135-list"
       },
       {
-        "registration": "N526FX",
+        "registration": "N416F",
         "model": "BD-100-1A10",
-        "serial": "20118",
+        "serial": "20262",
         "cfr": "135",
         "source": "part135-list"
       },
@@ -41643,9 +41650,23 @@
         "source": "part135-list"
       },
       {
+        "registration": "N905UP",
+        "model": "CE-750-750",
+        "serial": "750-0133",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N908UP",
         "model": "CE-750-750",
         "serial": "750-0144",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
+        "registration": "N909UP",
+        "model": "CE-750-750",
+        "serial": "750-0135",
         "cfr": "135",
         "source": "part135-list"
       },
@@ -41778,7 +41799,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 51
+    "aircraftCount": 53
   },
   {
     "id": "dsgn:W3LC",
@@ -43243,6 +43264,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N45HK",
+        "model": "LR-45-45",
+        "serial": "349",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N825CA",
         "model": "LR-45-45",
         "serial": "220",
@@ -43253,6 +43281,13 @@
         "registration": "N157MW",
         "model": "LR-45-75",
         "serial": "45-456",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
+        "registration": "N9120Y",
+        "model": "PA-46-350P",
+        "serial": "46-8608010",
         "cfr": "135",
         "source": "part135-list"
       }
@@ -43298,7 +43333,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 7
+    "aircraftCount": 9
   },
   {
     "id": "dsgn:SRVA",
@@ -45050,13 +45085,6 @@
         "source": "part135-list"
       },
       {
-        "registration": "N644CH",
-        "model": "R-44-II",
-        "serial": "13687",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N998TP",
         "model": "R-44-II",
         "serial": "13120",
@@ -45206,7 +45234,7 @@
       ],
       "enforcement": []
     },
-    "aircraftCount": 42
+    "aircraftCount": 41
   },
   {
     "id": "dsgn:BPGA",
@@ -48824,16 +48852,16 @@
         "source": "part135-list"
       },
       {
-        "registration": "N1056B",
-        "model": "PC-12-45",
-        "serial": "499",
+        "registration": "N555WZ",
+        "model": "CE-560-560XL",
+        "serial": "560-5366",
         "cfr": "135",
         "source": "part135-list"
       },
       {
-        "registration": "N347KC",
+        "registration": "N1056B",
         "model": "PC-12-45",
-        "serial": "347",
+        "serial": "499",
         "cfr": "135",
         "source": "part135-list"
       },
@@ -51763,13 +51791,6 @@
         "serial": "23003C",
         "cfr": "135",
         "source": "part135-list"
-      },
-      {
-        "registration": "N574KB",
-        "model": "MX-7-180",
-        "serial": "22046C",
-        "cfr": "135",
-        "source": "part135-list"
       }
     ],
     "conflicts": [],
@@ -51793,7 +51814,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 2
+    "aircraftCount": 1
   },
   {
     "id": "dsgn:B1EA",
@@ -52288,6 +52309,13 @@
     },
     "aircraft": [
       {
+        "registration": "N479BR",
+        "model": "BE-200-B200",
+        "serial": "BB-1179",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N79EF",
         "model": "BE-200-B200",
         "serial": "BB-1350",
@@ -52327,7 +52355,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 2
+    "aircraftCount": 3
   },
   {
     "id": "dsgn:BMTA",
@@ -54110,6 +54138,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N439EE",
+        "model": "EMB-500-500",
+        "serial": "50000439",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N701TW",
         "model": "EMB-500-500",
         "serial": "50000088",
@@ -54154,7 +54189,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 3
+    "aircraftCount": 4
   },
   {
     "id": "dsgn:B3GA",
@@ -55947,6 +55982,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N808MF",
+        "model": "G-IV",
+        "serial": "1448",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N740SS",
         "model": "GV",
         "serial": "532",
@@ -55996,7 +56038,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 14
+    "aircraftCount": 15
   },
   {
     "id": "dsgn:CJLA",
@@ -57530,13 +57572,6 @@
         "source": "part135-list"
       },
       {
-        "registration": "N253AE",
-        "model": "SF-340-340B",
-        "serial": "340B-253",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N336SA",
         "model": "SF-340-340B",
         "serial": "340B-336",
@@ -57611,7 +57646,7 @@
       ],
       "enforcement": []
     },
-    "aircraftCount": 12
+    "aircraftCount": 11
   },
   {
     "id": "dsgn:C40A",
@@ -60609,14 +60644,7 @@
       {
         "registration": "N76ZE",
         "model": "CE-525-525B",
-        "serial": "0606",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N79ZE",
-        "model": "CE-750-750",
-        "serial": "750-0510",
+        "serial": "606",
         "cfr": "135",
         "source": "part135-list"
       }
@@ -60656,7 +60684,7 @@
         }
       ]
     },
-    "aircraftCount": 2
+    "aircraftCount": 1
   },
   {
     "id": "dsgn:DDEA",
@@ -62478,6 +62506,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N808VJ",
+        "model": "DASSAULT-FALCON-2000LX",
+        "serial": "273",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N615TX",
         "model": "TBM-700-700",
         "serial": "1047",
@@ -62550,7 +62585,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 7
+    "aircraftCount": 8
   },
   {
     "id": "dsgn:CYHA",
@@ -64157,846 +64192,6 @@
         "serial": "73063",
         "cfr": "135",
         "source": "part135-list"
-      },
-      {
-        "registration": "N225JR",
-        "model": "BD-100-1A10",
-        "serial": "20785",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N356ML",
-        "model": "BD-100-1A10",
-        "serial": "20075",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N57810",
-        "model": "BD-100-1A10",
-        "serial": "21015",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N707SG",
-        "model": "BD-100-1A10",
-        "serial": "20806",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N563DW",
-        "model": "CE-560-560XLS+",
-        "serial": "560-6169",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N900LC",
-        "model": "DASSAULT-FALCON-900C",
-        "serial": "186",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N106CK",
-        "model": "DASSAULT-FALCON-900EX EASy",
-        "serial": "214",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N577JM",
-        "model": "EMB-505-505",
-        "serial": "505-00301",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N313AR",
-        "model": "GA-IV-IV",
-        "serial": "1317",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N318DC",
-        "model": "GA-IV-X",
-        "serial": "4229",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N325CTEXCLUSIVEUSE",
-        "model": "GA-V-SP",
-        "serial": "5401",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N33055",
-        "model": "GA-V-SP",
-        "serial": "5407",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N827Z",
-        "model": "GA-V-SP",
-        "serial": "5395",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N909AD",
-        "model": "GA-V-SP",
-        "serial": "5135",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N660DX",
-        "model": "GVII-G600",
-        "serial": "73063",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N225JR",
-        "model": "BD-100-1A10",
-        "serial": "20785",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N356ML",
-        "model": "BD-100-1A10",
-        "serial": "20075",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N57810",
-        "model": "BD-100-1A10",
-        "serial": "21015",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N707SG",
-        "model": "BD-100-1A10",
-        "serial": "20806",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N563DW",
-        "model": "CE-560-560XLS+",
-        "serial": "560-6169",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N900LC",
-        "model": "DASSAULT-FALCON-900C",
-        "serial": "186",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N106CK",
-        "model": "DASSAULT-FALCON-900EX EASy",
-        "serial": "214",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N577JM",
-        "model": "EMB-505-505",
-        "serial": "505-00301",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N313AR",
-        "model": "GA-IV-IV",
-        "serial": "1317",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N318DC",
-        "model": "GA-IV-X",
-        "serial": "4229",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N325CTEXCLUSIVEUSE",
-        "model": "GA-V-SP",
-        "serial": "5401",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N33055",
-        "model": "GA-V-SP",
-        "serial": "5407",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N827Z",
-        "model": "GA-V-SP",
-        "serial": "5395",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N909AD",
-        "model": "GA-V-SP",
-        "serial": "5135",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N660DX",
-        "model": "GVII-G600",
-        "serial": "73063",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N225JR",
-        "model": "BD-100-1A10",
-        "serial": "20785",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N356ML",
-        "model": "BD-100-1A10",
-        "serial": "20075",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N57810",
-        "model": "BD-100-1A10",
-        "serial": "21015",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N707SG",
-        "model": "BD-100-1A10",
-        "serial": "20806",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N563DW",
-        "model": "CE-560-560XLS+",
-        "serial": "560-6169",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N900LC",
-        "model": "DASSAULT-FALCON-900C",
-        "serial": "186",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N106CK",
-        "model": "DASSAULT-FALCON-900EX EASy",
-        "serial": "214",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N577JM",
-        "model": "EMB-505-505",
-        "serial": "505-00301",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N313AR",
-        "model": "GA-IV-IV",
-        "serial": "1317",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N318DC",
-        "model": "GA-IV-X",
-        "serial": "4229",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N325CTEXCLUSIVEUSE",
-        "model": "GA-V-SP",
-        "serial": "5401",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N33055",
-        "model": "GA-V-SP",
-        "serial": "5407",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N827Z",
-        "model": "GA-V-SP",
-        "serial": "5395",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N909AD",
-        "model": "GA-V-SP",
-        "serial": "5135",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N660DX",
-        "model": "GVII-G600",
-        "serial": "73063",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N225JR",
-        "model": "BD-100-1A10",
-        "serial": "20785",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N356ML",
-        "model": "BD-100-1A10",
-        "serial": "20075",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N57810",
-        "model": "BD-100-1A10",
-        "serial": "21015",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N707SG",
-        "model": "BD-100-1A10",
-        "serial": "20806",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N563DW",
-        "model": "CE-560-560XLS+",
-        "serial": "560-6169",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N900LC",
-        "model": "DASSAULT-FALCON-900C",
-        "serial": "186",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N106CK",
-        "model": "DASSAULT-FALCON-900EX EASy",
-        "serial": "214",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N577JM",
-        "model": "EMB-505-505",
-        "serial": "505-00301",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N313AR",
-        "model": "GA-IV-IV",
-        "serial": "1317",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N318DC",
-        "model": "GA-IV-X",
-        "serial": "4229",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N325CTEXCLUSIVEUSE",
-        "model": "GA-V-SP",
-        "serial": "5401",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N33055",
-        "model": "GA-V-SP",
-        "serial": "5407",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N827Z",
-        "model": "GA-V-SP",
-        "serial": "5395",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N909AD",
-        "model": "GA-V-SP",
-        "serial": "5135",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N660DX",
-        "model": "GVII-G600",
-        "serial": "73063",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N225JR",
-        "model": "BD-100-1A10",
-        "serial": "20785",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N356ML",
-        "model": "BD-100-1A10",
-        "serial": "20075",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N57810",
-        "model": "BD-100-1A10",
-        "serial": "21015",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N707SG",
-        "model": "BD-100-1A10",
-        "serial": "20806",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N563DW",
-        "model": "CE-560-560XLS+",
-        "serial": "560-6169",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N900LC",
-        "model": "DASSAULT-FALCON-900C",
-        "serial": "186",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N106CK",
-        "model": "DASSAULT-FALCON-900EX EASy",
-        "serial": "214",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N577JM",
-        "model": "EMB-505-505",
-        "serial": "505-00301",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N313AR",
-        "model": "GA-IV-IV",
-        "serial": "1317",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N318DC",
-        "model": "GA-IV-X",
-        "serial": "4229",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N325CTEXCLUSIVEUSE",
-        "model": "GA-V-SP",
-        "serial": "5401",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N33055",
-        "model": "GA-V-SP",
-        "serial": "5407",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N827Z",
-        "model": "GA-V-SP",
-        "serial": "5395",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N909AD",
-        "model": "GA-V-SP",
-        "serial": "5135",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N660DX",
-        "model": "GVII-G600",
-        "serial": "73063",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N225JR",
-        "model": "BD-100-1A10",
-        "serial": "20785",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N356ML",
-        "model": "BD-100-1A10",
-        "serial": "20075",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N57810",
-        "model": "BD-100-1A10",
-        "serial": "21015",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N707SG",
-        "model": "BD-100-1A10",
-        "serial": "20806",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N563DW",
-        "model": "CE-560-560XLS+",
-        "serial": "560-6169",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N900LC",
-        "model": "DASSAULT-FALCON-900C",
-        "serial": "186",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N106CK",
-        "model": "DASSAULT-FALCON-900EX EASy",
-        "serial": "214",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N577JM",
-        "model": "EMB-505-505",
-        "serial": "505-00301",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N313AR",
-        "model": "GA-IV-IV",
-        "serial": "1317",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N318DC",
-        "model": "GA-IV-X",
-        "serial": "4229",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N325CTEXCLUSIVEUSE",
-        "model": "GA-V-SP",
-        "serial": "5401",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N33055",
-        "model": "GA-V-SP",
-        "serial": "5407",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N827Z",
-        "model": "GA-V-SP",
-        "serial": "5395",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N909AD",
-        "model": "GA-V-SP",
-        "serial": "5135",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N660DX",
-        "model": "GVII-G600",
-        "serial": "73063",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N225JR",
-        "model": "BD-100-1A10",
-        "serial": "20785",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N356ML",
-        "model": "BD-100-1A10",
-        "serial": "20075",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N57810",
-        "model": "BD-100-1A10",
-        "serial": "21015",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N707SG",
-        "model": "BD-100-1A10",
-        "serial": "20806",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N563DW",
-        "model": "CE-560-560XLS+",
-        "serial": "560-6169",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N900LC",
-        "model": "DASSAULT-FALCON-900C",
-        "serial": "186",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N106CK",
-        "model": "DASSAULT-FALCON-900EX EASy",
-        "serial": "214",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N577JM",
-        "model": "EMB-505-505",
-        "serial": "505-00301",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N313AR",
-        "model": "GA-IV-IV",
-        "serial": "1317",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N318DC",
-        "model": "GA-IV-X",
-        "serial": "4229",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N325CTEXCLUSIVEUSE",
-        "model": "GA-V-SP",
-        "serial": "5401",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N33055",
-        "model": "GA-V-SP",
-        "serial": "5407",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N827Z",
-        "model": "GA-V-SP",
-        "serial": "5395",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N909AD",
-        "model": "GA-V-SP",
-        "serial": "5135",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N660DX",
-        "model": "GVII-G600",
-        "serial": "73063",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N225JR",
-        "model": "BD-100-1A10",
-        "serial": "20785",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N356ML",
-        "model": "BD-100-1A10",
-        "serial": "20075",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N57810",
-        "model": "BD-100-1A10",
-        "serial": "21015",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N707SG",
-        "model": "BD-100-1A10",
-        "serial": "20806",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N563DW",
-        "model": "CE-560-560XLS+",
-        "serial": "560-6169",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N900LC",
-        "model": "DASSAULT-FALCON-900C",
-        "serial": "186",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N106CK",
-        "model": "DASSAULT-FALCON-900EX EASy",
-        "serial": "214",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N577JM",
-        "model": "EMB-505-505",
-        "serial": "505-00301",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N313AR",
-        "model": "GA-IV-IV",
-        "serial": "1317",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N318DC",
-        "model": "GA-IV-X",
-        "serial": "4229",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N325CTEXCLUSIVEUSE",
-        "model": "GA-V-SP",
-        "serial": "5401",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N33055",
-        "model": "GA-V-SP",
-        "serial": "5407",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N827Z",
-        "model": "GA-V-SP",
-        "serial": "5395",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N909AD",
-        "model": "GA-V-SP",
-        "serial": "5135",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N660DX",
-        "model": "GVII-G600",
-        "serial": "73063",
-        "cfr": "135",
-        "source": "part135-list"
       }
     ],
     "conflicts": [],
@@ -65036,7 +64231,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 135
+    "aircraftCount": 15
   },
   {
     "id": "dsgn:RTEA",
@@ -66159,13 +65354,6 @@
         "source": "part135-list"
       },
       {
-        "registration": "N818BA",
-        "model": "BD-700-2A12",
-        "serial": "70018",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N680G",
         "model": "CE-680-680A",
         "serial": "680A-0280",
@@ -66313,20 +65501,6 @@
         "source": "part135-list"
       },
       {
-        "registration": "N221DG",
-        "model": "G-VI-G650",
-        "serial": "6061",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N112CS",
-        "model": "G-VI-G650ER",
-        "serial": "6090",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N1759C",
         "model": "G-VI-G650ER",
         "serial": "6163",
@@ -66355,13 +65529,6 @@
         "source": "part135-list"
       },
       {
-        "registration": "N756SJ",
-        "model": "GVII-G500",
-        "serial": "72021",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N13G",
         "model": "GVII-G600",
         "serial": "73065",
@@ -66379,13 +65546,6 @@
         "registration": "N56CA",
         "model": "GVII-G600",
         "serial": "73179",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N700KS",
-        "model": "GVIII-G700",
-        "serial": "87040",
         "cfr": "135",
         "source": "part135-list"
       },
@@ -66455,7 +65615,7 @@
         }
       ]
     },
-    "aircraftCount": 45
+    "aircraftCount": 40
   },
   {
     "id": "dsgn:CBVA",
@@ -87850,16 +87010,9 @@
     },
     "aircraft": [
       {
-        "registration": "N824HG",
-        "model": "BE-400-A",
-        "serial": "RK-143",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N820LR",
-        "model": "HAWKER-900XP",
-        "serial": "HA-0021",
+        "registration": "N710HR",
+        "model": "HAWKER-800XP-800XP",
+        "serial": "258390",
         "cfr": "135",
         "source": "part135-list"
       }
@@ -87901,7 +87054,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 2
+    "aircraftCount": 1
   },
   {
     "id": "dsgn:IF1A",
@@ -87962,13 +87115,6 @@
       "source": "air-operator"
     },
     "aircraft": [
-      {
-        "registration": "N4B",
-        "model": "EMB-505-505",
-        "serial": "50500347",
-        "cfr": "135",
-        "source": "part135-list"
-      },
       {
         "registration": "N5A",
         "model": "EMB-505-505",
@@ -88056,7 +87202,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 8
+    "aircraftCount": 7
   },
   {
     "id": "dsgn:1EMA",
@@ -89381,6 +88527,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N482RK",
+        "model": "BE-400-A",
+        "serial": "RK-222",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N661WD",
         "model": "BE-400-A",
         "serial": "RK-94",
@@ -89460,7 +88613,7 @@
         }
       ]
     },
-    "aircraftCount": 5
+    "aircraftCount": 6
   },
   {
     "id": "dsgn:EHYA",
@@ -92138,11 +91291,11 @@
   },
   {
     "id": "dsgn:E5AA",
-    "presence": "both",
-    "match": "designator",
+    "presence": "air-operator",
+    "match": "air-operator-only",
     "legalName": {
-      "value": "Executive Air Charter LLC",
-      "source": "part135-list"
+      "value": "EXECUTIVE AIR CHARTER LLC",
+      "source": "air-operator"
     },
     "airOperatorName": {
       "value": "EXECUTIVE AIR CHARTER LLC",
@@ -92150,7 +91303,7 @@
     },
     "designator": {
       "value": "E5AA",
-      "source": "both"
+      "source": "air-operator"
     },
     "certificateNumber": {
       "value": "E5AA950W",
@@ -92176,33 +91329,13 @@
       "value": "93720",
       "source": "air-operator"
     },
-    "fsdo": {
-      "value": [
-        "WP17"
-      ],
-      "source": "part135-list"
-    },
-    "cfrOnList": {
-      "value": [
-        "135"
-      ],
-      "source": "part135-list"
-    },
     "cfrOnSearch": {
       "value": [
         "135"
       ],
       "source": "air-operator"
     },
-    "aircraft": [
-      {
-        "registration": "N414RW",
-        "model": "CE-414-A",
-        "serial": "414A0295",
-        "cfr": "135",
-        "source": "part135-list"
-      }
-    ],
+    "aircraft": [],
     "conflicts": [],
     "phone": {
       "value": "5592505595",
@@ -92228,7 +91361,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 1
+    "aircraftCount": 0
   },
   {
     "id": "dsgn:FOMA",
@@ -94562,6 +93695,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N935CX",
+        "model": "CE-750",
+        "serial": "750-0510",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N1WP",
         "model": "CESSNA-700",
         "serial": "700-0020",
@@ -94782,6 +93922,13 @@
         "registration": "N305TK",
         "model": "EMB-135-BJ",
         "serial": "14500950",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
+        "registration": "N4752W",
+        "model": "EMB-550",
+        "serial": "55020250",
         "cfr": "135",
         "source": "part135-list"
       },
@@ -95287,7 +94434,7 @@
       ],
       "enforcement": []
     },
-    "aircraftCount": 144
+    "aircraftCount": 146
   },
   {
     "id": "dsgn:1XOA",
@@ -97365,30 +96512,9 @@
     },
     "aircraft": [
       {
-        "registration": "N85VR",
-        "model": "CE-525-525",
-        "serial": "525-0425",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N918BK",
-        "model": "CE-525-525",
-        "serial": "525-0419",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N912GW",
         "model": "CE-525-525A",
         "serial": "525A-0304",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N604DR",
-        "model": "CE-525-525C",
-        "serial": "525C-0201",
         "cfr": "135",
         "source": "part135-list"
       },
@@ -97424,13 +96550,6 @@
         "registration": "N83SP",
         "model": "CE-560-560XL",
         "serial": "560XL-5202",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N17TX",
-        "model": "CE-560-CITATION V",
-        "serial": "560-0166",
         "cfr": "135",
         "source": "part135-list"
       },
@@ -97479,7 +96598,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 11
+    "aircraftCount": 7
   },
   {
     "id": "dsgn:1T5A",
@@ -104656,6 +103775,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N286CX",
+        "model": "DASALT-FALCON-2000",
+        "serial": "102",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N676GH",
         "model": "HAWKER-800XP-800XP",
         "serial": "258676",
@@ -104728,7 +103854,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 10
+    "aircraftCount": 11
   },
   {
     "id": "dsgn:9FXA",
@@ -105563,6 +104689,119 @@
       "enforcement": []
     },
     "aircraftCount": 4
+  },
+  {
+    "id": "dsgn:LOYA",
+    "presence": "both",
+    "match": "designator",
+    "legalName": {
+      "value": "Freeman Holdings of Bakersfield LLC",
+      "source": "part135-list"
+    },
+    "airOperatorName": {
+      "value": "FREEMAN HOLDINGS OF BAKERSFIELD LLC",
+      "source": "air-operator"
+    },
+    "designator": {
+      "value": "LOYA",
+      "source": "both"
+    },
+    "certificateNumber": {
+      "value": "LOYA165G",
+      "source": "air-operator"
+    },
+    "issueDate": {
+      "value": "2006-04-06",
+      "source": "air-operator"
+    },
+    "address": {
+      "value": "1601 SKYWAY DRIVE",
+      "source": "air-operator"
+    },
+    "city": {
+      "value": "BAKERSFIELD",
+      "source": "air-operator"
+    },
+    "state": {
+      "value": "CA",
+      "source": "air-operator"
+    },
+    "postalCode": {
+      "value": "93308",
+      "source": "air-operator"
+    },
+    "fsdo": {
+      "value": [
+        "WP17"
+      ],
+      "source": "part135-list"
+    },
+    "cfrOnList": {
+      "value": [
+        "135"
+      ],
+      "source": "part135-list"
+    },
+    "cfrOnSearch": {
+      "value": [
+        "135"
+      ],
+      "source": "air-operator"
+    },
+    "aircraft": [
+      {
+        "registration": "N979PS",
+        "model": "BE-200-B200GT",
+        "serial": "BY-217",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
+        "registration": "N30DE",
+        "model": "CE-525-525B",
+        "serial": "525B-0185",
+        "cfr": "135",
+        "source": "part135-list"
+      }
+    ],
+    "conflicts": [],
+    "ceo": {
+      "value": "LOYD, STEVE",
+      "source": "air-operator"
+    },
+    "chiefPilot": {
+      "value": "WIERSCHEM, SCOTT M.",
+      "source": "air-operator"
+    },
+    "directorOfMaintenance": {
+      "value": "FLORES, AURELIO",
+      "source": "air-operator"
+    },
+    "directorOfOperations": {
+      "value": "CROWL, RYAN D.",
+      "source": "air-operator"
+    },
+    "country": {
+      "value": "US",
+      "source": "air-operator"
+    },
+    "staff": {
+      "value": {
+        "picCaptains": "4",
+        "inspectors": "0",
+        "designatedInspectors": "0",
+        "nonCertificatedMechanics": "0",
+        "certificatedMechanics": "0",
+        "repairmen": "0",
+        "totalEmployees": "9"
+      },
+      "source": "air-operator"
+    },
+    "safety": {
+      "ntsb": [],
+      "enforcement": []
+    },
+    "aircraftCount": 2
   },
   {
     "id": "dsgn:FHTA",
@@ -111895,7 +111134,7 @@
     "presence": "both",
     "match": "designator",
     "legalName": {
-      "value": "GRANT AVIATION INC",
+      "value": "GRANT AVIATION LLC",
       "source": "part135-list"
     },
     "airOperatorName": {
@@ -112984,6 +112223,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N271PH",
+        "model": "CE-680-680",
+        "serial": "680-0151",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N210TA",
         "model": "SR-22",
         "serial": "9077",
@@ -112994,13 +112240,6 @@
         "registration": "N293LM",
         "model": "SR-22",
         "serial": "4227",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N805SR",
-        "model": "SR-22",
-        "serial": "1998",
         "cfr": "135",
         "source": "part135-list"
       },
@@ -114003,13 +113242,6 @@
     },
     "aircraft": [
       {
-        "registration": "N415MA",
-        "model": "GA-IV-IV",
-        "serial": "1463",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N585D",
         "model": "GA-V-V",
         "serial": "597",
@@ -114054,7 +113286,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 2
+    "aircraftCount": 1
   },
   {
     "id": "dsgn:6T1A",
@@ -121716,13 +120948,6 @@
         "source": "part135-list"
       },
       {
-        "registration": "N444BC",
-        "model": "CE-750-750",
-        "serial": "750-0025",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N474ME",
         "model": "CE-750-750",
         "serial": "750-0155",
@@ -121888,7 +121113,7 @@
       ],
       "enforcement": []
     },
-    "aircraftCount": 20
+    "aircraftCount": 19
   },
   {
     "id": "dsgn:54FA",
@@ -123630,7 +122855,7 @@
     "presence": "both",
     "match": "designator",
     "legalName": {
-      "value": "HMS HOLDINGS, LLC",
+      "value": "HMS Aviation 135, LLC",
       "source": "part135-list"
     },
     "airOperatorName": {
@@ -123699,14 +122924,7 @@
         "source": "part135-list"
       }
     ],
-    "conflicts": [
-      {
-        "field": "legalName",
-        "designator": "Q6HA",
-        "part135List": "HMS HOLDINGS, LLC",
-        "airOperator": "HMS AVIATION 135, LLC"
-      }
-    ],
+    "conflicts": [],
     "ceo": {
       "value": "HENDRICK, RICK",
       "source": "air-operator"
@@ -124774,11 +123992,11 @@
   },
   {
     "id": "dsgn:H3AA",
-    "presence": "air-operator",
-    "match": "air-operator-only",
+    "presence": "both",
+    "match": "designator",
     "legalName": {
       "value": "HOUSTON AIR INC",
-      "source": "air-operator"
+      "source": "part135-list"
     },
     "airOperatorName": {
       "value": "HOUSTON AIR INC",
@@ -124786,7 +124004,7 @@
     },
     "designator": {
       "value": "H3AA",
-      "source": "air-operator"
+      "source": "both"
     },
     "certificateNumber": {
       "value": "H3AA668W",
@@ -124812,13 +124030,33 @@
       "value": "28056",
       "source": "air-operator"
     },
+    "fsdo": {
+      "value": [
+        "EA68"
+      ],
+      "source": "part135-list"
+    },
+    "cfrOnList": {
+      "value": [
+        "135"
+      ],
+      "source": "part135-list"
+    },
     "cfrOnSearch": {
       "value": [
         "135"
       ],
       "source": "air-operator"
     },
-    "aircraft": [],
+    "aircraft": [
+      {
+        "registration": "N236AT",
+        "model": "CE-414-414",
+        "serial": "414-0805",
+        "cfr": "135",
+        "source": "part135-list"
+      }
+    ],
     "conflicts": [],
     "ceo": {
       "value": "MORA, JUAN JOSE",
@@ -124856,7 +124094,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 0
+    "aircraftCount": 1
   },
   {
     "id": "dsgn:YVRA",
@@ -133584,119 +132822,6 @@
     "aircraftCount": 1
   },
   {
-    "id": "dsgn:NXYA",
-    "presence": "both",
-    "match": "designator",
-    "legalName": {
-      "value": "JAMES W. STRANG",
-      "source": "part135-list"
-    },
-    "airOperatorName": {
-      "value": "KATAHDIN AIR SERVICE INC",
-      "source": "air-operator"
-    },
-    "designator": {
-      "value": "NXYA",
-      "source": "both"
-    },
-    "certificateNumber": {
-      "value": "NXYA256U",
-      "source": "air-operator"
-    },
-    "issueDate": {
-      "value": "1993-07-23",
-      "source": "air-operator"
-    },
-    "address": {
-      "value": "MILLINOCKET SEAPLANE BASE, GOLDEN ROAD, AMBAJEJUS LAKE",
-      "source": "air-operator"
-    },
-    "city": {
-      "value": "MILLINOCKET",
-      "source": "air-operator"
-    },
-    "state": {
-      "value": "ME",
-      "source": "air-operator"
-    },
-    "postalCode": {
-      "value": "04462",
-      "source": "air-operator"
-    },
-    "fsdo": {
-      "value": [
-        "EA65"
-      ],
-      "source": "part135-list"
-    },
-    "cfrOnList": {
-      "value": [
-        "135"
-      ],
-      "source": "part135-list"
-    },
-    "cfrOnSearch": {
-      "value": [
-        "135"
-      ],
-      "source": "air-operator"
-    },
-    "aircraft": [
-      {
-        "registration": "N8345Q",
-        "model": "CE-206-U206F",
-        "serial": "U20603206",
-        "cfr": "135",
-        "source": "part135-list"
-      }
-    ],
-    "conflicts": [
-      {
-        "field": "legalName",
-        "designator": "NXYA",
-        "part135List": "JAMES W. STRANG",
-        "airOperator": "KATAHDIN AIR SERVICE INC"
-      }
-    ],
-    "ceo": {
-      "value": "CREELEY, SEAN",
-      "source": "air-operator"
-    },
-    "chiefPilot": {
-      "value": "HARTT, ANDREW FRANCIS",
-      "source": "air-operator"
-    },
-    "directorOfMaintenance": {
-      "value": "CURTIS, CALEB",
-      "source": "air-operator"
-    },
-    "directorOfOperations": {
-      "value": "STRANG, JAMES WILFRED",
-      "source": "air-operator"
-    },
-    "country": {
-      "value": "US",
-      "source": "air-operator"
-    },
-    "staff": {
-      "value": {
-        "picCaptains": "4",
-        "inspectors": "0",
-        "designatedInspectors": "0",
-        "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "0",
-        "repairmen": "0",
-        "totalEmployees": "3"
-      },
-      "source": "air-operator"
-    },
-    "safety": {
-      "ntsb": [],
-      "enforcement": []
-    },
-    "aircraftCount": 1
-  },
-  {
     "id": "dsgn:8JNA",
     "presence": "both",
     "match": "designator",
@@ -139746,6 +138871,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N551FR",
+        "model": "G-V-SP",
+        "serial": "5040",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N768JJ",
         "model": "G-V-SP",
         "serial": "5217",
@@ -139804,7 +138936,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 15
+    "aircraftCount": 16
   },
   {
     "id": "dsgn:3JPA",
@@ -140340,6 +139472,13 @@
         "serial": "51013",
         "cfr": "135",
         "source": "part135-list"
+      },
+      {
+        "registration": "N408SK",
+        "model": "BHT-407-407",
+        "serial": "54362",
+        "cfr": "135",
+        "source": "part135-list"
       }
     ],
     "conflicts": [],
@@ -140375,7 +139514,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 1
+    "aircraftCount": 2
   },
   {
     "id": "dsgn:K2DA",
@@ -140698,6 +139837,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N722AP",
+        "model": "CIRRUS-SF50",
+        "serial": "50",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N867CA",
         "model": "CIRRUS-SF50",
         "serial": "600",
@@ -140715,13 +139861,6 @@
         "registration": "N412PG",
         "model": "SR-22",
         "serial": "11276",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N722AP",
-        "model": "SR-22",
-        "serial": "50",
         "cfr": "135",
         "source": "part135-list"
       },
@@ -142656,6 +141795,112 @@
       "enforcement": []
     },
     "aircraftCount": 2
+  },
+  {
+    "id": "dsgn:NXYA",
+    "presence": "both",
+    "match": "designator",
+    "legalName": {
+      "value": "KATAHDIN AIR SERVICE INC",
+      "source": "part135-list"
+    },
+    "airOperatorName": {
+      "value": "KATAHDIN AIR SERVICE INC",
+      "source": "air-operator"
+    },
+    "designator": {
+      "value": "NXYA",
+      "source": "both"
+    },
+    "certificateNumber": {
+      "value": "NXYA256U",
+      "source": "air-operator"
+    },
+    "issueDate": {
+      "value": "1993-07-23",
+      "source": "air-operator"
+    },
+    "address": {
+      "value": "MILLINOCKET SEAPLANE BASE, GOLDEN ROAD, AMBAJEJUS LAKE",
+      "source": "air-operator"
+    },
+    "city": {
+      "value": "MILLINOCKET",
+      "source": "air-operator"
+    },
+    "state": {
+      "value": "ME",
+      "source": "air-operator"
+    },
+    "postalCode": {
+      "value": "04462",
+      "source": "air-operator"
+    },
+    "fsdo": {
+      "value": [
+        "EA65"
+      ],
+      "source": "part135-list"
+    },
+    "cfrOnList": {
+      "value": [
+        "135"
+      ],
+      "source": "part135-list"
+    },
+    "cfrOnSearch": {
+      "value": [
+        "135"
+      ],
+      "source": "air-operator"
+    },
+    "aircraft": [
+      {
+        "registration": "N8345Q",
+        "model": "CE-206-U206F",
+        "serial": "U20603206",
+        "cfr": "135",
+        "source": "part135-list"
+      }
+    ],
+    "conflicts": [],
+    "ceo": {
+      "value": "CREELEY, SEAN",
+      "source": "air-operator"
+    },
+    "chiefPilot": {
+      "value": "HARTT, ANDREW FRANCIS",
+      "source": "air-operator"
+    },
+    "directorOfMaintenance": {
+      "value": "CURTIS, CALEB",
+      "source": "air-operator"
+    },
+    "directorOfOperations": {
+      "value": "STRANG, JAMES WILFRED",
+      "source": "air-operator"
+    },
+    "country": {
+      "value": "US",
+      "source": "air-operator"
+    },
+    "staff": {
+      "value": {
+        "picCaptains": "4",
+        "inspectors": "0",
+        "designatedInspectors": "0",
+        "nonCertificatedMechanics": "0",
+        "certificatedMechanics": "0",
+        "repairmen": "0",
+        "totalEmployees": "3"
+      },
+      "source": "air-operator"
+    },
+    "safety": {
+      "ntsb": [],
+      "enforcement": []
+    },
+    "aircraftCount": 1
   },
   {
     "id": "dsgn:ENFA",
@@ -153033,126 +152278,6 @@
     "aircraftCount": 2
   },
   {
-    "id": "dsgn:LOYA",
-    "presence": "both",
-    "match": "designator",
-    "legalName": {
-      "value": "Loyd's Aviation",
-      "source": "part135-list"
-    },
-    "airOperatorName": {
-      "value": "FREEMAN HOLDINGS OF BAKERSFIELD LLC",
-      "source": "air-operator"
-    },
-    "designator": {
-      "value": "LOYA",
-      "source": "both"
-    },
-    "certificateNumber": {
-      "value": "LOYA165G",
-      "source": "air-operator"
-    },
-    "issueDate": {
-      "value": "2006-04-06",
-      "source": "air-operator"
-    },
-    "address": {
-      "value": "1601 SKYWAY DRIVE",
-      "source": "air-operator"
-    },
-    "city": {
-      "value": "BAKERSFIELD",
-      "source": "air-operator"
-    },
-    "state": {
-      "value": "CA",
-      "source": "air-operator"
-    },
-    "postalCode": {
-      "value": "93308",
-      "source": "air-operator"
-    },
-    "fsdo": {
-      "value": [
-        "WP17"
-      ],
-      "source": "part135-list"
-    },
-    "cfrOnList": {
-      "value": [
-        "135"
-      ],
-      "source": "part135-list"
-    },
-    "cfrOnSearch": {
-      "value": [
-        "135"
-      ],
-      "source": "air-operator"
-    },
-    "aircraft": [
-      {
-        "registration": "N979PS",
-        "model": "BE-200-B200GT",
-        "serial": "BY-217",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N30DE",
-        "model": "CE-525-525B",
-        "serial": "525B-0185",
-        "cfr": "135",
-        "source": "part135-list"
-      }
-    ],
-    "conflicts": [
-      {
-        "field": "legalName",
-        "designator": "LOYA",
-        "part135List": "Loyd's Aviation",
-        "airOperator": "FREEMAN HOLDINGS OF BAKERSFIELD LLC"
-      }
-    ],
-    "ceo": {
-      "value": "LOYD, STEVE",
-      "source": "air-operator"
-    },
-    "chiefPilot": {
-      "value": "WIERSCHEM, SCOTT M.",
-      "source": "air-operator"
-    },
-    "directorOfMaintenance": {
-      "value": "FLORES, AURELIO",
-      "source": "air-operator"
-    },
-    "directorOfOperations": {
-      "value": "CROWL, RYAN D.",
-      "source": "air-operator"
-    },
-    "country": {
-      "value": "US",
-      "source": "air-operator"
-    },
-    "staff": {
-      "value": {
-        "picCaptains": "4",
-        "inspectors": "0",
-        "designatedInspectors": "0",
-        "nonCertificatedMechanics": "0",
-        "certificatedMechanics": "0",
-        "repairmen": "0",
-        "totalEmployees": "9"
-      },
-      "source": "air-operator"
-    },
-    "safety": {
-      "ntsb": [],
-      "enforcement": []
-    },
-    "aircraftCount": 2
-  },
-  {
     "id": "dsgn:L3UA",
     "presence": "both",
     "match": "designator",
@@ -161313,13 +160438,6 @@
         "source": "part135-list"
       },
       {
-        "registration": "N135VV",
-        "model": "ECD-EC135-P2+",
-        "serial": "1019",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N135WL",
         "model": "ECD-EC135-P2+",
         "serial": "1083",
@@ -161732,7 +160850,7 @@
       ],
       "enforcement": []
     },
-    "aircraftCount": 153
+    "aircraftCount": 152
   },
   {
     "id": "dsgn:4BBA",
@@ -166975,6 +166093,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N650AC",
+        "model": "CE-650-CITATION VII",
+        "serial": "650-7065",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N302TA",
         "model": "PA-31-T",
         "serial": "31T-8020046",
@@ -167019,7 +166144,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 5
+    "aircraftCount": 6
   },
   {
     "id": "dsgn:JTKA",
@@ -170405,6 +169530,13 @@
     },
     "aircraft": [
       {
+        "registration": "N909FX",
+        "model": "ATR-42-300",
+        "serial": "275",
+        "cfr": "121/135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N916FX",
         "model": "ATR-42-300",
         "serial": "314",
@@ -170844,7 +169976,7 @@
       ],
       "enforcement": []
     },
-    "aircraftCount": 51
+    "aircraftCount": 52
   },
   {
     "id": "dsgn:MNIA",
@@ -173879,6 +173011,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N716QS",
+        "model": "BD-100-1A10",
+        "serial": "21138",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N725QS",
         "model": "BD-100-1A10",
         "serial": "20663",
@@ -174719,6 +173858,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N149QS",
+        "model": "BD-700-1A11",
+        "serial": "60221",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N175QS",
         "model": "BD-700-2A12",
         "serial": "70088",
@@ -175100,13 +174246,6 @@
         "registration": "N320QS",
         "model": "CE-680-680",
         "serial": "680-0169",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N323QS",
-        "model": "CE-680-680",
-        "serial": "680-0134",
         "cfr": "135",
         "source": "part135-list"
       },
@@ -176794,6 +175933,13 @@
         "registration": "N762QS",
         "model": "CESSNA-700",
         "serial": "700-0179",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
+        "registration": "N763QS",
+        "model": "CESSNA-700",
+        "serial": "700-0181",
         "cfr": "135",
         "source": "part135-list"
       },
@@ -179163,7 +178309,7 @@
       ],
       "enforcement": []
     },
-    "aircraftCount": 753
+    "aircraftCount": 755
   },
   {
     "id": "dsgn:N47A",
@@ -183473,6 +182619,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N608ES",
+        "model": "CE-680-680A",
+        "serial": "680A-0487",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N315RC",
         "model": "HAWKER-800XP-800XP",
         "serial": "258480",
@@ -183552,7 +182705,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 11
+    "aircraftCount": 12
   },
   {
     "id": "dsgn:T6FA",
@@ -185062,6 +184215,13 @@
         "serial": "18503121",
         "cfr": "135",
         "source": "part135-list"
+      },
+      {
+        "registration": "N120LP",
+        "model": "PA-31-325",
+        "serial": "31-7812010",
+        "cfr": "135",
+        "source": "part135-list"
       }
     ],
     "conflicts": [],
@@ -185101,7 +184261,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 3
+    "aircraftCount": 4
   },
   {
     "id": "dsgn:THNA",
@@ -186172,11 +185332,11 @@
   },
   {
     "id": "dsgn:O2MA",
-    "presence": "air-operator",
-    "match": "air-operator-only",
+    "presence": "both",
+    "match": "designator",
     "legalName": {
       "value": "OMNI AIR TRANSPORT, LLC",
-      "source": "air-operator"
+      "source": "part135-list"
     },
     "airOperatorName": {
       "value": "OMNI AIR TRANSPORT, LLC",
@@ -186184,7 +185344,7 @@
     },
     "designator": {
       "value": "O2MA",
-      "source": "air-operator"
+      "source": "both"
     },
     "certificateNumber": {
       "value": "O2MA556Y",
@@ -186210,13 +185370,33 @@
       "value": "94040",
       "source": "air-operator"
     },
+    "fsdo": {
+      "value": [
+        "SW15"
+      ],
+      "source": "part135-list"
+    },
+    "cfrOnList": {
+      "value": [
+        "135"
+      ],
+      "source": "part135-list"
+    },
     "cfrOnSearch": {
       "value": [
         "135"
       ],
       "source": "air-operator"
     },
-    "aircraft": [],
+    "aircraft": [
+      {
+        "registration": "N626JE",
+        "model": "GA-V-V",
+        "serial": "642",
+        "cfr": "135",
+        "source": "part135-list"
+      }
+    ],
     "conflicts": [],
     "ceo": {
       "value": "RODGERS, MIKE",
@@ -186254,7 +185434,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 0
+    "aircraftCount": 1
   },
   {
     "id": "dsgn:11OA",
@@ -193094,13 +192274,6 @@
         "source": "part135-list"
       },
       {
-        "registration": "N704RH",
-        "model": "AS-350-B3",
-        "serial": "8467",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N804PA",
         "model": "AS-350-B3",
         "serial": "3782",
@@ -193210,7 +192383,7 @@
       ],
       "enforcement": []
     },
-    "aircraftCount": 22
+    "aircraftCount": 21
   },
   {
     "id": "dsgn:PVCA",
@@ -197110,6 +196283,13 @@
         "serial": "750-0251",
         "cfr": "135",
         "source": "part135-list"
+      },
+      {
+        "registration": "N510SJ",
+        "model": "CL-600-2B19",
+        "serial": "7481",
+        "cfr": "135",
+        "source": "part135-list"
       }
     ],
     "conflicts": [],
@@ -197149,7 +196329,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 2
+    "aircraftCount": 3
   },
   {
     "id": "dsgn:PJMC",
@@ -199740,13 +198920,6 @@
         "serial": "560-0503",
         "cfr": "135",
         "source": "part135-list"
-      },
-      {
-        "registration": "N5728G",
-        "model": "Kodiak-100-100",
-        "serial": "100-0075",
-        "cfr": "135",
-        "source": "part135-list"
       }
     ],
     "conflicts": [],
@@ -199786,7 +198959,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 3
+    "aircraftCount": 2
   },
   {
     "id": "dsgn:NKVA",
@@ -202489,13 +201662,6 @@
         "source": "part135-list"
       },
       {
-        "registration": "N497PF",
-        "model": "CE-550-B",
-        "serial": "550-0964",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N886YS",
         "model": "CE-550-B",
         "serial": "550-1013",
@@ -202568,7 +201734,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 7
+    "aircraftCount": 6
   },
   {
     "id": "dsgn:W1XA",
@@ -206254,13 +205420,6 @@
         "source": "part135-list"
       },
       {
-        "registration": "N313RX",
-        "model": "ECD-EC135-P2+",
-        "serial": "1097",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N314RX",
         "model": "ECD-EC135-P2+",
         "serial": "1122",
@@ -206303,6 +205462,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N334GR",
+        "model": "ECD-EC135-P2+",
+        "serial": "0561",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N36RX",
         "model": "ECD-EC135-P2+",
         "serial": "0859",
@@ -206327,13 +205493,6 @@
         "registration": "N444YE",
         "model": "ECD-EC135-P2+",
         "serial": "0599",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
-        "registration": "N555YE",
-        "model": "ECD-EC135-P2+",
-        "serial": "0561",
         "cfr": "135",
         "source": "part135-list"
       },
@@ -206420,7 +205579,7 @@
     "safety": {
       "ntsb": [
         {
-          "match": "registration match",
+          "match": "name match - verify",
           "date": "2026-10-01",
           "eventType": "Accident",
           "city": "Avalon",
@@ -206518,7 +205677,7 @@
         }
       ]
     },
-    "aircraftCount": 64
+    "aircraftCount": 63
   },
   {
     "id": "dsgn:IKLA",
@@ -213852,13 +213011,6 @@
         "source": "part135-list"
       },
       {
-        "registration": "N234BZ",
-        "model": "EMB-135-LR",
-        "serial": "145388",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N403RW",
         "model": "EMB-135-LR",
         "serial": "145262",
@@ -213903,7 +213055,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 4
+    "aircraftCount": 3
   },
   {
     "id": "dsgn:UATA",
@@ -222091,6 +221243,20 @@
     },
     "aircraft": [
       {
+        "registration": "N419TM",
+        "model": "BE-400-A",
+        "serial": "RK-495",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
+        "registration": "N450TM",
+        "model": "BE-400-A",
+        "serial": "RK-508",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N477TM",
         "model": "BE-400-A",
         "serial": "RK-519",
@@ -222145,7 +221311,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 3
+    "aircraftCount": 5
   },
   {
     "id": "dsgn:AAWA",
@@ -223390,13 +222556,6 @@
         "serial": "LJ-1643",
         "cfr": "135",
         "source": "part135-list"
-      },
-      {
-        "registration": "N2706A",
-        "model": "CE-335-335",
-        "serial": "3350013",
-        "cfr": "135",
-        "source": "part135-list"
       }
     ],
     "conflicts": [],
@@ -223436,7 +222595,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 2
+    "aircraftCount": 1
   },
   {
     "id": "dsgn:KNIA",
@@ -229026,38 +228185,6 @@
     "aircraftCount": 1
   },
   {
-    "id": "dsgn:6ESA",
-    "presence": "part135-list",
-    "match": "part135-list-only",
-    "legalName": {
-      "value": "SOUTHERNMOST SEAPLANE SERVICE LLC",
-      "source": "part135-list"
-    },
-    "designator": {
-      "value": "6ESA",
-      "source": "part135-list"
-    },
-    "fsdo": {
-      "value": [
-        "SO19"
-      ],
-      "source": "part135-list"
-    },
-    "cfrOnList": {
-      "value": [
-        "135"
-      ],
-      "source": "part135-list"
-    },
-    "aircraft": [],
-    "conflicts": [],
-    "safety": {
-      "ntsb": [],
-      "enforcement": []
-    },
-    "aircraftCount": 0
-  },
-  {
     "id": "dsgn:OH6A",
     "presence": "both",
     "match": "designator",
@@ -231056,6 +230183,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N560TV",
+        "model": "CE-560-560XLS",
+        "serial": "560-5545",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N789XJ",
         "model": "CE-750-750",
         "serial": "750-0289",
@@ -231100,7 +230234,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 10
+    "aircraftCount": 11
   },
   {
     "id": "dsgn:ISPA",
@@ -231720,13 +230854,6 @@
         "source": "part135-list"
       },
       {
-        "registration": "N4599X",
-        "model": "PA-32-300",
-        "serial": "32-7640040",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N670MP",
         "model": "PA-32-300",
         "serial": "32-7140021",
@@ -231863,7 +230990,7 @@
       ],
       "enforcement": []
     },
-    "aircraftCount": 13
+    "aircraftCount": 12
   },
   {
     "id": "dsgn:J8GA",
@@ -232341,13 +231468,6 @@
         "source": "part135-list"
       },
       {
-        "registration": "N26XM",
-        "model": "PC-12-47E",
-        "serial": "2312",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N36PJ",
         "model": "PC-12-47E",
         "serial": "2114",
@@ -232420,7 +231540,7 @@
         }
       ]
     },
-    "aircraftCount": 7
+    "aircraftCount": 6
   },
   {
     "id": "dsgn:1S3A",
@@ -233540,6 +232660,13 @@
         "serial": "501-0217",
         "cfr": "135",
         "source": "part135-list"
+      },
+      {
+        "registration": "N550MZ",
+        "model": "CE-550-B",
+        "serial": "550-1075",
+        "cfr": "135",
+        "source": "part135-list"
       }
     ],
     "conflicts": [],
@@ -233579,7 +232706,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 2
+    "aircraftCount": 3
   },
   {
     "id": "dsgn:JDWA",
@@ -238889,11 +238016,11 @@
   },
   {
     "id": "dsgn:WTCA",
-    "presence": "air-operator",
-    "match": "air-operator-only",
+    "presence": "both",
+    "match": "designator",
     "legalName": {
       "value": "T&E AVIATION, LLC",
-      "source": "air-operator"
+      "source": "part135-list"
     },
     "airOperatorName": {
       "value": "T&E AVIATION, LLC",
@@ -238901,7 +238028,7 @@
     },
     "designator": {
       "value": "WTCA",
-      "source": "air-operator"
+      "source": "both"
     },
     "certificateNumber": {
       "value": "WTCA790T",
@@ -238927,13 +238054,33 @@
       "value": "58854",
       "source": "air-operator"
     },
+    "fsdo": {
+      "value": [
+        "GL21"
+      ],
+      "source": "part135-list"
+    },
+    "cfrOnList": {
+      "value": [
+        "135"
+      ],
+      "source": "part135-list"
+    },
     "cfrOnSearch": {
       "value": [
         "135"
       ],
       "source": "air-operator"
     },
-    "aircraft": [],
+    "aircraft": [
+      {
+        "registration": "N44AF",
+        "model": "MU-2B-60",
+        "serial": "790SA",
+        "cfr": "135",
+        "source": "part135-list"
+      }
+    ],
     "conflicts": [],
     "phone": {
       "value": "7015702646",
@@ -238959,7 +238106,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 0
+    "aircraftCount": 1
   },
   {
     "id": "dsgn:9T9A",
@@ -240058,6 +239205,13 @@
         "source": "part135-list"
       },
       {
+        "registration": "N613BR",
+        "model": "GA-V-V",
+        "serial": "531",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N718JJ",
         "model": "GA-V-V",
         "serial": "681",
@@ -240188,7 +239342,7 @@
       ],
       "enforcement": []
     },
-    "aircraftCount": 27
+    "aircraftCount": 28
   },
   {
     "id": "dsgn:3TBA",
@@ -241541,13 +240695,6 @@
         "source": "part135-list"
       },
       {
-        "registration": "N608T",
-        "model": "AS-350-B2",
-        "serial": "3151",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N6094E",
         "model": "AS-350-B2",
         "serial": "2750",
@@ -241816,7 +240963,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 45
+    "aircraftCount": 44
   },
   {
     "id": "dsgn:7NXA",
@@ -248230,6 +247377,20 @@
         "source": "part135-list"
       },
       {
+        "registration": "N8783E",
+        "model": "CL-600-2B19",
+        "serial": "7783",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
+        "registration": "N8908D",
+        "model": "CL-600-2B19",
+        "serial": "7908",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N890SA",
         "model": "CL-600-2B19",
         "serial": "7548",
@@ -248237,9 +247398,23 @@
         "source": "part135-list"
       },
       {
+        "registration": "N8974C",
+        "model": "CL-600-2B19",
+        "serial": "7974",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
         "registration": "N907SA",
         "model": "CL-600-2B19",
         "serial": "7934",
+        "cfr": "135",
+        "source": "part135-list"
+      },
+      {
+        "registration": "N940SA",
+        "model": "CL-600-2B19",
+        "serial": "7979",
         "cfr": "135",
         "source": "part135-list"
       },
@@ -248283,7 +247458,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 21
+    "aircraftCount": 25
   },
   {
     "id": "dsgn:MKHA",
@@ -263593,13 +262768,6 @@
         "source": "part135-list"
       },
       {
-        "registration": "N309WB",
-        "model": "CL-604-604",
-        "serial": "5394",
-        "cfr": "135",
-        "source": "part135-list"
-      },
-      {
         "registration": "N69DT",
         "model": "CL-604-604",
         "serial": "5448",
@@ -263721,7 +262889,7 @@
       "ntsb": [],
       "enforcement": []
     },
-    "aircraftCount": 22
+    "aircraftCount": 21
   },
   {
     "id": "dsgn:6OOA",
