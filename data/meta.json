@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-11-25T21:45:20Z",
+  "lastChecked": "2026-11-26T21:37:40Z",
   "holdersPage": "https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders",
   "airOperatorPage": "https://www.faa.gov/av-info/air-operator-far-search",
   "operatorCount": 1822,
@@ -33,7 +33,7 @@
   "airOperator": {
     "sourcePage": "https://www.faa.gov/av-info/air-operator-far-search",
     "updatedLabel": "",
-    "extractedAt": "2026-11-25T21:47:04Z",
+    "extractedAt": "2026-11-26T21:39:18Z",
     "method": "chrome-session-csv-by-letter",
     "partFilter": "135",
     "contentHash": "a28bc29208c303ea5c47564df4303505fd874017f05c4307bf5b4046dcc9c650",
